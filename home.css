@@ -1,10 +1,13 @@
 
 body {
 
-    background:
-      linear-gradient(135deg,#0000 18.75%,#131313 0 31.25%,#0000 0),
-      repeating-linear-gradient(45deg,#131313 -6.25% 6.25%,#111111 0 18.75%);
-    background-size: 130px 130px;
+    background: 
+      linear-gradient(135deg,#0000 20.5%,#131313 0 29.5%,#0000 0) 0 40px,
+      linear-gradient( 45deg,#0000 8%,#131313 0 17%, #0000 0 58%) 80px 0,
+      linear-gradient(135deg,#0000 8%,#131313 0 17%, #0000 0 58%,#131313 0 67%,#0000 0),        
+      linear-gradient( 45deg,#0000 8%,#131313 0 17%, #0000 0 58%,#131313 0 67%,#0000 0 83%,#131313 0 92%,#0000 0),
+      #111111;
+    background-size: 160px 160px;
 }
 
 
