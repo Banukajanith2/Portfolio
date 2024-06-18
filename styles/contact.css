@@ -290,6 +290,7 @@ body {
 .send-button {
 
     background-color: rgb(255, 243, 108);
+    color: black;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 10px;
@@ -303,19 +304,6 @@ body {
 
 }
 
-
-.error {
-
-    flex: 1;
-    background: transparent;
-    outline: none;
-    color: rgb(255, 0, 0);
-    border: none;
-    margin-left: 10px;
-    font-size: 12px;
-    font-family: 'Ubuntu', sans-serif;
-
-}
 
 
 /* Media Query for Mobile Devices */
