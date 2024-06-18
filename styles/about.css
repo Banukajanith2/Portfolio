@@ -1,0 +1,263 @@
+
+body {
+
+    background: 
+
+    linear-gradient(135deg,#0000 20.5%,#131313 0 29.5%,#0000 0) 0 40px,
+    linear-gradient( 45deg,#0000 8%,#131313 0 17%, #0000 0 58%) 80px 0,
+    linear-gradient(135deg,#0000 8%,#131313 0 17%, #0000 0 58%,#131313 0 67%,#0000 0),        
+    linear-gradient( 45deg,#0000 8%,#131313 0 17%, #0000 0 58%,#131313 0 67%,#0000 0 83%,#131313 0 92%,#0000 0),#111111;
+
+    background-size: 160px 160px;
+}
+
+
+.top {
+
+    display: flex;
+    height: 70px;
+    flex-direction: row;
+    align-items: center;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+
+}
+
+.t-left {
+
+    width: 290px;
+    background-color: rgba(153, 153, 255, 0);
+    text-align: center;
+    border-color: rgb(91, 91, 91);
+    border-style: solid;
+    border-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    
+}
+
+.t-center {
+
+    flex: 1;
+    border-color: rgb(255, 243, 108);
+    border-style: solid;
+    border-width: 2px;
+    text-align: center;
+
+}
+
+.t-right {
+
+
+    width: 150px;
+    background-color: rgba(222, 222, 36, 0);
+    text-align:center;
+    border-color: rgb(91, 91, 91);
+    border-style: solid;
+    border-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.homelink {
+
+    color: rgb(255, 255, 255);
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: rgba(0, 255, 170, 0);
+    transition: font-size 0.1s, color 0.1s;
+}
+
+
+.aboutlink, .skillslink {
+
+    color: rgb(255, 255, 255);
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: rgba(0, 255, 170, 0);
+    transition: font-size 0.1s, color 0.1s;
+
+}
+
+
+.contactlink {
+
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(0, 255, 170, 0);
+    transition: font-size 0.1s, color 0.1s, active 0.1s;
+}
+
+.homelink:hover,
+.aboutlink:hover,
+.skillslink:hover,
+.contactlink:hover {
+
+    font-size: 23px;
+    color:rgb(255, 243, 108);
+}
+
+.middle-1 {
+
+    display: flex;
+    flex-direction: row;
+    height: 500px;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    right: 10px;
+
+}
+
+.m-left {
+    
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    margin: 30px;
+}
+
+
+.name {
+
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    margin-bottom: -35px;
+    
+
+}
+
+.details {
+
+    font-size: 50px;
+    color: rgb(255, 243, 108);
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    
+
+}
+
+.details-2 {
+
+    font-size: 19px;
+    color: rgb(255, 255, 255);
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    margin-top: -30px;
+    line-height: 1.3;
+
+}
+
+
+.m-right {
+
+    flex: 1;
+    display: flex;
+    text-align:center;
+    justify-content: center;
+    align-items: center;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    margin: 30px;
+}
+
+.m-r-pic {
+
+    width: 450px;
+    background-color: rgba(0, 255, 255, 0);
+    border-color: rgb(186, 169, 112);
+    border-style: none;
+    border-width: 9px;
+    border-radius: 250px
+
+}
+
+.bottom {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 70px;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    margin-top: 10px ;
+    position: fixed;
+    bottom:10px;
+    left: 0;
+    right: 0;
+}
+
+.b-left {
+
+    flex: 1;
+    border-color: rgb(255, 243, 108);
+    border-width: 2px;
+    border-style: solid;
+    text-align: center;
+}
+
+.b-center {
+
+    width: 350px;
+    text-align: center;
+    border-style: solid;
+    border-radius: 50px;
+    border-color: rgba(91, 91, 91, 0);
+    background-color: rgb(91, 91, 91);
+    backdrop-filter: blur(15px);
+    padding-top: 9px;
+    padding-bottom: 4px;
+}
+
+.b-right {
+
+    flex: 1;
+    border-color: rgb(255, 243, 108);
+    border-width: 2px;
+    border-style: solid;
+    text-align: center;
+}
+
+.sc-icon {
+
+    width: 35px;
+    margin-left: 2px;
+    margin-right: 2px;
+    transition: width 0.15s, border-color 0.1s;
+
+}
+
+.sc-icon:hover {
+
+    width: 45px;
+    border-color: rgb(255, 243, 108);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 22.5px;
+}
