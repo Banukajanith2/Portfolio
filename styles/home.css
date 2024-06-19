@@ -129,8 +129,25 @@ body {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
     margin: 0%;
+    width: 90%;
+    animation: typing 2s steps(100),infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    
 }
 
+
+@keyframes typing {
+    from {
+    width: 0
+    }
+}
+
+@keyframes blink {
+    100% {
+    border-color: transparent
+    }
+}
 
 .details-2 {
 
@@ -287,6 +304,7 @@ body {
     .details {
 
         font-size: 45px;
+        white-space: inherit;
     }
 
     .details-2 {
