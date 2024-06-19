@@ -3,7 +3,7 @@ body {
 
     background-image: url(../img/backgroundimg.png);
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
 
     /*background: 
     linear-gradient(135deg,#0000 20.5%,#0C1844 0 29.5%,#0000 0) 0 40px,
