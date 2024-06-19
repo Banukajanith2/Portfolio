@@ -109,7 +109,7 @@ body {
 .middle-1 {
 
     display: flex;
-    height: 500px;
+    height: 450px;
     flex-direction: row;
     border-color: rgba(0, 0, 0, 0);
     border-style: solid;
