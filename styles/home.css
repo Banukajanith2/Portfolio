@@ -4,7 +4,7 @@ body {
     background-image: url(../img/backgroundimg.png);
     background-repeat: no-repeat;
     background-size: cover;
-
+    
     /*background: 
     linear-gradient(135deg,#0000 20.5%,#0C1844 0 29.5%,#0000 0) 0 40px,
     linear-gradient( 45deg,#0000 8%,#0C1844 0 17%, #0000 0 58%) 80px 0,
@@ -225,9 +225,6 @@ body {
     flex-direction: row;
     align-items: center;
     height: 50px;
-    bottom: 10px;
-    left: 0px;
-    right: 0px;
 }
 
 
@@ -241,6 +238,7 @@ body {
     border-color: rgba(204, 255, 0, 0);
     background-color: rgba(91, 91, 91, 0);
     padding-top: 9px;
+    padding-bottom: 10px;
 }
 
 .sc-icon {
