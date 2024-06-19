@@ -107,12 +107,8 @@ body {
 
 .b-center {
 
-    display: none;
-}
-
-.b-left {
-
     width: 350px;
+    margin: auto;
     text-align: center;
     border-style: solid;
     border-radius: 50px;
@@ -120,11 +116,6 @@ body {
     background-color: rgba(91, 91, 91, 0);
     padding-top: 9px;
     padding-bottom: 10px;
-}
-
-.b-right {
-
-    display: none;
 }
 
 .sc-icon {
