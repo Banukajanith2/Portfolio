@@ -145,10 +145,9 @@ body {
 .middle {
 
     width: 600px;
-    height: 450px;
+    height: 500px;
     align-items: center;
     justify-content: center;
-    margin-top: 75px;
     margin-left: auto;
     margin-right: auto;
 
@@ -302,13 +301,11 @@ body {
 
     .middle {
         width: 90%;
-        margin-top: 60px;
     }
 
     .text-1 {
         font-size: 28px;
     }
-
 
     .name, .email, .subject-1, .message {
         width: 100%;
