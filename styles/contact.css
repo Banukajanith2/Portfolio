@@ -249,7 +249,7 @@ body {
 .subject-1:focus,
 .message:focus {
 
-    border-color: rgb(255, 48, 48);
+    border-color: rgb(200, 0, 54);
     background: rgb(10, 10, 10);
 }
 
