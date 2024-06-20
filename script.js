@@ -21,7 +21,19 @@ function sendEmail() {
                 Swal.fire({
                     title: "Message Sent!",
                     text: "Thanks for contacting me! I'll respond ASAP.",
-                    icon: "success"
+                    icon: "success",
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown animate__faster'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp animate__faster'
+                    },
+                    customClass: {
+                        popup: 'swal2-popup',
+                        title: 'swal2-title',
+                        content: 'swal2-content',
+                        confirmButton: 'swal2-confirm'
+                    }
                 });
             }
         }
@@ -31,39 +43,39 @@ function sendEmail() {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    const showError = (text) => {
+        Swal.fire({
+            title: "ERROR",
+            text: text,
+            icon: "error",
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown animate__faster'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp animate__faster'
+            },
+            customClass: {
+                popup: 'swal2-popup',
+                title: 'swal2-title',
+                content: 'swal2-content',
+                confirmButton: 'swal2-confirm'
+            }
+        });
+    }
+
     if (name.value.trim() === "") {
-        Swal.fire({
-            title: "Error!",
-            text: "Name is Empty.",
-            icon: "error"
-        });
+        showError("Name is Empty!");
     } else if (email.value.trim() === "") {
-        Swal.fire({
-            title: "Error!",
-            text: "Email is Empty.",
-            icon: "error"
-        });
+        showError("Email is Empty!");
     } else if (subject.value.trim() === "") {
-        Swal.fire({
-            title: "Error!",
-            text: "Subject is Empty.",
-            icon: "error"
-        });
+        showError("Subject is Empty!");
     } else if (message.value.trim() === "") {
-        Swal.fire({
-            title: "Error!",
-            text: "Message is Empty.",
-            icon: "error"
-        });
+        showError("Message is Empty!");
     } else {
         // Check if the email is in a valid format
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email.value)) {
-            Swal.fire({
-                title: "Error!",
-                text: "Please enter a valid email address.",
-                icon: "error"
-            });
+            showError("Please enter a valid email address!");
         } else {
             sendEmail();
         }
