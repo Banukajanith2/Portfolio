@@ -295,7 +295,7 @@ body {
     border: 2px solid rgb(255, 241, 83) !important;
     font-family: 'Ubuntu', sans-serif !important;
     width: 300px !important; /* Set width to 200px */
-    height: 305px !important; /* Set height to 300px */
+    height: 330px !important; /* Set height to 300px */
 }
 
 .swal2-title, .swal2-content {
