@@ -311,10 +311,6 @@ body {
     font-family: 'Ubuntu', sans-serif !important;
 }
 
-.swal2-confirm:focus {
-    box-shadow: none !important;
-}
-
 
 
 /* Media Query for Mobile Devices */
