@@ -416,7 +416,7 @@
     .m-r-pic {
         
         margin: auto;
-        width: 180px;
+        width: 200px;
         border-radius: 0%;
         backdrop-filter: blur(0px);
         animation: pulse 5s infinite;
