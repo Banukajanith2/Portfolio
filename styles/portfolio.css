@@ -119,29 +119,26 @@
 .title {
 
     text-align: center;
-    position: sticky;
-    top: 0px;
-    
 }
 
 .title1 {
 
-    font-size: 27px;
+    font-size: 30px;
     font-weight: 500;
     font-family: 'Ubuntu', sans-serif;
     color: rgb(255, 241, 83);
+    padding-bottom: 15px;
     margin-bottom: 10px;
     margin-top: 10px;
-    margin-left: 120px;
-    margin-right: 120px;
+    margin-left: 150px;
+    margin-right: 150px;
+    border: 5px;
     border-color: rgb(255, 241, 83);
     border-style: solid;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 50px;
-    border-left: 0px;
-    border-right: 0px;
-    backdrop-filter: blur(100px);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+
 }
 
 .work {
@@ -265,7 +262,7 @@
 
     .title1 {
 
-        font-size: 20px;
+        font-size: 23px;
         margin-bottom: 25px;
         margin-left: 0px;
         margin-right: 0px;
