@@ -217,6 +217,12 @@ body {
 
 /* Media Query for Mobile Devices */
 @media (max-width: 480px) {
+
+    body {
+        background-attachment: fixed;
+        background-size: auto; 
+    }
+    
     .top {
         flex-direction: column;
         align-items: center;
