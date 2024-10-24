@@ -54,79 +54,92 @@
 .aboutlink,
 .portfoliolink,
 .contactlink {
-
     font-size: 20px;
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
-    text-decoration: none;
+    text-decoration: none; /* No default underline */
     padding-left: 15px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 5px;
     background-color: rgba(0, 255, 170, 0);
-    transition: all 0.3s;
+    transition: color 0.5s ease-in-out; /* Transition for color */
+    position: relative; /* Necessary for pseudo-element positioning */
 }
 
+/* Style for homelink */
 .homelink {
-
     color: rgb(221, 221, 221);
+    
 }
 
-.aboutlink {
-
-    color: rgb(221, 221, 221);
-} 
-
+/* Styles for about, portfolio, and contact links */
 .portfoliolink {
-
     color: rgb(255,192,88);
 }
 
-.contactlink {
 
+.aboutlink,
+.contactlink {
     color: rgb(221, 221, 221);
 }
 
-
+/* Hover effect: change text color */
 .homelink:hover,
 .aboutlink:hover,
 .portfoliolink:hover,
 .contactlink:hover {
+    color: rgb(255,192,88);
+}
 
-    color:rgb(255,192,88);
+/* Add the underline using ::after pseudo-element */
+.homelink::after,
+.aboutlink::after,
+.portfoliolink::after,
+.contactlink::after {
+    content: ''; /* Pseudo-element content */
+    position: absolute;
+    left: 0;
+    bottom: 1px; /* Adjust this value to move underline closer or further from text */
+    width: 100%;
+    height: 1px; /* Thickness of the underline */
+    background-color: rgb(255,192,88); /* Underline color */
+    transform: scaleX(0); /* Initially hidden */
+    transform-origin: left;
+    transition: transform 0.2s ease-in-out; /* Animation for the underline */
+}
+
+/* Hover effect to animate the underline */
+.homelink:hover::after,
+.aboutlink:hover::after,
+.portfoliolink:hover::after,
+.contactlink:hover::after {
+    transform: scaleX(1); /* Expand underline from left to right */
 }
 
 .middle {
-
     height: auto;
     padding: 20px;
-    border-color: rgba(255, 255, 255, 0);
-    border-style: dashed;
-}
-
-.title {
-
-    text-align: center;
 }
 
 .title1 {
-
     font-size: 30px;
-    font-weight: 500;
     font-family: 'Poppins', sans-serif;
-    color: rgb(255, 255, 255);
-    padding-bottom: 15px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 150px;
-    margin-right: 150px;
+    font-weight: 500;
+    color: white;
+    text-align: center;
     border: 3px;
     border-color: rgb(255, 255, 255);
     border-style: solid;
     border-top: 0;
     border-left: 0;
     border-right: 0;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 150px;
+    margin-right: 150px;
 
 }
 
@@ -136,37 +149,10 @@
 }
 
 .work {
-
-    border-color: rgba(0, 47, 255, 0);
-    border-style: solid;
-    border-radius: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px;
     display: flex;
-    flex-wrap: wrap; /* Allows the items to wrap to the next row */
-    justify-content: center; /* Centers the items horizontally */
-    overflow-y: auto;
-    
-}
-
-.project-div {
-
-    border-color: rgb(255,192,88);
-    border-style: solid;
-    border-radius: 25px;
-    height: 250px;
-    width: 250px;
-    margin: 25px;
-    background-size: cover; /* Ensures the background covers the entire div */
-    background-position: center; /* Centers the background image */
-    box-shadow: 8px 8px rgb(255,192,88);
-    transition: 0.2s;
-}
-
-.project-div:hover {
-
-    box-shadow: 0px 0px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
 }
 
 .project1 {background-image: url(../img/Designs/Flyer1.jpg);}
@@ -189,6 +175,156 @@
 .project18 {background-image: url(../img/Designs/Flyer18.jpg);}
 .project19 {background-image: url(../img/Designs/Flyer19.jpg);}
 .project20 {background-image: url(../img/Designs/Flyer20.jpg);}
+
+
+/* Individual project divs */
+.project-div {
+    border: 2px solid rgb(255,192,88);
+    border-radius: 25px;
+    height: 250px;
+    width: 250px;
+    margin: 25px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 8px 8px rgb(255,192,88);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.project-div:hover {
+    box-shadow: 0px 0px;
+}
+
+/* Modal styling */
+.modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.762);
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Start with 0 opacity */
+    transition: opacity 0.3s ease-in-out; /* Smooth opacity transition */
+}
+
+.modal.show {
+    display: flex; /* Flex to center content */
+    opacity: 1; /* When showing, fade to full opacity */
+}
+
+.modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 20px;
+    border-radius: 8px;
+    width: 85%;
+    height: 85%;
+    background-size: cover;
+    background-position: center;
+    transform: scale(0.8); /* Start smaller */
+    transition: transform 0.3s ease-in-out; /* Smooth scaling transition */
+}
+
+.modal.show .modal-content {
+    transform: scale(1); /* Scale to full size */
+}
+
+.modal-main {
+    display: flex; /* Use flexbox for two-column layout */
+    height: 100%;
+}
+
+.modal-img {
+    flex: 2; /* Takes up 1 part of the available space */
+    border-radius: 20px; /* Optional: Add some rounding to the image container */
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-color: #c7003800;
+    border-style: solid;
+    background-color: #dedede;
+    display: flex; /* Use flexbox to align items */
+    flex-direction: column;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.modal-img img {
+    width: auto; /* Maintain original width */
+    height: auto; /* Maintain original height */
+    max-width: 100%; /* Ensure it doesn't overflow horizontally */
+    max-height: 100%; /* Ensure it doesn't overflow vertically */
+    object-fit: contain; /* Ensures the entire image fits without being cropped */
+}
+
+
+
+.modal-details {
+    flex: 1; /* Takes up 1 part of the available space */
+    color: #ffffff; /* Text color */
+    padding: 25px; /* Add padding around the details */
+    overflow-y: auto; /* Allow scrolling if the content is too large */
+    border-color: #c7003800;
+    border-style: solid;
+    border-radius: 20px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background-color: #201f1f;
+}
+
+.modal-details h2 {
+    font-size: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-decoration: underline; /* This adds the underline */
+}
+
+.project-date {
+
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.project-details1 {
+
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
+    margin: 0px;
+    margin-top: 20px;
+}
+
+.project-details2 {
+
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
+    margin: 0px;
+    margin-top: 20px;
+    
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 25px;
+    width: 25px;
+    background-color: #ff5833;
+    color: white;
+    border: none;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: #C70039;
+}
 
 
 .bottom {
@@ -260,6 +396,57 @@
         margin-bottom: 25px;
         margin-left: 0px;
         margin-right: 0px;
+    }
+
+    .modal-main {
+    
+        flex-direction: column;
+    }
+
+    .modal-img {
+        border-radius: 20px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    
+    .modal-details {
+        border-radius: 20px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .modal-details h2 {
+        font-size: 23px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        text-decoration: underline; /* This adds the underline */
+        margin: 0px;
+    }
+    
+    .project-date {
+
+        font-size: 11px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+    }
+    
+    .project-details1 {
+    
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 100;
+        margin: 0px;
+        margin-top: 15px;
+    }
+    
+    .project-details2 {
+    
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 100;
+        margin: 0px;
+        margin-top: 10px;
+        
     }
 
     .b-center {
