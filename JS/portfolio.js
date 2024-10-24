@@ -25,10 +25,10 @@ const projects = [
   },
   {
     images: [
-    '../img/Designs/Flyer2.jpg',
-    '../img/Designs/Flyer3.jpg',
-    '../img/Designs/Flyer4.jpg',
-    '../img/Designs/Flyer5.jpg',
+    'img/Designs/Flyer2.jpg',
+    'img/Designs/Flyer3.jpg',
+    'img/Designs/Flyer4.jpg',
+    'img/Designs/Flyer5.jpg',
     ],
     title: 'Project 2 Title',
     description: 
@@ -38,11 +38,11 @@ const projects = [
   },
   {
     images: [
-    '../img/Designs/Flyer3.jpg',
-    '../img/Designs/Flyer4.jpg',
-    '../img/Designs/Flyer5.jpg',
-    '../img/Designs/Flyer6.jpg',
-    '../img/Designs/Flyer7.jpg',],
+    'img/Designs/Flyer3.jpg',
+    'img/Designs/Flyer4.jpg',
+    'img/Designs/Flyer5.jpg',
+    'img/Designs/Flyer6.jpg',
+    'img/Designs/Flyer7.jpg',],
     title: 'Project 3 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -51,12 +51,12 @@ const projects = [
   },
   {
     images: [
-    '../img/Designs/Flyer4.jpg',
-    '../img/Designs/Flyer5.jpg',
-    '../img/Designs/Flyer6.jpg',
-    '../img/Designs/Flyer7.jpg',
-    '../img/Designs/Flyer8.jpg',
-    '../img/Designs/Flyer9.jpg',],
+    'img/Designs/Flyer4.jpg',
+    'img/Designs/Flyer5.jpg',
+    'img/Designs/Flyer6.jpg',
+    'img/Designs/Flyer7.jpg',
+    'img/Designs/Flyer8.jpg',
+    'img/Designs/Flyer9.jpg',],
     title: 'Project 4 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -64,7 +64,7 @@ const projects = [
     <p class="project-details2">More information on Project 4.</p>`
   },
   {
-    images: ['../img/Designs/Flyer5.jpg'],
+    images: ['img/Designs/Flyer5.jpg'],
     title: 'Project 5 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -72,7 +72,7 @@ const projects = [
     <p class="project-details2">More information on Project 5.</p>`
   },
   {
-    images: ['../img/Designs/Flyer6.jpg'],
+    images: ['img/Designs/Flyer6.jpg'],
     title: 'Project 6 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -80,7 +80,7 @@ const projects = [
     <p class="project-details2">More information on Project 6.</p>`
   },
   {
-    images: ['../img/Designs/Flyer7.jpg'],
+    images: ['img/Designs/Flyer7.jpg'],
     title: 'Project 7 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -88,7 +88,7 @@ const projects = [
     <p class="project-details2">More information on Project 7.</p>`
   },
   {
-    images: ['../img/Designs/Flyer8.jpg'],
+    images: ['img/Designs/Flyer8.jpg'],
     title: 'Project 8 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -96,7 +96,7 @@ const projects = [
     <p class="project-details2">More information on Project 8.</p>`
   },
   {
-    images: ['../img/Designs/Flyer9.jpg'],
+    images: ['img/Designs/Flyer9.jpg'],
     title: 'Project 9 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -104,7 +104,7 @@ const projects = [
     <p class="project-details2">More information on Project 9.</p>`
   },
   {
-    images: ['../img/Designs/Flyer10.jpg'],
+    images: ['img/Designs/Flyer10.jpg'],
     title: 'Project 10 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -112,7 +112,7 @@ const projects = [
     <p class="project-details2">More information on Project 10.</p>`
   },
   {
-    images: ['../img/Designs/Flyer11.jpg'],
+    images: ['img/Designs/Flyer11.jpg'],
     title: 'Project 11 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -120,7 +120,7 @@ const projects = [
     <p class="project-details2">More information on Project 11.</p>`
   },
   {
-    images: ['../img/Designs/Flyer12.jpg'],
+    images: ['img/Designs/Flyer12.jpg'],
     title: 'Project 12 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -128,7 +128,7 @@ const projects = [
     <p class="project-details2">More information on Project 12.</p>`
   },
   {
-    images: ['../img/Designs/Flyer13.jpg'],
+    images: ['img/Designs/Flyer13.jpg'],
     title: 'Project 13 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -136,7 +136,7 @@ const projects = [
     <p class="project-details2">More information on Project 13.</p>`
   },
   {
-    images: ['../img/Designs/Flyer14.jpg'],
+    images: ['img/Designs/Flyer14.jpg'],
     title: 'Project 14 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -144,7 +144,7 @@ const projects = [
     <p class="project-details2">More information on Project 14.</p>`
   },
   {
-    images: ['../img/Designs/Flyer15.jpg'],
+    images: ['img/Designs/Flyer15.jpg'],
     title: 'Project 15 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -152,7 +152,7 @@ const projects = [
     <p class="project-details2">More information on Project 15.</p>`
   },
   {
-    images: ['../img/Designs/Flyer16.jpg'],
+    images: ['img/Designs/Flyer16.jpg'],
     title: 'Project 16 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -160,7 +160,7 @@ const projects = [
     <p class="project-details2">More information on Project 16.</p>`
   },
   {
-    images: ['../img/Designs/Flyer17.jpg'],
+    images: ['img/Designs/Flyer17.jpg'],
     title: 'Project 17 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -168,7 +168,7 @@ const projects = [
     <p class="project-details2">More information on Project 17.</p>`
   },
   {
-    images: ['../img/Designs/Flyer18.jpg'],
+    images: ['img/Designs/Flyer18.jpg'],
     title: 'Project 18 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -176,7 +176,7 @@ const projects = [
     <p class="project-details2">More information on Project 18.</p>`
   },
   {
-    images: ['../img/Designs/Flyer19.jpg'],
+    images: ['img/Designs/Flyer19.jpg'],
     title: 'Project 19 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
@@ -184,7 +184,7 @@ const projects = [
     <p class="project-details2">More information on Project 19.</p>`
   },
   {
-    images: ['../img/Designs/Flyer20.jpg'],
+    images: ['img/Designs/Flyer20.jpg'],
     title: 'Project 20 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
