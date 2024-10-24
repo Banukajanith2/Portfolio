@@ -14,9 +14,9 @@ div.addEventListener('click', function() {
 const projects = [
   {
     images: [
-    '../img/Designs/Flyer1.jpg',
-    '../img/Designs/Flyer2.jpg',
-    '../img/Designs/Flyer3.jpg'],
+    'img/Designs/Flyer1.jpg',
+    'img/Designs/Flyer2.jpg',
+    'img/Designs/Flyer3.jpg'],
     title: 'Project 1 Title',
     description: 
     `<p class="project-date">2024.10.24</p>
