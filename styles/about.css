@@ -54,47 +54,68 @@
 .aboutlink,
 .portfoliolink,
 .contactlink {
-
     font-size: 20px;
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
-    text-decoration: none;
+    text-decoration: none; /* No default underline */
     padding-left: 15px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 5px;
     background-color: rgba(0, 255, 170, 0);
-    transition: all 0.3s;
+    transition: color 0.5s ease-in-out; /* Transition for color */
+    position: relative; /* Necessary for pseudo-element positioning */
 }
 
+/* Style for homelink */
 .homelink {
-    
     color: rgb(221, 221, 221);
 }
 
+/* Styles for about, portfolio, and contact links */
 .aboutlink {
 
     color: rgb(255,192,88);
-} 
-
-.portfoliolink {
-
-    color: rgb(221, 221, 221);
 }
 
+
+.portfoliolink,
 .contactlink {
-
     color: rgb(221, 221, 221);
 }
 
-
+/* Hover effect: change text color */
 .homelink:hover,
 .aboutlink:hover,
 .portfoliolink:hover,
 .contactlink:hover {
+    color: rgb(255,192,88);
+}
 
-    color:rgb(255,192,88);
+/* Add the underline using ::after pseudo-element */
+.homelink::after,
+.aboutlink::after,
+.portfoliolink::after,
+.contactlink::after {
+    content: ''; /* Pseudo-element content */
+    position: absolute;
+    left: 0;
+    bottom: 1px; /* Adjust this value to move underline closer or further from text */
+    width: 100%;
+    height: 1px; /* Thickness of the underline */
+    background-color: rgb(255,192,88); /* Underline color */
+    transform: scaleX(0); /* Initially hidden */
+    transform-origin: left;
+    transition: transform 0.2s ease-in-out; /* Animation for the underline */
+}
+
+/* Hover effect to animate the underline */
+.homelink:hover::after,
+.aboutlink:hover::after,
+.portfoliolink:hover::after,
+.contactlink:hover::after {
+    transform: scaleX(1); /* Expand underline from left to right */
 }
 
 .middle-1 {
