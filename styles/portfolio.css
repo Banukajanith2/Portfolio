@@ -252,6 +252,25 @@
     overflow-y: auto;
 }
 
+/* Style the scrollbar */
+.modal-img::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.modal-img::-webkit-scrollbar-track {
+    background: #dedede; /* Track color */
+    border-radius: 10px; /* Rounded track */
+}
+
+.modal-img::-webkit-scrollbar-thumb {
+    background: #c70038; /* Thumb color */
+    border-radius: 10px; /* Rounded thumb */
+}
+
+.modal-img::-webkit-scrollbar-thumb:hover {
+    background: #b3002e; /* Darker color on hover */
+}
+
 .modal-img img {
     width: auto; /* Maintain original width */
     height: auto; /* Maintain original height */
@@ -402,6 +421,11 @@
     
         flex-direction: column;
     }
+
+    /* Style the scrollbar */
+    .modal-img::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+    }  
 
     .modal-img {
         border-radius: 20px;
