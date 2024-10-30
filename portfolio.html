@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Designs & Projects</title>
+        <link rel="stylesheet" href="styles/portfolio.css">
+        <link href="img/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="description" content="Banuka Janith Waduge Portfolio Website.">
+        <meta author="Banuka Janith Waduge">
+        <meta name="keywords" content="Banuka, Janith, Banukajanith">
+    </head>
+        <body>
+            <div class="background-overlay"></div>
+            <div class="content fade-in">    
+            <div class="top">
+                <div class="t-center">
+                    <a href="index.html" class="homelink" >Home</a>
+                    <a href="about.html" class="aboutlink">About</a>
+                    <a href="portfolio.html" class="portfoliolink">Portfolio</a>
+                    <a href="contact.html" class="contactlink">Contact</a>
+                </div>
+
+                
+            </div>
+            <div class="middle">
+                <div class="title">
+                    <h1 class="title1">Designs <span class="small-title1">&</span> Projects</h1>
+                </div>
+                <div class="work">
+                    <div class="project-div project1" onclick="openModal(0)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project2" onclick="openModal(1)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project3" onclick="openModal(2)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project4" onclick="openModal(3)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project5" onclick="openModal(4)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project6" onclick="openModal(5)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project7" onclick="openModal(6)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project8" onclick="openModal(7)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project9" onclick="openModal(8)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project10" onclick="openModal(9)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project11" onclick="openModal(10)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project12" onclick="openModal(11)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project13" onclick="openModal(12)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project14" onclick="openModal(13)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project15" onclick="openModal(14)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project16" onclick="openModal(15)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project17" onclick="openModal(16)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project18" onclick="openModal(17)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                    <div class="project-div project19" onclick="openModal(18)">
+                        <div class="project-div-open"><h1 class="project-div-open-txt">View</h1></div>
+                    </div>
+                </div>
+            </div>
+            <div id="projectModal" class="modal">
+                <div class="modal-content" id="modalContent">
+                    <button class="close-btn" id="closeBtn"><b>X</b></button>
+                    <div class="modal-main">
+                        <div class="modal-img" id="modalImage"></div> <!-- This will hold the project images -->
+                        <div class="modal-details" id="modalDetails"></div> <!-- This will hold the project details -->
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="bottom">
+
+                <div class="b-center">
+                    <a href="https://web.facebook.com/profile.php?id=61557110070406" target="_blank"><img class="sc-icon" src="img/facebook.png"></a>
+                    <a href="https://github.com/Banukajanith2" target="_blank"><img class="sc-icon" src="img/github.png"></a>
+                    <a href="https://www.instagram.com/_h3llcat._/" target="_blank"><img class="sc-icon" src="img/instagram.png"></a>
+                    <a href="https://www.linkedin.com/in/banuka-janith-waduge/"><img class="sc-icon" src="img/linkedin.png"></a>	
+                    <a href="contact.html"><img class="sc-icon" src="img/email.png"></a>
+                </div>
+            </div>
+        </div>
+        
+        <script src="JS/portfolio.js"></script>
+        <script src="JS/load.js"></script> <!-- Dont use / in front of the path like "/JS/load.js" in Github Pages -->
+    </body>
+</html>

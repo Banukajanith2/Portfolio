@@ -1,0 +1,389 @@
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right bottom, #ae0434, #810f2f, #561325, #2e1018, #000000);
+    z-index: -1; /* Place it behind other content */
+}
+
+.content {
+    z-index: 1;
+    position: relative; 
+}
+
+.fade-in {
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out; 
+}
+
+.fade-in.loaded {
+    opacity: 1;
+}
+
+.top {
+
+    display: flex;
+    height: 70px;
+    flex-direction: row;
+    align-items: center;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+
+
+}
+
+.t-center {
+
+    width: 700px;
+    background-color: rgba(246, 246, 246, 0);
+    text-align: center;
+    border-color: rgba(200, 0, 53, 0);
+    border-style: solid;
+    border-radius: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.homelink,
+.aboutlink,
+.portfoliolink,
+.contactlink {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    text-decoration: none; /* No default underline */
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    background-color: rgba(0, 255, 170, 0);
+    transition: color 0.5s ease-in-out; /* Transition for color */
+    position: relative; /* Necessary for pseudo-element positioning */
+}
+
+/* Style for homelink */
+.homelink {
+    color: rgb(221, 221, 221);
+}
+
+/* Styles for about, portfolio, and contact links */
+.contactlink {
+
+    color: rgb(255,192,88);
+}
+
+
+.portfoliolink,
+.aboutlink {
+    color: rgb(221, 221, 221);
+}
+
+/* Hover effect: change text color */
+.homelink:hover,
+.aboutlink:hover,
+.portfoliolink:hover,
+.contactlink:hover {
+    color: rgb(255,192,88);
+}
+
+/* Add the underline using ::after pseudo-element */
+.homelink::after,
+.aboutlink::after,
+.portfoliolink::after,
+.contactlink::after {
+    content: ''; /* Pseudo-element content */
+    position: absolute;
+    left: 0;
+    bottom: 1px; /* Adjust this value to move underline closer or further from text */
+    width: 100%;
+    height: 1px; /* Thickness of the underline */
+    background-color: rgb(255,192,88); /* Underline color */
+    transform: scaleX(0); /* Initially hidden */
+    transform-origin: left;
+    transition: transform 0.2s ease-in-out; /* Animation for the underline */
+}
+
+/* Hover effect to animate the underline */
+.homelink:hover::after,
+.aboutlink:hover::after,
+.portfoliolink:hover::after,
+.contactlink:hover::after {
+    transform: scaleX(1); /* Expand underline from left to right */
+}
+
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
+}
+
+
+.b-center {
+
+    width: 350px;
+    margin: auto;
+    text-align: center;
+    border-style: solid;
+    border-radius: 50px;
+    border-color: rgba(204, 255, 0, 0);
+    background-color: rgba(91, 91, 91, 0);
+    padding-top: 9px;
+    padding-bottom: 10px;
+}
+
+
+.sc-icon {
+
+    width: 35px;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-color: rgba(255, 241, 83, 0);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 25px;
+    transition: all 0.2s;
+
+}
+
+.sc-icon:hover {
+
+    border-color: rgb(255,192,88);
+}
+
+.middle {
+
+    width: 600px;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+.text {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.text-1 {
+
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+
+
+.input-boxes {
+
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.name {
+
+    flex: 1;
+    border-color: rgb(255,192,88);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 15px;
+    background: transparent;
+    outline: none;
+    color: rgb(255, 255, 255);
+    margin-right: 5px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.email {
+
+    flex: 2;
+    border-color: rgb(255,192,88);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 15px;
+    background: transparent;
+    outline: none;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.subject {
+
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.subject-1 {
+
+    border-color: rgb(255,192,88);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    outline: none;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-message {
+
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.message {
+
+    border-color: rgb(255,192,88);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    outline: none;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.name:focus,
+.email:focus,
+.subject-1:focus,
+.message:focus {
+
+    border-color: rgb(255, 255, 255);
+    background: rgba(10, 10, 10, 0.626);
+}
+
+.button {
+    
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 15px;
+}
+
+.send-button {
+
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border-style: solid;
+    background-color: transparent;
+    border-color: rgb(255,192,88);
+    border-style: solid;
+    color: rgb(255,192,88);
+    box-shadow: 4px 7px rgba(255, 191, 88, 0.836);
+    transition: all 0.3s ease-in-out;
+
+}
+
+.send-button:hover {
+
+    color: black;
+    background-color: rgb(255, 241, 83);
+    border-color: rgb(255, 241, 83);
+    box-shadow: 0px 0px;
+}
+
+.swal2-popup {
+    background-color: rgb(10, 10, 10) !important;
+    border: 2px solid rgb(255, 241, 83) !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 13px !important;
+}
+
+.swal2-title, .swal2-content {
+    color: white !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 15px !important;
+}
+
+.swal2-confirm {
+    background-color: rgb(255, 48, 48) !important;
+    border-radius: 12px !important;
+    border: none !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+
+
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+    
+    .top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .t-center {
+        width: 100%;
+        text-align: center;
+    }
+
+    .aboutlink, .contactlink, .homelink, .portfoliolink {
+
+        font-size: 15px;
+    }
+
+    .middle {
+        width: 90%;
+    }
+
+    .text-1 {
+        font-size: 25px;
+    }
+
+    .name, .email, .subject-1, .message {
+        width: 100%;
+        padding: 15px;
+        border-radius: 20px;
+        font-size: 15px;
+    }
+
+    .send-button {
+        width: 25%;
+        padding: 5px;
+        font-size: 15px;
+    }
+
+    .b-center {
+        width: 100%;
+    }
+
+    .sc-icon {
+        width: 25px;
+    }
+
+}
+

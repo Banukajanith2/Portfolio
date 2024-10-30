@@ -1,0 +1,374 @@
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right bottom, #ae0434, #810f2f, #561325, #2e1018, #000000);
+    z-index: -1; /* Place it behind other content */
+}
+
+.content {
+    z-index: 1;
+    position: relative; 
+}
+
+.fade-in {
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out; 
+}
+
+.fade-in.loaded {
+    opacity: 1;
+}
+
+.top {
+
+    display: flex;
+    height: 70px;
+    flex-direction: row;
+    align-items: center;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+
+
+}
+
+.t-center {
+
+    width: 700px;
+    background-color: rgba(246, 246, 246, 0);
+    text-align: center;
+    border-color: rgba(200, 0, 53, 0);
+    border-style: solid;
+    border-radius: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.homelink,
+.aboutlink,
+.portfoliolink,
+.contactlink {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    text-decoration: none; /* No default underline */
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    background-color: rgba(0, 255, 170, 0);
+    transition: color 0.5s ease-in-out; /* Transition for color */
+    position: relative; /* Necessary for pseudo-element positioning */
+}
+
+/* Style for homelink */
+.homelink {
+    color: rgb(221, 221, 221);
+}
+
+/* Styles for about, portfolio, and contact links */
+.aboutlink {
+
+    color: rgb(255,192,88);
+}
+
+
+.portfoliolink,
+.contactlink {
+    color: rgb(221, 221, 221);
+}
+
+/* Hover effect: change text color */
+.homelink:hover,
+.aboutlink:hover,
+.portfoliolink:hover,
+.contactlink:hover {
+    color: rgb(255,192,88);
+}
+
+/* Add the underline using ::after pseudo-element */
+.homelink::after,
+.aboutlink::after,
+.portfoliolink::after,
+.contactlink::after {
+    content: ''; /* Pseudo-element content */
+    position: absolute;
+    left: 0;
+    bottom: 1px; /* Adjust this value to move underline closer or further from text */
+    width: 100%;
+    height: 1px; /* Thickness of the underline */
+    background-color: rgb(255,192,88); /* Underline color */
+    transform: scaleX(0); /* Initially hidden */
+    transform-origin: left;
+    transition: transform 0.2s ease-in-out; /* Animation for the underline */
+}
+
+/* Hover effect to animate the underline */
+.homelink:hover::after,
+.aboutlink:hover::after,
+.portfoliolink:hover::after,
+.contactlink:hover::after {
+    transform: scaleX(1); /* Expand underline from left to right */
+}
+
+.middle-1 {
+
+    display: flex;
+    height: 400px;
+    flex-direction: row;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.m-left {
+
+    flex: 1;
+    display: flex;
+    text-align:center;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    margin: 50px;
+    margin-left: 75px;
+}
+
+.m-l-pic {
+
+    width: 300px;
+    height: 300px;
+    background-color: rgb(224, 172, 88);
+    border-radius: 50%;
+    
+
+}
+
+.m-right {
+    
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 3px solid rgb(255,192,88);
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.name {
+
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 50px;
+}
+
+.big-name {
+    font-size: 33px;
+    font-weight: 500; /* Set a larger font size for the name */
+    color: rgb(255,192,88);
+}
+
+.details {
+
+    font-size: 23px;
+    color: rgb(255, 255, 255);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 0px;
+    margin-top: 20px;
+    margin-left: 50px;
+    width: 85%;
+
+}
+
+.details-2 {
+
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-left: 50px;
+
+}
+
+.m-right a {
+
+    position: relative;
+    width: 120px;
+    padding: 8px;
+    margin-left: 50px;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color:rgb(255,192,88);
+    border-color: rgba(255, 241, 83, 0);
+    border-style: solid;
+    color: rgb(0, 0, 0);
+    box-shadow: 4px 7px rgb(0, 0, 0);
+    z-index: 1;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.m-right a::before {
+
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    color: rgb(255,192,88);
+    z-index: -1;
+    transition: 0.3s;
+}
+
+
+.m-right a:hover::before {
+
+    width: 100%;
+}
+
+
+.mbutton:hover {
+
+    color: rgb(255,192,88);
+    border-color: rgb(0, 0, 0);
+    box-shadow: 0px 0px;
+}
+
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
+}
+
+
+.b-center {
+
+    width: 350px;
+    margin: auto;
+    text-align: center;
+    border-style: solid;
+    border-radius: 50px;
+    border-color: rgba(204, 255, 0, 0);
+    background-color: rgba(91, 91, 91, 0);
+    padding-top: 9px;
+    padding-bottom: 10px;
+}
+
+
+
+.sc-icon {
+
+    width: 35px;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-color: rgba(255, 241, 83, 0);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 25px;
+    transition: all 0.2s;
+
+}
+
+.sc-icon:hover {
+
+    border-color: rgb(255,192,88);
+}
+
+
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+
+    .top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .t-center {
+        width: 100%;
+        text-align: center;
+    }
+
+    .aboutlink, .contactlink, .homelink, .portfoliolink {
+
+        font-size: 15px;
+    }
+
+    .middle-1 {
+
+        flex-direction: column;
+        height: auto;
+    }
+
+    .m-left {
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+    }
+
+    .m-l-pic {
+
+        width: 240px;
+        height: 240px;
+    }
+
+    .name {
+        font-size: 25px;
+        margin-left: 20px;
+    }
+
+    .big-name {
+        font-size: 28px;
+    }
+
+    .details {
+        font-size: 19px;
+        margin-left: 20px;
+    }
+
+    .details-2 {
+        font-size: 17px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .m-right a {
+        width: 100px;
+        font-size: 13px;
+        margin-left: 20px;
+    }
+
+    .b-center {
+        width: 100%;
+    }
+
+    .sc-icon {
+        width: 25px;
+    }
+}
+

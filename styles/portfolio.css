@@ -1,0 +1,516 @@
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right bottom, #ae0434, #810f2f, #561325, #2e1018, #000000);
+    z-index: -1; /* Place it behind other content */
+}
+
+.content {
+    z-index: 1;
+    position: relative; /* Ensure content is above the overlay */
+}
+
+.fade-in {
+    opacity: 0; /* Start with invisible */
+    transition: opacity 0.5s ease-in-out; /* Transition effect */
+}
+
+.fade-in.loaded {
+    opacity: 1; /* Fully visible when loaded */
+}
+
+.top {
+
+    display: flex;
+    height: 70px;
+    flex-direction: row;
+    align-items: center;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+
+
+}
+
+.t-center {
+
+    width: 700px;
+    background-color: rgba(246, 246, 246, 0);
+    text-align: center;
+    border-color: rgba(200, 0, 53, 0);
+    border-style: solid;
+    border-radius: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.homelink,
+.aboutlink,
+.portfoliolink,
+.contactlink {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    text-decoration: none; /* No default underline */
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    background-color: rgba(0, 255, 170, 0);
+    transition: color 0.5s ease-in-out; /* Transition for color */
+    position: relative; /* Necessary for pseudo-element positioning */
+}
+
+/* Style for homelink */
+.homelink {
+    color: rgb(221, 221, 221);
+    
+}
+
+/* Styles for about, portfolio, and contact links */
+.portfoliolink {
+    color: rgb(255,192,88);
+}
+
+
+.aboutlink,
+.contactlink {
+    color: rgb(221, 221, 221);
+}
+
+/* Hover effect: change text color */
+.homelink:hover,
+.aboutlink:hover,
+.portfoliolink:hover,
+.contactlink:hover {
+    color: rgb(255,192,88);
+}
+
+/* Add the underline using ::after pseudo-element */
+.homelink::after,
+.aboutlink::after,
+.portfoliolink::after,
+.contactlink::after {
+    content: ''; /* Pseudo-element content */
+    position: absolute;
+    left: 0;
+    bottom: 1px; /* Adjust this value to move underline closer or further from text */
+    width: 100%;
+    height: 1px; /* Thickness of the underline */
+    background-color: rgb(255,192,88); /* Underline color */
+    transform: scaleX(0); /* Initially hidden */
+    transform-origin: left;
+    transition: transform 0.2s ease-in-out; /* Animation for the underline */
+}
+
+/* Hover effect to animate the underline */
+.homelink:hover::after,
+.aboutlink:hover::after,
+.portfoliolink:hover::after,
+.contactlink:hover::after {
+    transform: scaleX(1); /* Expand underline from left to right */
+}
+
+.middle {
+    height: auto;
+    padding: 20px;
+}
+
+.title1 {
+    font-size: 35px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    border: 3px;
+    border-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 150px;
+    margin-right: 150px;
+
+}
+
+.small-title1 {
+    font-weight: 200;
+    font-size: 27px;
+}
+
+.work {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.project1 {background-image: url(../img/Designs2/project1/2.jpg);}
+.project2 {background-image: url(../img/Designs2/project2/2.jpg);}
+.project3 {background-image: url(../img/Designs2/project3/1.jpg);}
+.project4 {background-image: url(../img/Designs2/project4/1.jpg);}
+.project5 {background-image: url(../img/Designs2/project5/Flyer2.jpg);}
+.project6 {background-image: url(../img/Designs2/project6/2.png);}
+.project7 {background-image: url(../img/Designs2/project7/1.jpg);}
+.project8 {background-image: url(../img/Designs2/project8/1.JPG);}
+.project9 {background-image: url(../img/Designs2/project9/1.jpg);}
+.project10 {background-image: url(../img/Designs2/project10/1.jpg);}
+.project11 {background-image: url(../img/Designs2/project11/1.jpg);}
+.project12 {background-image: url(../img/Designs2/project12/1.jpg);}
+.project13 {background-image: url(../img/Designs2/project13/3.jpg);}
+.project14 {background-image: url(../img/Designs2/project14/1.jpg);}
+.project15 {background-image: url(../img/Designs2/project15/1.JPG);}
+.project16 {background-image: url(../img/Designs2/project16/1.jpg);}
+.project17 {background-image: url(../img/Designs2/project17/1.JPG);}
+.project18 {background-image: url(../img/Designs2/project18/1.JPG);}
+.project19 {background-image: url(../img/Designs2/project5/Flyer1.jpg);}
+
+
+/* Individual project divs */
+.project-div {
+    position: relative;
+    border: 2px solid rgb(255,192,88);
+    border-radius: 20px;
+    height: 250px;
+    width: 250px;
+    margin: 25px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 8px 8px rgb(255,192,88);
+    transition: 0.2s;
+    cursor: pointer;
+    
+}
+
+.project-div:hover {
+    box-shadow: 0px 0px;
+}
+
+.project-div-open {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0); /* Initial transparent background */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+    border-radius: 25px;
+}
+
+.project-div:hover .project-div-open {
+    background-color: rgba(0, 0, 0, 0.525); /* Darken background on hover */
+}
+
+.project-div-open-txt {
+    color: white;
+    font-size: 17px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    text-decoration: underline;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(100%); /* Start from bottom */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth slide-up and fade-in */
+}
+
+.project-div:hover .project-div-open-txt {
+    opacity: 1; /* Show text on hover */
+    transform: translateY(0); /* Move to center */
+}
+
+
+
+/* Modal styling */
+.modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.762);
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Start with 0 opacity */
+    transition: opacity 0.3s ease-in-out; /* Smooth opacity transition */
+}
+
+.modal.show {
+    display: flex; /* Flex to center content */
+    opacity: 1; /* When showing, fade to full opacity */
+}
+
+.modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 20px;
+    border-radius: 8px;
+    width: 85%;
+    height: 85%;
+    background-size: cover;
+    background-position: center;
+    transform: scale(0.8); /* Start smaller */
+    transition: transform 0.3s ease-in-out; /* Smooth scaling transition */
+}
+
+.modal.show .modal-content {
+    transform: scale(1); /* Scale to full size */
+}
+
+.modal-main {
+    display: flex; /* Use flexbox for two-column layout */
+    height: 100%;
+}
+
+.modal-img {
+    flex: 2; /* Takes up 1 part of the available space */
+    border-radius: 20px; /* Optional: Add some rounding to the image container */
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-color: #c7003800;
+    border-style: solid;
+    background-color: #dedede;
+    display: flex; /* Use flexbox to align items */
+    flex-direction: column;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+/* Style the scrollbar */
+.modal-img::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.modal-img::-webkit-scrollbar-track {
+    background: #dedede; /* Track color */
+    border-radius: 10px; /* Rounded track */
+}
+
+.modal-img::-webkit-scrollbar-thumb {
+    background: #c70038; /* Thumb color */
+    border-radius: 10px; /* Rounded thumb */
+}
+
+.modal-img::-webkit-scrollbar-thumb:hover {
+    background: #b3002e; /* Darker color on hover */
+}
+
+.modal-img img {
+    width: auto; /* Maintain original width */
+    height: auto; /* Maintain original height */
+    max-width: 100%; /* Ensure it doesn't overflow horizontally */
+    max-height: 100%; /* Ensure it doesn't overflow vertically */
+    object-fit: contain; /* Ensures the entire image fits without being cropped */
+}
+
+
+.modal-details {
+    flex: 1; /* Takes up 1 part of the available space */
+    color: #ffffff; /* Text color */
+    padding: 25px; /* Add padding around the details */
+    overflow-y: auto; /* Allow scrolling if the content is too large */
+    border-color: #c7003800;
+    border-style: solid;
+    border-radius: 20px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background-color: #201f1f;
+}
+
+.modal-details h2 {
+    font-size: 27px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    
+}
+
+.project-date {
+
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.project-details1 {
+
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    margin: 0px;
+    margin-top: 20px;
+}
+
+.project-details2 {
+
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    margin: 0px;
+    margin-top: 20px;
+    
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 25px;
+    width: 25px;
+    background-color: #ff5833;
+    color: white;
+    border: none;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: #C70039;
+}
+
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
+}
+
+
+.b-center {
+
+    width: 350px;
+    margin: auto;
+    text-align: center;
+    border-style: solid;
+    border-radius: 50px;
+    border-color: rgba(204, 255, 0, 0);
+    background-color: rgba(91, 91, 91, 0);
+    padding-top: 9px;
+    padding-bottom: 10px;
+}
+
+
+
+.sc-icon {
+
+    width: 35px;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-color: rgba(255, 241, 83, 0);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 50%;
+    transition: all 0.2s;
+    overflow: hidden;
+}
+
+.sc-icon:hover {
+
+    border-color: rgb(255,192,88);
+}
+
+
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+    .top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .t-center {
+        width: 100%;
+        text-align: center;
+    }
+
+    .aboutlink, .contactlink, .homelink, .portfoliolink {
+
+        font-size: 15px;
+    }
+
+    .title1 {
+
+        font-size: 23px;
+        margin-bottom: 25px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .modal-main {
+    
+        flex-direction: column;
+    }
+
+    /* Style the scrollbar */
+    .modal-img::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+    }  
+
+    .modal-img {
+        border-radius: 20px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    
+    .modal-details {
+        border-radius: 20px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .modal-details h2 {
+        font-size: 23px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        margin: 0px;
+    }
+    
+    .project-date {
+
+        font-size: 11px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+    }
+    
+    .project-details1 {
+    
+        font-size: 15px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 100;
+        margin: 0px;
+        margin-top: 15px;
+    }
+    
+    .project-details2 {
+    
+        font-size: 15px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 100;
+        margin: 0px;
+        margin-top: 10px;
+        
+    }
+
+    .b-center {
+        width: 100%;
+    }
+
+    .sc-icon {
+        width: 25px;
+    }
+}
+
