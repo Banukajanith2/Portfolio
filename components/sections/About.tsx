@@ -32,7 +32,7 @@ export function About() {
 
         <div>
           <FadeIn>
-            <p className="text-sm font-medium uppercase tracking-widest text-primary-400">About Me</p>
+            <p className="text-sm font-medium uppercase tracking-widest text-primary-400">Abou Me</p>
             <h2 className="mt-2 text-4xl font-black leading-tight text-foreground md:text-5xl">
               {aboutContent.heading}
             </h2>
