@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { AnimatedText } from "@/components/ui/AnimatedText";
+import { asset } from "@/lib/utils";
 
 export function About() {
   return (
@@ -14,7 +15,7 @@ export function About() {
           <div className="relative mx-auto w-full max-w-md">
             <div className="relative aspect-[5/6] w-full overflow-hidden rounded-2xl border border-white/10">
               <Image
-                src="/images/about-photo.svg"
+                src={asset("/images/about-photo.svg")}
                 alt={`${siteConfig.firstName} ${siteConfig.lastName} working at a desk`}
                 fill
                 unoptimized

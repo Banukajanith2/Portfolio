@@ -11,6 +11,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { Magnet } from "@/components/ui/Magnet";
 import { ParticleBackground } from "@/components/ui/ParticleBackground";
 import { TypingCode } from "@/components/ui/TypingCode";
+import { asset } from "@/lib/utils";
 
 export function Hero() {
   return (
@@ -80,7 +81,7 @@ export function Hero() {
               style={{ boxShadow: "0 0 80px 20px rgba(124, 58, 237, 0.3)" }}
             >
               <Image
-                src="/images/hero-photo.svg"
+                src={asset("/images/hero-photo.svg")}
                 alt={`Portrait of ${siteConfig.firstName} ${siteConfig.lastName}`}
                 fill
                 priority

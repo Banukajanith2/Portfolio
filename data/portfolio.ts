@@ -1,6 +1,7 @@
-import type { TechIconKey } from "@/components/ui/TechIcon";
+﻿import type { TechIconKey } from "@/components/ui/TechIcon";
 import type { SocialIconKey } from "@/components/ui/SocialIcon";
 import type { IconKey } from "@/components/ui/Icon";
+import { asset } from "@/lib/utils";
 
 export interface SiteConfig {
   firstName: string;
@@ -22,7 +23,7 @@ export const siteConfig: SiteConfig = {
     "I build scalable web applications and digital experiences with clean code and modern technologies.",
   email: "banukajanith2002@gmail.com",
   location: "Sri Lanka",
-  resumeUrl: "/banuka-janith-cv.pdf",
+  resumeUrl: asset("/banuka-janith-cv.pdf"),
   github: "github.com/banukajanith",
   linkedin: "linkedin.com/in/banuka-janith",
 };
@@ -68,14 +69,14 @@ export const heroCodeSnippet: string[] = [
 ];
 
 const marqueeTiles = [
-  "/images/marquee/m1.svg",
-  "/images/marquee/m2.svg",
-  "/images/marquee/m3.svg",
-  "/images/marquee/m4.svg",
-  "/images/marquee/m5.svg",
-  "/images/marquee/m6.svg",
-  "/images/marquee/m7.svg",
-  "/images/marquee/m8.svg",
+  asset("/images/marquee/m1.svg"),
+  asset("/images/marquee/m2.svg"),
+  asset("/images/marquee/m3.svg"),
+  asset("/images/marquee/m4.svg"),
+  asset("/images/marquee/m5.svg"),
+  asset("/images/marquee/m6.svg"),
+  asset("/images/marquee/m7.svg"),
+  asset("/images/marquee/m8.svg"),
 ];
 
 export const marqueeRow1: string[] = Array.from({ length: 11 }, (_, i) => marqueeTiles[i % marqueeTiles.length]);
@@ -169,7 +170,7 @@ export const featuredProjects: FeaturedProject[] = [
     title: "EZ Movies App",
     description:
       "A fast and responsive movie browsing application with search, trending, pagination and real-time data using the TMDB API.",
-    images: ["/images/project-ezmovies.svg", "/images/project-ezmovies.svg", "/images/project-ezmovies.svg"],
+    images: [asset("/images/project-ezmovies.svg"), asset("/images/project-ezmovies.svg"), asset("/images/project-ezmovies.svg")],
     featured: true,
     tech: ["javascript", "firebase", "tailwind"],
     liveDemoUrl: "https://ez-movies.example.com",
@@ -181,9 +182,9 @@ export const featuredProjects: FeaturedProject[] = [
     description:
       "ML model that analyses text data and predicts sentiment using various machine learning algorithms.",
     images: [
-      "/images/project-ai-sentiment.svg",
-      "/images/project-ai-sentiment.svg",
-      "/images/project-ai-sentiment.svg",
+      asset("/images/project-ai-sentiment.svg"),
+      asset("/images/project-ai-sentiment.svg"),
+      asset("/images/project-ai-sentiment.svg"),
     ],
     featured: true,
     tech: ["python", "scikitlearn", "pandas"],
@@ -196,9 +197,9 @@ export const featuredProjects: FeaturedProject[] = [
     description:
       "A machine learning project that predicts outcomes using classification algorithms and data visualisation.",
     images: [
-      "/images/project-ml-prediction.svg",
-      "/images/project-ml-prediction.svg",
-      "/images/project-ml-prediction.svg",
+      asset("/images/project-ml-prediction.svg"),
+      asset("/images/project-ml-prediction.svg"),
+      asset("/images/project-ml-prediction.svg"),
     ],
     featured: true,
     tech: ["python", "matplotlib", "numpy"],
@@ -254,7 +255,7 @@ export const experience: ExperienceItem[] = [
     type: "work",
     role: "Digital Designer",
     org: "SISKA Private Limited",
-    date: "May 2023 — Present",
+    date: "May 2023 â€” Present",
     bullets: [
       "Designing digital content and managing social media campaigns.",
       "Creating marketing content and video content.",
@@ -265,7 +266,7 @@ export const experience: ExperienceItem[] = [
     type: "work",
     role: "IT Support Agent",
     org: "Kingsland",
-    date: "Jan 2022 — Apr 2023",
+    date: "Jan 2022 â€” Apr 2023",
     bullets: [
       "Provided technical support for hardware and software issues.",
       "Assisted customers and resolved technical problems.",
@@ -276,7 +277,7 @@ export const experience: ExperienceItem[] = [
     type: "education",
     role: "BSc (Hons) in Software Engineering",
     org: "Saegis Campus",
-    date: "2021 — 2024",
+    date: "2021 â€” 2024",
     bullets: [
       "Focused on software development and system design.",
       "Completed multiple academic and industry projects.",
@@ -287,7 +288,7 @@ export const experience: ExperienceItem[] = [
     type: "education",
     role: "Diploma in Software Engineering",
     org: "Saegis Campus",
-    date: "2019 — 2021",
+    date: "2019 â€” 2021",
     bullets: [
       "Built a strong foundation in programming and software principles.",
       "Completed projects in web development and algorithms.",
@@ -310,7 +311,7 @@ export const testimonials: Testimonial[] = [
       "Banuka is a talented developer who consistently delivers high-quality work. His problem-solving skills and dedication are truly impressive.",
     name: "Chaminda Perera",
     role: "CEO, SISKA",
-    avatar: "/images/avatar-1.svg",
+    avatar: asset("/images/avatar-1.svg"),
     rating: 5,
   },
   {
@@ -318,7 +319,7 @@ export const testimonials: Testimonial[] = [
       "Working with Banuka was a great experience. He's proactive, efficient, and always goes the extra mile to deliver.",
     name: "Nimesh Fernando",
     role: "Project Manager, Kingsland",
-    avatar: "/images/avatar-2.svg",
+    avatar: asset("/images/avatar-2.svg"),
     rating: 5,
   },
   {
@@ -326,7 +327,7 @@ export const testimonials: Testimonial[] = [
       "Banuka has a strong technical foundation and a great eye for design. He brings ideas to life with clean and maintainable code.",
     name: "Tharindu Madushan",
     role: "Lead Developer",
-    avatar: "/images/avatar-3.svg",
+    avatar: asset("/images/avatar-3.svg"),
     rating: 5,
   },
 ];
@@ -346,6 +347,6 @@ export const contactInfo: ContactInfoItem[] = [
 ];
 
 export const footerContent = {
-  copyright: `© ${new Date().getFullYear()} ${siteConfig.firstName} ${siteConfig.lastName}. All rights reserved.`,
+  copyright: `Â© ${new Date().getFullYear()} ${siteConfig.firstName} ${siteConfig.lastName}. All rights reserved.`,
   builtWith: "Built with Next.js and Tailwind CSS",
 };
