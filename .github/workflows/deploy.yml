@@ -26,7 +26,11 @@ jobs:
           node-version: 20
           cache: npm
 
-      - run: npm ci
+      # Not `npm ci`: the lockfile is generated on Windows, so it pins the
+      # nested deps of @unrs/resolver-binding-wasm32-wasi (a transitive
+      # eslint-config-next dep) to versions the Linux runner re-resolves,
+      # which makes `npm ci` fail on a lockfile mismatch.
+      - run: npm install --no-audit --no-fund
 
       - run: npm run build
 
