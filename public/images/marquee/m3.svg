@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="270" viewBox="0 0 420 270">
+  <defs>
+    <linearGradient id="g-m3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="270" fill="#0d0d14"/>
+  <rect width="420" height="270" fill="url(#g-m3)" opacity="0.25"/>
+  <g opacity="0.55">
+    <circle cx="75.6" cy="75.60000000000001" r="148.5" fill="url(#g-m3)"/>
+    <circle cx="369.6" cy="221.39999999999998" r="113.39999999999999" fill="url(#g-m3)"/>
+  </g>
+  <rect x="24" y="24" width="64" height="8" rx="4" fill="url(#g-m3)" opacity="0.9"/>
+  <text x="24" y="242" font-family="Arial, sans-serif" font-size="20" fill="#f5f3ff" opacity="0.9">Mobile UI</text>
+</svg>

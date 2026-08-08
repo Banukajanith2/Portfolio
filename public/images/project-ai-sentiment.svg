@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <defs>
+    <linearGradient id="g-p2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" fill="#12121a"/>
+  <rect width="600" height="360" fill="url(#g-p2)" opacity="0.22"/>
+  <g opacity="0.5">
+    <circle cx="120" cy="108" r="180" fill="url(#g-p2)"/>
+    <circle cx="510" cy="288" r="144" fill="url(#g-p2)"/>
+  </g>
+  <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="32" fill="#e5e7eb" text-anchor="middle" dominant-baseline="middle" opacity="0.85">AI Sentiment Analysis</text>
+</svg>
