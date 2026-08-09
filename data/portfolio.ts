@@ -173,8 +173,8 @@ export const featuredProjects: FeaturedProject[] = [
     images: [asset("/images/project-ezmovies.svg"), asset("/images/project-ezmovies.svg"), asset("/images/project-ezmovies.svg")],
     featured: true,
     tech: ["javascript", "firebase", "tailwind"],
-    liveDemoUrl: "https://ez-movies.example.com",
-    sourceCodeUrl: "https://github.com/banukajanith2/ez-movies-app",
+    liveDemoUrl: "https://banukajanith2.github.io/Movies-App/",
+    sourceCodeUrl: "https://github.com/Banukajanith2/Movies-App",
   },
   {
     number: "02",
