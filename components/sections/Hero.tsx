@@ -81,7 +81,7 @@ export function Hero() {
               style={{ boxShadow: "0 0 80px 20px rgba(124, 58, 237, 0.3)" }}
             >
               <Image
-                src={asset("/images/hero-photo.svg")}
+                src={asset("/images/self-portrait.webp")}
                 alt={`Portrait of ${siteConfig.firstName} ${siteConfig.lastName}`}
                 fill
                 priority

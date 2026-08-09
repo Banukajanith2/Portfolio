@@ -15,8 +15,8 @@ export function About() {
           <div className="relative mx-auto w-full max-w-md">
             <div className="relative aspect-[5/6] w-full overflow-hidden rounded-2xl border border-white/10">
               <Image
-                src={asset("/images/about-photo.svg")}
-                alt={`${siteConfig.firstName} ${siteConfig.lastName} working at a desk`}
+                src={asset("/images/self-portrait.webp")}
+                alt={`${siteConfig.firstName} ${siteConfig.lastName}`}
                 fill
                 unoptimized
                 sizes="(min-width: 1024px) 420px, 90vw"

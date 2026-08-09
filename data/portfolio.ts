@@ -49,7 +49,7 @@ export interface SocialLink {
 
 export const heroSocials: SocialLink[] = [
   { icon: "github", href: "https://github.com/banukajanith2", label: "GitHub" },
-  { icon: "linkedin", href: "https://linkedin.com/in/banukajanith", label: "LinkedIn" },
+  { icon: "linkedin", href: "https://linkedin.com/in/banuka-janith-waduge", label: "LinkedIn" },
   { icon: "twitter", href: "https://twitter.com/banukajanith", label: "Twitter" },
   { icon: "instagram", href: "https://instagram.com/banukajanith", label: "Instagram" },
   { icon: "mail", href: "mailto:banukajanith2@gmail.com", label: "Email" },
@@ -174,7 +174,7 @@ export const featuredProjects: FeaturedProject[] = [
     featured: true,
     tech: ["javascript", "firebase", "tailwind"],
     liveDemoUrl: "https://ez-movies.example.com",
-    sourceCodeUrl: "https://github.com/banukajanith/ez-movies-app",
+    sourceCodeUrl: "https://github.com/banukajanith2/ez-movies-app",
   },
   {
     number: "02",
@@ -189,7 +189,7 @@ export const featuredProjects: FeaturedProject[] = [
     featured: true,
     tech: ["python", "scikitlearn", "pandas"],
     liveDemoUrl: "https://ai-sentiment.example.com",
-    sourceCodeUrl: "https://github.com/banukajanith/ai-sentiment-analysis",
+    sourceCodeUrl: "https://github.com/banukajanith2/ai-sentiment-analysis",
   },
   {
     number: "03",
@@ -204,7 +204,7 @@ export const featuredProjects: FeaturedProject[] = [
     featured: true,
     tech: ["python", "matplotlib", "numpy"],
     liveDemoUrl: "https://ml-prediction.example.com",
-    sourceCodeUrl: "https://github.com/banukajanith/ml-prediction-algorithm",
+    sourceCodeUrl: "https://github.com/banukajanith2/ml-prediction-algorithm",
   },
 ];
 
@@ -220,25 +220,25 @@ export const otherProjects: OtherProject[] = [
     title: "Portfolio Website",
     description: "Personal portfolio website built with Next.js, Tailwind CSS and Framer Motion.",
     icon: "globe",
-    sourceCodeUrl: "https://github.com/banukajanith/portfolio-website",
+    sourceCodeUrl: "https://github.com/banukajanith2/portfolio-website",
   },
   {
     title: "Weather App",
     description: "Weather application that shows real-time weather using the OpenWeather API.",
     icon: "cloud",
-    sourceCodeUrl: "https://github.com/banukajanith/weather-app",
+    sourceCodeUrl: "https://github.com/banukajanith2/weather-app",
   },
   {
     title: "Blog Platform",
     description: "A full-stack blog platform with authentication and CRUD operations.",
     icon: "fileText",
-    sourceCodeUrl: "https://github.com/banukajanith/blog-platform",
+    sourceCodeUrl: "https://github.com/banukajanith2/blog-platform",
   },
   {
     title: "E-commerce UI",
     description: "Modern e-commerce frontend UI built with React and Tailwind CSS.",
     icon: "shoppingCart",
-    sourceCodeUrl: "https://github.com/banukajanith/ecommerce-ui",
+    sourceCodeUrl: "https://github.com/banukajanith2/ecommerce-ui",
   },
 ];
 

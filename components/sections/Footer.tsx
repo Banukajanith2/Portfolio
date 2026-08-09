@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronUp, Heart } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 import { footerContent } from "@/data/portfolio";
 
 export function Footer() {

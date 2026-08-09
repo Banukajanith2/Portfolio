@@ -24,7 +24,7 @@ export function Navbar() {
       <nav className="section-container flex h-16 items-center justify-between sm:h-20">
         <a href="#home" className="flex items-center gap-2 text-base font-semibold text-foreground">
           <Code2 className="h-5 w-5 text-primary-400" aria-hidden="true" />
-          {siteConfig.firstName} {siteConfig.lastName}
+          {siteConfig.firstName}
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">

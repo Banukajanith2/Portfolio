@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: `${siteConfig.firstName} ${siteConfig.lastName} — ${siteConfig.role}`,
+  title: siteConfig.firstName,
   description: siteConfig.tagline,
 };
 
