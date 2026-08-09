@@ -21,11 +21,11 @@ export const siteConfig: SiteConfig = {
   role: "Software Engineer & Web Developer",
   tagline:
     "I build scalable web applications and digital experiences with clean code and modern technologies.",
-  email: "banukajanith2002@gmail.com",
+  email: "Banukajanith2@gmail.com",
   location: "Sri Lanka",
   resumeUrl: asset("/banuka-janith-cv.pdf"),
-  github: "github.com/banukajanith",
-  linkedin: "linkedin.com/in/banuka-janith",
+  github: "github.com/banukajanith2",
+  linkedin: "linkedin.com/in/banuka-janith-waduge",
 };
 
 export interface NavLink {
@@ -347,6 +347,5 @@ export const contactInfo: ContactInfoItem[] = [
 ];
 
 export const footerContent = {
-  copyright: `${new Date().getFullYear()} ${siteConfig.firstName} ${siteConfig.lastName}. All rights reserved.`,
-  builtWith: "",
+  copyright: `${new Date().getFullYear()} ${siteConfig.firstName} ${siteConfig.lastName}.`,
 };

@@ -22,10 +22,6 @@ export function Footer() {
           <ChevronUp className="h-4 w-4" aria-hidden="true" />
         </button>
 
-        <p className="flex items-center gap-1.5 text-sm text-muted">
-          Built with <Heart className="h-3.5 w-3.5 fill-red-500 text-red-500" aria-hidden="true" />
-          {footerContent.builtWith.replace("Built with ", "")}
-        </p>
       </div>
     </footer>
   );
