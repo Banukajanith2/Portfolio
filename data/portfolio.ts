@@ -255,7 +255,7 @@ export const experience: ExperienceItem[] = [
     type: "work",
     role: "Digital Designer",
     org: "SISKA Private Limited",
-    date: "May 2023 -” Present",
+    date: "May 2023 - Present",
     bullets: [
       "Designing digital content and managing social media campaigns.",
       "Creating marketing content and video content.",
@@ -266,7 +266,7 @@ export const experience: ExperienceItem[] = [
     type: "work",
     role: "IT Support Agent",
     org: "Kingsland",
-    date: "Jan 2022 -” Apr 2023",
+    date: "Jan 2022 - Apr 2023",
     bullets: [
       "Provided technical support for hardware and software issues.",
       "Assisted customers and resolved technical problems.",
@@ -277,7 +277,7 @@ export const experience: ExperienceItem[] = [
     type: "education",
     role: "BSc (Hons) in Software Engineering",
     org: "Saegis Campus",
-    date: "2021 -” 2024",
+    date: "2021 - 2024",
     bullets: [
       "Focused on software development and system design.",
       "Completed multiple academic and industry projects.",
@@ -288,7 +288,7 @@ export const experience: ExperienceItem[] = [
     type: "education",
     role: "Diploma in Software Engineering",
     org: "Saegis Campus",
-    date: "2019 -” 2021",
+    date: "2019 - 2021",
     bullets: [
       "Built a strong foundation in programming and software principles.",
       "Completed projects in web development and algorithms.",
@@ -347,6 +347,6 @@ export const contactInfo: ContactInfoItem[] = [
 ];
 
 export const footerContent = {
-  copyright: `Â© ${new Date().getFullYear()} ${siteConfig.firstName} ${siteConfig.lastName}. All rights reserved.`,
-  builtWith: "Built with Next.js and Tailwind CSS",
+  copyright: `${new Date().getFullYear()} ${siteConfig.firstName} ${siteConfig.lastName}. All rights reserved.`,
+  builtWith: "",
 };
