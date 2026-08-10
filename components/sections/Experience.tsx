@@ -1,9 +1,9 @@
-import { experience, type ExperienceItem } from "@/data/portfolio";
+﻿import { experience, type ExperienceItem } from "@/data/portfolio";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 function EntryCard({ item }: { item: ExperienceItem }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+    <div className="rounded-xl border border-border bg-surface p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h3 className="text-sm font-semibold text-foreground sm:text-base">{item.org}</h3>

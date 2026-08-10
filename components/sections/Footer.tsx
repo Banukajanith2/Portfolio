@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { ChevronUp } from "lucide-react";
 import { footerContent } from "@/data/portfolio";
@@ -9,7 +9,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t border-white/5 py-8">
+    <footer className="border-t border-border py-8">
       <div className="section-container relative flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
         <p className="text-sm text-muted">{footerContent.copyright}</p>
 

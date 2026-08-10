@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+﻿import { ChevronRight } from "lucide-react";
 import { contactInfo, siteConfig } from "@/data/portfolio";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { Icon } from "@/components/ui/Icon";
@@ -29,7 +29,7 @@ export function Contact() {
                 href={item.href}
                 target={item.href.startsWith("http") ? "_blank" : undefined}
                 rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 px-5 py-4 transition-colors duration-200 hover:bg-white/10"
+                className="flex items-center gap-4 rounded-xl border border-border bg-surface px-5 py-4 transition-colors duration-200 hover:bg-surface-hover"
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary-400">
                   <Icon name={item.icon} className="h-4 w-4" />

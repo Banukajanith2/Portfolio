@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { Star } from "lucide-react";
 import { testimonials } from "@/data/portfolio";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -16,7 +16,7 @@ export function Testimonials() {
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <FadeIn key={testimonial.name} delay={index * 0.08}>
-              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors duration-200 hover:border-secondary/40">
+              <figure className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-200 hover:border-secondary/40">
                 <span className="font-serif text-5xl leading-none text-primary-400" aria-hidden="true">
                   &ldquo;
                 </span>

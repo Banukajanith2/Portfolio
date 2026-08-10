@@ -2,7 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light is the fallback so the page still reads correctly if the theme class
+   never lands; <html> ships with .dark, so dark remains the default. */
 :root {
+  --background: #ffffff;
+  --foreground: #0a0a0f;
+  --surface: #f4f4f6;
+  --surface-hover: #e9e9ee;
+  --border: #e0e0e7;
+  --border-hover: #c5c5d1;
+  --muted: #52525b;
+  --card: #fafafb;
+  --heading-from: #1e293b;
+  --heading-to: #475569;
+}
+
+.dark {
   --background: #0a0a0f;
   --foreground: #ffffff;
   --surface: #12121a;
@@ -10,6 +25,17 @@
   --border: #232330;
   --border-hover: #33333f;
   --muted: #a1a1aa;
+  --card: #0d0d14;
+  --heading-from: #e2e8f0;
+  --heading-to: #94a3b8;
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 * {
@@ -92,7 +118,7 @@ body {
   }
 
   .hero-heading-white {
-    background: linear-gradient(180deg, #e2e8f0 0%, #94a3b8 100%);
+    background: linear-gradient(180deg, var(--heading-from) 0%, var(--heading-to) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

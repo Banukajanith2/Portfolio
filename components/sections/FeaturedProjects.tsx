@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import Image from "next/image";
@@ -25,7 +25,7 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
     <div ref={containerRef} className="sticky h-[85vh]" style={{ top: `${100 + index * 30}px` }}>
       <motion.div
         style={{ scale }}
-        className="h-full origin-top overflow-hidden rounded-[32px] border border-white/10 bg-[#0d0d14] p-6 shadow-2xl md:p-8"
+        className="h-full origin-top overflow-hidden rounded-[32px] border border-border bg-card p-6 shadow-2xl md:p-8"
       >
         <div className="flex h-full flex-col gap-8 lg:flex-row lg:gap-10">
           <div className="flex flex-col lg:w-[35%]">
@@ -49,7 +49,7 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
               {project.tech.map((tech) => (
                 <span
                   key={tech}
-                  className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-muted"
+                  className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted"
                 >
                   <TechIcon name={tech} className="h-3.5 w-3.5" />
                   {tech}

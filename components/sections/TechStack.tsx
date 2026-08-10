@@ -1,4 +1,4 @@
-import { techStack } from "@/data/portfolio";
+﻿import { techStack } from "@/data/portfolio";
 import { TechIcon } from "@/components/ui/TechIcon";
 import { FadeIn } from "@/components/ui/FadeIn";
 
@@ -18,7 +18,7 @@ export function TechStack() {
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {techStack.map((group, index) => (
             <FadeIn key={group.category} delay={index * 0.1}>
-              <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-6">
+              <div className="h-full rounded-2xl border border-border bg-surface p-6">
                 <h3 className="mb-4 text-xs font-medium uppercase tracking-widest text-muted">
                   {group.category}
                 </h3>

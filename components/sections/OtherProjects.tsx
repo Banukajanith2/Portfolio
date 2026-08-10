@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+﻿import { ArrowUpRight } from "lucide-react";
 import { otherProjects } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -15,7 +15,7 @@ export function OtherProjects() {
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {otherProjects.map((project, index) => (
             <FadeIn key={project.title} delay={index * 0.06}>
-              <div className="group flex h-full flex-col rounded-xl border border-white/10 bg-white/5 p-5 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40">
+              <div className="group flex h-full flex-col rounded-xl border border-border bg-surface p-5 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40">
                 <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 text-primary-400">
                   <Icon name={project.icon} className="h-5 w-5" />
                 </span>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -96,9 +96,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.75 }}
-            className="absolute -bottom-20 inset-x-0 mx-auto w-[92%] overflow-hidden rounded-xl border border-white/10 bg-[#0d0d14]/95 shadow-2xl backdrop-blur sm:-bottom-10 sm:inset-x-auto sm:left-auto sm:right-[-8%] sm:mx-0 sm:w-[85%]"
+            className="absolute -bottom-20 inset-x-0 mx-auto w-[92%] overflow-hidden rounded-xl border border-border bg-card/95 shadow-2xl backdrop-blur sm:-bottom-10 sm:inset-x-auto sm:left-auto sm:right-[-8%] sm:mx-0 sm:w-[85%]"
           >
-            <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-2.5">
+            <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
               <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
               <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
               <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />

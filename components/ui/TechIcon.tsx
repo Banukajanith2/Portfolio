@@ -1,4 +1,4 @@
-import type { IconType } from "react-icons";
+﻿import type { IconType } from "react-icons";
 import {
   SiHtml5,
   SiCss,
@@ -52,16 +52,16 @@ const techIconRegistry: Record<TechIconKey, { icon: IconType; color: string }> =
   javascript: { icon: SiJavascript, color: "#f7df1e" },
   typescript: { icon: SiTypescript, color: "#3178c6" },
   react: { icon: SiReact, color: "#61dafb" },
-  nextjs: { icon: SiNextdotjs, color: "#ffffff" },
+  nextjs: { icon: SiNextdotjs, color: "var(--foreground)" },
   tailwind: { icon: SiTailwindcss, color: "#06b6d4" },
   nodejs: { icon: SiNodedotjs, color: "#5fa04e" },
-  express: { icon: SiExpress, color: "#ffffff" },
+  express: { icon: SiExpress, color: "var(--foreground)" },
   python: { icon: SiPython, color: "#3776ab" },
   mongodb: { icon: SiMongodb, color: "#47a248" },
   firebase: { icon: SiFirebase, color: "#ffca28" },
   mysql: { icon: SiMysql, color: "#4479a1" },
   git: { icon: SiGit, color: "#f05032" },
-  github: { icon: SiGithub, color: "#ffffff" },
+  github: { icon: SiGithub, color: "var(--foreground)" },
   figma: { icon: SiFigma, color: "#f24e1e" },
   vscode: { icon: VscVscode, color: "#007acc" },
   scikitlearn: { icon: SiScikitlearn, color: "#f7931e" },

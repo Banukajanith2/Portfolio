@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, type FormEvent } from "react";
 import { Loader2, Mail, Send } from "lucide-react";
@@ -12,7 +12,7 @@ type Status = "idle" | "sending" | "success" | "error";
 const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
 const fieldClasses =
-  "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground outline-none transition-colors duration-200 placeholder:text-muted focus:border-primary-400 focus:bg-white/10";
+  "w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground outline-none transition-colors duration-200 placeholder:text-muted focus:border-primary-400 focus:bg-surface-hover";
 
 export function ContactForm({ mailto }: { mailto: string }) {
   const [status, setStatus] = useState<Status>("idle");

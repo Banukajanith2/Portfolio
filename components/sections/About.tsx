@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { aboutContent, aboutStats, siteConfig } from "@/data/portfolio";
 import { DownloadCvButton } from "@/components/ui/DownloadCvButton";
 import { Icon } from "@/components/ui/Icon";
@@ -12,7 +12,7 @@ export function About() {
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-16">
         <FadeIn x={-30} y={0}>
           <div className="relative mx-auto w-full max-w-md">
-            <div className="relative aspect-[5/6] w-full overflow-hidden rounded-2xl border border-white/10">
+            <div className="relative aspect-[5/6] w-full overflow-hidden rounded-2xl border border-border">
               <Image
                 src={asset("/images/self-portrait.webp")}
                 alt={`${siteConfig.firstName} ${siteConfig.lastName}`}
@@ -46,7 +46,7 @@ export function About() {
           <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
             {aboutStats.map((stat, index) => (
               <FadeIn key={stat.label} delay={index * 0.1}>
-                <div className="group rounded-xl border border-white/10 bg-white/5 p-4 text-center transition-colors hover:border-primary/50">
+                <div className="group rounded-xl border border-border bg-surface p-4 text-center transition-colors hover:border-primary/50">
                   <span className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-primary-400">
                     <Icon name={stat.icon} className="h-4 w-4" />
                   </span>

@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Download, Menu, Moon, Sun, X } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/portfolio";
@@ -15,12 +15,29 @@ export function Navbar() {
   const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
   const activeId = useActiveSection(sectionIds);
 
+  // The inline script in the layout has already applied the stored theme; read
+  // it back so the icon matches what the visitor is actually looking at.
+  useEffect(() => {
+    setIsDark(document.documentElement.classList.contains("dark"));
+  }, []);
+
+  const toggleTheme = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    try {
+      localStorage.setItem("theme", next ? "dark" : "light");
+    } catch {
+      // Private mode with storage disabled: the theme still applies this visit.
+    }
+  };
+
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-md"
+      className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md"
     >
       <nav className="section-container flex h-16 items-center justify-between sm:h-20">
         <a href="#home" className="flex items-center gap-2 text-base font-semibold text-foreground">
@@ -68,9 +85,9 @@ export function Navbar() {
           </Button>
           <button
             type="button"
-            onClick={() => setIsDark((v) => !v)}
-            aria-label="Toggle theme"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-foreground transition-colors hover:bg-white/5"
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-surface"
           >
             {isDark ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
           </button>
@@ -78,7 +95,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-foreground md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground md:hidden"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
@@ -94,7 +111,7 @@ export function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-white/5 bg-background md:hidden"
+            className="overflow-hidden border-t border-border bg-background md:hidden"
           >
             <ul className="section-container flex flex-col gap-1 py-4">
               {navLinks.map((link) => {
@@ -107,7 +124,7 @@ export function Navbar() {
                       onClick={() => setMobileOpen(false)}
                       className={cn(
                         "block rounded-lg px-3 py-2.5 text-sm font-medium uppercase tracking-wider transition-colors",
-                        isActive ? "bg-white/5 text-foreground" : "text-muted hover:bg-white/5 hover:text-foreground"
+                        isActive ? "bg-surface text-foreground" : "text-muted hover:bg-surface hover:text-foreground"
                       )}
                     >
                       {link.label}
@@ -126,6 +143,18 @@ export function Navbar() {
                   Download CV
                   <Download className="h-4 w-4" aria-hidden="true" />
                 </Button>
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-surface"
+                >
+                  {isDark ? (
+                    <Sun className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <Moon className="h-4 w-4" aria-hidden="true" />
+                  )}
+                </button>
               </li>
             </ul>
           </motion.div>

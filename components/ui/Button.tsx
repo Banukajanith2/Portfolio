@@ -1,4 +1,4 @@
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+﻿import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type Variant = "primary" | "outline" | "ghost";
@@ -7,7 +7,7 @@ const variantClasses: Record<Variant, string> = {
   primary:
     "bg-primary text-white hover:bg-primary-700 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] focus-visible:outline-primary-400",
   outline:
-    "border border-white/20 bg-transparent text-foreground hover:bg-white/5 focus-visible:outline-primary-400",
+    "border border-border-hover bg-transparent text-foreground hover:bg-surface focus-visible:outline-primary-400",
   ghost: "bg-transparent text-foreground hover:bg-surface focus-visible:outline-primary-400",
 };
 
