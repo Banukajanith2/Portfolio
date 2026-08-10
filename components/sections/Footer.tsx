@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { footerContent, heroSocials, siteConfig } from "@/data/portfolio";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { mailHref, useRevealedEmail } from "@/lib/email";
 
 /**
  * Closes the page with the name at maximum scale, outlined rather than filled
  * so it reads as a watermark and doesn't compete with the contact CTA above it.
  */
 export function Footer() {
+  const email = useRevealedEmail();
+
   return (
     <footer className="relative overflow-hidden border-t border-border pt-16">
       <div className="section-container">
@@ -17,10 +20,10 @@ export function Footer() {
           <div>
             <p className="mono-label">Available for work</p>
             <a
-              href={`mailto:${siteConfig.email}`}
+              href={mailHref(email)}
               className="mt-3 block text-lg font-medium tracking-tight text-foreground transition-colors duration-300 hover:text-accent-fg sm:text-xl"
             >
-              {siteConfig.email}
+              {email ?? "Get in touch"}
             </a>
           </div>
 
@@ -56,20 +59,26 @@ export function Footer() {
           {siteConfig.firstName.split(" ")[0]} {siteConfig.lastName}
         </p>
 
-        <div className="flex flex-col gap-4 border-t border-border py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-[11px] text-muted">© {footerContent.copyright}</p>
-          <p className="max-w-md font-mono text-[11px] leading-relaxed text-muted">
-            {footerContent.note}
+        {/* Three equal columns rather than justify-between, so "back to top"
+            sits on the page's centre line instead of drifting with the width of
+            the copyright text beside it. The third column is left empty to
+            balance it. */}
+        <div className="flex flex-col items-center gap-4 border-t border-border py-6 sm:grid sm:grid-cols-3 sm:gap-0">
+          <p className="font-mono text-[11px] text-muted sm:justify-self-start">
+            © {footerContent.copyright}
           </p>
+
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Scroll to top"
-            className="group flex w-fit items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted transition-colors hover:text-accent-fg"
+            className="group flex w-fit items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted transition-colors hover:text-accent-fg sm:justify-self-center"
           >
             Back to top
             <ArrowUp className="h-3.5 w-3.5 transition-transform duration-500 ease-smooth group-hover:-translate-y-1" />
           </button>
+
+          <span aria-hidden="true" className="hidden sm:block" />
         </div>
       </div>
     </footer>

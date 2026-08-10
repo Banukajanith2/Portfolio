@@ -1,0 +1,16 @@
+# Indexing is intentional: this is a portfolio, and being findable by a
+# recruiter searching my name is the point.
+#
+# The contact address is deliberately not present in the served HTML - it is
+# base64-encoded and assembled client-side (see lib/email.ts), so address
+# harvesters have nothing to scrape. Blocking crawlers here would not have
+# stopped them anyway; harvesters ignore robots.txt, only well-behaved search
+# engines obey it.
+
+User-agent: *
+Allow: /
+
+# The CV PDF still contains the address in plain text - it has to, a recruiter
+# needs it. Search engines parse and index PDF contents, so keep this one file
+# out of the index while leaving the site itself fully crawlable.
+Disallow: /banuka-janith-cv.pdf

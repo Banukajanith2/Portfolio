@@ -20,6 +20,7 @@ import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
 import { navLinks, siteConfig } from "@/data/portfolio";
 import { registerCvDownload } from "@/lib/cvDownloads";
+import { useRevealedEmail } from "@/lib/email";
 import { cn } from "@/lib/utils";
 
 /**
@@ -52,6 +53,7 @@ export function CommandPalette() {
   const [copied, setCopied] = useState(false);
   const [isDark, setIsDark] = useState(true);
   const listRef = useRef<HTMLDivElement>(null);
+  const email = useRevealedEmail();
 
   useEffect(() => {
     setIsDark(document.documentElement.classList.contains("dark"));
@@ -101,22 +103,23 @@ export function CommandPalette() {
       {
         id: "email",
         label: "Send an email",
-        hint: siteConfig.email,
+        hint: email ?? "Reveals on open",
         group: "Links",
         icon: Mail,
         run: () => {
-          window.location.href = `mailto:${siteConfig.email}`;
+          if (email) window.location.href = `mailto:${email}`;
         },
       },
       {
         id: "copy-email",
         label: "Copy email address",
-        hint: siteConfig.email,
+        hint: email ?? "Reveals on open",
         group: "Actions",
         icon: copied ? Check : Copy,
         keepOpen: true,
         run: () => {
-          navigator.clipboard?.writeText(siteConfig.email).then(() => {
+          if (!email) return;
+          navigator.clipboard?.writeText(email).then(() => {
             setCopied(true);
             setTimeout(() => setCopied(false), 1800);
           });
@@ -155,7 +158,7 @@ export function CommandPalette() {
           window.open(`https://${siteConfig.github}/Portfolio`, "_blank", "noopener,noreferrer"),
       },
     ];
-  }, [copied, isDark, toggleTheme]);
+  }, [copied, email, isDark, toggleTheme]);
 
   // Grouped for display, but flattened in the *same* order the groups render in.
   // The keyboard cursor indexes this flat list, so rendering and selection can

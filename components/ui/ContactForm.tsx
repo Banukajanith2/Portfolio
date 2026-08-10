@@ -14,7 +14,7 @@ const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 const fieldClasses =
   "w-full rounded-xl border border-border bg-surface px-4 py-3.5 text-sm text-foreground outline-none transition-colors duration-300 placeholder:text-muted focus:border-accent focus:bg-surface-hover";
 
-export function ContactForm({ mailto }: { mailto: string }) {
+export function ContactForm({ mailto }: { mailto: string | null }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
@@ -22,7 +22,7 @@ export function ContactForm({ mailto }: { mailto: string }) {
   // rather than showing inputs that silently drop the visitor's message.
   if (!accessKey) {
     return (
-      <Button href={`mailto:${mailto}`} variant="primary" className="mt-8">
+      <Button href={mailto ? `mailto:${mailto}` : "#contact"} variant="primary" className="mt-8">
         Send Me a Message
         <Mail className="h-4 w-4" aria-hidden="true" />
       </Button>

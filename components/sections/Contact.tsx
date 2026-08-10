@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
-import { contactInfo, siteConfig } from "@/data/portfolio";
+import { contactInfo, type ContactInfoItem } from "@/data/portfolio";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { Icon } from "@/components/ui/Icon";
 import { KineticText } from "@/components/ui/KineticText";
 import { Reveal } from "@/components/ui/Reveal";
+import { mailHref, useRevealedEmail } from "@/lib/email";
 
 /**
  * The closing call to action.
@@ -16,6 +17,8 @@ import { Reveal } from "@/components/ui/Reveal";
  * rather than sit in a column.
  */
 export function Contact() {
+  const email = useRevealedEmail();
+
   return (
     <section id="contact" className="relative py-24 sm:py-32">
       <div className="section-container">
@@ -37,17 +40,27 @@ export function Contact() {
               Have a role, a project or a question? The form goes straight to my inbox - or reach
               me directly through any of the channels listed.
             </p>
-            <ContactForm mailto={siteConfig.email} />
+            <ContactForm mailto={email} />
           </Reveal>
 
           <Reveal delay={0.12} className="lg:col-span-5">
             <div className="flex flex-col gap-2">
+              {/* Rendered ahead of the static rows so the ordering matches the
+                  old list; the address itself only resolves after mount. */}
+              <ContactRow
+                item={{
+                  icon: "mail",
+                  label: "Email",
+                  value: email ?? "Loading…",
+                  href: mailHref(email),
+                }}
+              />
               {contactInfo.map((item) => (
                 <ContactRow key={item.label} item={item} />
               ))}
             </div>
 
-            <CopyEmail email={siteConfig.email} />
+            <CopyEmail email={email} />
           </Reveal>
         </div>
       </div>
@@ -55,7 +68,7 @@ export function Contact() {
   );
 }
 
-function ContactRow({ item }: { item: (typeof contactInfo)[number] }) {
+function ContactRow({ item }: { item: ContactInfoItem }) {
   const isExternal = item.href.startsWith("http");
 
   return (
@@ -78,10 +91,11 @@ function ContactRow({ item }: { item: (typeof contactInfo)[number] }) {
 
 /** Copying an address is the fastest path for anyone already in their mail
     client, and it is the interaction people notice is missing when it isn't there. */
-function CopyEmail({ email }: { email: string }) {
+function CopyEmail({ email }: { email: string | null }) {
   const [copied, setCopied] = useState(false);
 
   function copy() {
+    if (!email) return;
     navigator.clipboard?.writeText(email).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -92,9 +106,10 @@ function CopyEmail({ email }: { email: string }) {
     <button
       type="button"
       onClick={copy}
-      className="mt-2 flex w-full items-center justify-between gap-4 rounded-xl border border-dashed border-border px-5 py-4 text-left transition-colors duration-500 hover:border-accent"
+      disabled={!email}
+      className="mt-2 flex w-full items-center justify-between gap-4 rounded-xl border border-dashed border-border px-5 py-4 text-left transition-colors duration-500 hover:border-accent disabled:opacity-60"
     >
-      <span className="min-w-0 truncate font-mono text-xs text-muted">{email}</span>
+      <span className="min-w-0 truncate font-mono text-xs text-muted">{email ?? "Loading…"}</span>
       <span className="flex shrink-0 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-fg">
         {copied ? (
           <>

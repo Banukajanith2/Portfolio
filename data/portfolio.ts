@@ -8,7 +8,11 @@ export interface SiteConfig {
   lastName: string;
   role: string;
   tagline: string;
-  email: string;
+  /**
+   * Deliberately absent. The address is base64-encoded in lib/email.ts and only
+   * decoded on the client, so it never lands in the static HTML for harvesters
+   * to scrape. Read it with useRevealedEmail().
+   */
   location: string;
   resumeUrl: string;
   github: string;
@@ -21,7 +25,6 @@ export const siteConfig: SiteConfig = {
   role: "Software Engineering Undergraduate",
   tagline:
     "I build data-driven applications and digital experiences - combining machine learning, web development and design.",
-  email: "Banukajanith2@gmail.com",
   location: "Sri Lanka",
   resumeUrl: asset("/banuka-janith-cv.pdf"),
   github: "github.com/banukajanith2",
@@ -88,7 +91,9 @@ export const heroSocials: SocialLink[] = [
   { icon: "linkedin", href: "https://linkedin.com/in/banuka-janith-waduge", label: "LinkedIn" },
   { icon: "twitter", href: "https://twitter.com/banukajanith", label: "Twitter" },
   { icon: "instagram", href: "https://instagram.com/banukajanith", label: "Instagram" },
-  { icon: "mail", href: "mailto:banukajanith2@gmail.com", label: "Email" },
+  // Points at the contact section rather than a mailto: a raw mailto href is
+  // exactly what address harvesters scrape the HTML for.
+  { icon: "mail", href: "#contact", label: "Email" },
 ];
 
 export const heroCodeSnippet: string[] = [
@@ -445,8 +450,11 @@ export interface ContactInfoItem {
   href: string;
 }
 
+/**
+ * The email row is not in this list: it is rendered separately in Contact.tsx
+ * so the address can be resolved on the client only. See lib/email.ts.
+ */
 export const contactInfo: ContactInfoItem[] = [
-  { icon: "mail", label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
   { icon: "mapPin", label: "Location", value: siteConfig.location, href: "#" },
   { icon: "linkedin", label: "LinkedIn", value: siteConfig.linkedin, href: `https://${siteConfig.linkedin}` },
   { icon: "github", label: "GitHub", value: siteConfig.github, href: `https://${siteConfig.github}` },
@@ -454,7 +462,6 @@ export const contactInfo: ContactInfoItem[] = [
 
 export const footerContent = {
   copyright: `${new Date().getFullYear()} ${siteConfig.firstName} ${siteConfig.lastName}.`,
-  note: "Designed and built from scratch - Next.js, TypeScript, Tailwind, Framer Motion.",
 };
 
 /**
