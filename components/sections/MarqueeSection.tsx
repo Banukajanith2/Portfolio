@@ -32,8 +32,15 @@ function Band({ words, outline = false }: { words: string[]; outline?: boolean }
     <div className="flex items-center">
       {words.map((word, index) => (
         <span key={`${word}-${index}`} className="flex items-center">
+          {/*
+            leading-[1.2] overrides the 0.9 that .display sets. The marquee
+            track is overflow-hidden, and at 0.9 the line box is shorter than
+            the glyphs, so the descenders of j/g/y/p fall outside it and get
+            clipped. 1.2 is the smallest value that clears them at this weight,
+            including the stroke the outline band adds.
+          */}
           <span
-            className={`display whitespace-nowrap px-5 text-[clamp(1.75rem,4.5vw,3.5rem)] ${
+            className={`display whitespace-nowrap px-5 leading-[1.2] text-[clamp(1.75rem,4.5vw,3.5rem)] ${
               outline ? "text-outline" : "text-foreground/85"
             }`}
           >
