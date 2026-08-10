@@ -58,15 +58,17 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
             </div>
 
             <div className="mt-auto flex items-center gap-5 pt-6 text-sm">
-              <a
-                href={project.liveDemoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-medium text-secondary-400 hover:text-secondary-300"
-              >
-                Live Demo
-                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-              </a>
+              {project.liveDemoUrl && (
+                <a
+                  href={project.liveDemoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-medium text-secondary-400 hover:text-secondary-300"
+                >
+                  Live Demo
+                  <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
+              )}
               <a
                 href={project.sourceCodeUrl}
                 target="_blank"

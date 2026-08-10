@@ -19,9 +19,13 @@ import {
   SiScikitlearn,
   SiPandas,
   SiNumpy,
+  SiOpenjdk,
+  SiJupyter,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
-import { LineChart } from "lucide-react";
+// Simple Icons dropped the Adobe and Power BI marks over trademark concerns,
+// so these fall back to lucide shapes tinted with the familiar brand colours.
+import { BarChart3, Image as ImageIcon, LayoutTemplate, LineChart, PenTool } from "lucide-react";
 
 export type TechIconKey =
   | "html5"
@@ -44,7 +48,13 @@ export type TechIconKey =
   | "scikitlearn"
   | "pandas"
   | "numpy"
-  | "matplotlib";
+  | "matplotlib"
+  | "java"
+  | "jupyter"
+  | "powerbi"
+  | "photoshop"
+  | "illustrator"
+  | "indesign";
 
 const techIconRegistry: Record<TechIconKey, { icon: IconType; color: string }> = {
   html5: { icon: SiHtml5, color: "#e34f26" },
@@ -68,6 +78,12 @@ const techIconRegistry: Record<TechIconKey, { icon: IconType; color: string }> =
   pandas: { icon: SiPandas, color: "#150458" },
   numpy: { icon: SiNumpy, color: "#4dabcf" },
   matplotlib: { icon: LineChart, color: "#11557c" },
+  java: { icon: SiOpenjdk, color: "#f89820" },
+  jupyter: { icon: SiJupyter, color: "#f37626" },
+  powerbi: { icon: BarChart3, color: "#f2c811" },
+  photoshop: { icon: ImageIcon, color: "#31a8ff" },
+  illustrator: { icon: PenTool, color: "#ff9a00" },
+  indesign: { icon: LayoutTemplate, color: "#ff3366" },
 };
 
 interface TechIconProps {

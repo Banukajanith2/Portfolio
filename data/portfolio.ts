@@ -18,9 +18,9 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   firstName: "Banuka Janith",
   lastName: "Waduge",
-  role: "Software Engineer & Web Developer",
+  role: "Software Engineering Undergraduate",
   tagline:
-    "I build scalable web applications and digital experiences with clean code and modern technologies.",
+    "I build data-driven applications and digital experiences — combining machine learning, web development and design.",
   email: "Banukajanith2@gmail.com",
   location: "Sri Lanka",
   resumeUrl: asset("/banuka-janith-cv.pdf"),
@@ -57,12 +57,12 @@ export const heroSocials: SocialLink[] = [
 
 export const heroCodeSnippet: string[] = [
   "const banuka = {",
-  "  role: 'Software Engineer',",
+  "  role: 'SE Undergraduate',",
   "  passion: 'Building digital products',",
   "  focus: [",
+  "    'Machine Learning',",
   "    'Web Development',",
-  "    'Problem Solving',",
-  "    'UI/UX'",
+  "    'Data Analysis'",
   "  ],",
   "  currently: 'Open to opportunities'",
   "}",
@@ -89,17 +89,17 @@ export interface Stat {
 }
 
 export const aboutStats: Stat[] = [
-  { icon: "settings", value: "20+", label: "Projects Completed" },
-  { icon: "users", value: "15+", label: "Happy Clients" },
-  { icon: "star", value: "5+", label: "Technologies Mastered" },
+  { icon: "briefcase", value: "4+", label: "Years Experience" },
+  { icon: "settings", value: "7+", label: "Projects Built" },
+  { icon: "graduationCap", value: "BSc", label: "First Class Honours" },
 ];
 
 export const aboutContent = {
-  badge: "3+ Years Experience",
+  badge: "BSc (Hons) — First Class",
   heading: "Passionate about building impactful solutions",
   paragraphs: [
-    "I'm a software engineer who loves turning ideas into real-world products. I specialize in full-stack development, building responsive web applications and solving complex problems with clean, efficient code.",
-    "With a strong foundation in computer science and hands-on experience in modern technologies, I strive to deliver exceptional digital experiences.",
+    "I'm a highly motivated and creative software engineering undergraduate who brings fast learning, strong problem-solving and analytical skills to every project. With a keen eye for detail and efficient time management, I thrive in collaborative team environments.",
+    "My work spans machine learning and data analysis in Python, front-end development, and graphic design — a mix that lets me take an idea from raw data through to a polished interface.",
   ],
 };
 
@@ -115,39 +115,43 @@ export interface TechStackCategory {
 
 export const techStack: TechStackCategory[] = [
   {
-    category: "Frontend",
+    category: "Programming",
+    items: [
+      { name: "Python", icon: "python" },
+      { name: "Java", icon: "java" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "TypeScript", icon: "typescript" },
+    ],
+  },
+  {
+    category: "Data & Analysis",
+    items: [
+      { name: "Jupyter", icon: "jupyter" },
+      { name: "pandas", icon: "pandas" },
+      { name: "NumPy", icon: "numpy" },
+      { name: "scikit-learn", icon: "scikitlearn" },
+      { name: "Power BI", icon: "powerbi" },
+    ],
+  },
+  {
+    category: "Web",
     items: [
       { name: "HTML5", icon: "html5" },
       { name: "CSS3", icon: "css3" },
-      { name: "JavaScript", icon: "javascript" },
-      { name: "TypeScript", icon: "typescript" },
       { name: "React", icon: "react" },
       { name: "Next.js", icon: "nextjs" },
       { name: "Tailwind CSS", icon: "tailwind" },
-    ],
-  },
-  {
-    category: "Backend",
-    items: [
-      { name: "Node.js", icon: "nodejs" },
-      { name: "Express.js", icon: "express" },
-      { name: "Python", icon: "python" },
-    ],
-  },
-  {
-    category: "Database",
-    items: [
-      { name: "MongoDB", icon: "mongodb" },
       { name: "Firebase", icon: "firebase" },
-      { name: "MySQL", icon: "mysql" },
     ],
   },
   {
-    category: "Tools",
+    category: "Design & Tools",
     items: [
-      { name: "Git", icon: "git" },
-      { name: "GitHub", icon: "github" },
+      { name: "Photoshop", icon: "photoshop" },
+      { name: "Illustrator", icon: "illustrator" },
+      { name: "InDesign", icon: "indesign" },
       { name: "Figma", icon: "figma" },
+      { name: "Git", icon: "git" },
       { name: "VS Code", icon: "vscode" },
     ],
   },
@@ -160,7 +164,8 @@ export interface FeaturedProject {
   images: [string, string, string];
   featured: boolean;
   tech: TechIconKey[];
-  liveDemoUrl: string;
+  /** Omitted when a project has no hosted demo — the link is hidden instead. */
+  liveDemoUrl?: string;
   sourceCodeUrl: string;
 }
 
@@ -180,31 +185,29 @@ export const featuredProjects: FeaturedProject[] = [
     number: "02",
     title: "AI Sentiment Analysis Model",
     description:
-      "ML model that analyses text data and predicts sentiment using various machine learning algorithms.",
+      "A sentiment analysis model built with the VADER library in Python using a top-down approach. Trained, evaluated and fine-tuned to analyse customer responses, it is currently used for survey analysis and provides insight into customer feedback.",
     images: [
       asset("/images/project-ai-sentiment.svg"),
       asset("/images/project-ai-sentiment.svg"),
       asset("/images/project-ai-sentiment.svg"),
     ],
     featured: true,
-    tech: ["python", "scikitlearn", "pandas"],
-    liveDemoUrl: "https://ai-sentiment.example.com",
-    sourceCodeUrl: "https://github.com/banukajanith2/ai-sentiment-analysis",
+    tech: ["python", "jupyter", "pandas"],
+    sourceCodeUrl: "https://github.com/Banukajanith2/AI-Sentiment-Analysis",
   },
   {
     number: "03",
-    title: "Machine Learning Prediction Algorithm",
+    title: "Wine Quality Prediction Model",
     description:
-      "A machine learning project that predicts outcomes using classification algorithms and data visualisation.",
+      "A machine learning model predicting wine quality from 10–15 dataset variables. Data was gathered, cleaned and visualised with confusion matrices, then trained and evaluated using regression analysis, a Random Forest Classifier and a Support Vector Classifier to optimise predictions.",
     images: [
       asset("/images/project-ml-prediction.svg"),
       asset("/images/project-ml-prediction.svg"),
       asset("/images/project-ml-prediction.svg"),
     ],
     featured: true,
-    tech: ["python", "matplotlib", "numpy"],
-    liveDemoUrl: "https://ml-prediction.example.com",
-    sourceCodeUrl: "https://github.com/banukajanith2/ml-prediction-algorithm",
+    tech: ["python", "jupyter", "scikitlearn", "numpy"],
+    sourceCodeUrl: "https://github.com/Banukajanith2/ML-Prediction-Model",
   },
 ];
 
@@ -217,28 +220,30 @@ export interface OtherProject {
 
 export const otherProjects: OtherProject[] = [
   {
-    title: "Portfolio Website",
-    description: "Personal portfolio website built with Next.js, Tailwind CSS and Framer Motion.",
-    icon: "globe",
-    sourceCodeUrl: "https://github.com/banukajanith2/portfolio-website",
-  },
-  {
-    title: "Weather App",
-    description: "Weather application that shows real-time weather using the OpenWeather API.",
-    icon: "cloud",
-    sourceCodeUrl: "https://github.com/banukajanith2/weather-app",
-  },
-  {
-    title: "Blog Platform",
-    description: "A full-stack blog platform with authentication and CRUD operations.",
+    title: "XAI-Integrated Fraud Detection",
+    description:
+      "Machine learning model for fraud detection with explainable AI integrated, built in Jupyter Notebook.",
     icon: "fileText",
-    sourceCodeUrl: "https://github.com/banukajanith2/blog-platform",
+    sourceCodeUrl: "https://github.com/Banukajanith2/XAI-Integrated-ML-Model-for-Fraud-Detection",
   },
   {
-    title: "E-commerce UI",
-    description: "Modern e-commerce frontend UI built with React and Tailwind CSS.",
+    title: "Genetic Algorithm in Python",
+    description:
+      "A genetic algorithm using binary chromosomes to evolve optimal solutions through selection, crossover and mutation.",
+    icon: "cloud",
+    sourceCodeUrl: "https://github.com/Banukajanith2/Python-Genetic-Algorithm",
+  },
+  {
+    title: "To-Do List App",
+    description: "A simple task manager for adding, completing and clearing daily to-dos.",
+    icon: "globe",
+    sourceCodeUrl: "https://github.com/Banukajanith2/To-Do-List-App",
+  },
+  {
+    title: "HiveMicro Autoclicker",
+    description: "A Python desktop utility that automates repetitive clicking tasks.",
     icon: "shoppingCart",
-    sourceCodeUrl: "https://github.com/banukajanith2/ecommerce-ui",
+    sourceCodeUrl: "https://github.com/Banukajanith2/HiveMicro-Autoclicker",
   },
 ];
 
@@ -254,46 +259,66 @@ export const experience: ExperienceItem[] = [
   {
     type: "work",
     role: "Digital Designer",
-    org: "SISKA Private Limited",
-    date: "May 2023 - Present",
+    org: "SISKA Limited",
+    date: "2025 - Present",
     bullets: [
-      "Designing digital content and managing social media campaigns.",
-      "Creating marketing content and video content.",
-      "Providing IT support and managing systems.",
+      "Creating digital designs for social media and marketing.",
+      "Managing and maintaining the company's online branding.",
+      "Collaborating across the team to produce effective design solutions.",
+    ],
+  },
+  {
+    type: "work",
+    role: "OGT Team Leader / Product Manager",
+    org: "AIESEC Sri Lanka",
+    date: "2022 - 2024",
+    bullets: [
+      "Led the team to achieve OGT targets.",
+      "Facilitated international internship placements.",
+      "Developed leadership and communication through stakeholder engagement.",
     ],
   },
   {
     type: "work",
     role: "IT Support Agent",
-    org: "Kingsland",
-    date: "Jan 2022 - Apr 2023",
+    org: "Kingsland Technologies",
+    date: "2021 - 2022",
     bullets: [
-      "Provided technical support for hardware and software issues.",
-      "Assisted customers and resolved technical problems.",
-      "Gained strong communication and problem-solving skills.",
+      "Provided technical support and resolved customer issues.",
+      "Handled complaints and conducted service improvement surveys.",
+      "Built problem-solving and teamwork skills in an IT environment.",
+    ],
+  },
+  {
+    type: "work",
+    role: "Customer Service Representative",
+    org: "Metco Motors",
+    date: "2020 - 2021",
+    bullets: [
+      "Managed customer inquiries and resolved complaints.",
+      "Strengthened communication and customer relations skills.",
     ],
   },
   {
     type: "education",
-    role: "BSc (Hons) in Software Engineering",
-    org: "Saegis Campus",
-    date: "2021 - 2024",
-    bullets: [
-      "Focused on software development and system design.",
-      "Completed multiple academic and industry projects.",
-      "Actively participated in tech communities and events.",
-    ],
+    role: "BSc (Hons) in Business Information Systems",
+    org: "Cardiff Metropolitan University, UK",
+    date: "2025 - 2026",
+    bullets: ["Graduated with First Class Honours."],
   },
   {
     type: "education",
-    role: "Diploma in Software Engineering",
-    org: "Saegis Campus",
-    date: "2019 - 2021",
-    bullets: [
-      "Built a strong foundation in programming and software principles.",
-      "Completed projects in web development and algorithms.",
-      "Graduated with distinction.",
-    ],
+    role: "HND in Software Engineering",
+    org: "Canterbury Christ Church University, UK",
+    date: "2022 - 2024",
+    bullets: ["Graduated with an Overall Merit Award."],
+  },
+  {
+    type: "education",
+    role: "Diploma in Graphic Design",
+    org: "School of Multimedia and Design",
+    date: "2017 - 2018",
+    bullets: ["Adobe Photoshop, Illustrator and InDesign."],
   },
 ];
 

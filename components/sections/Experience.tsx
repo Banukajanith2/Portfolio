@@ -29,7 +29,13 @@ function EntryCard({ item }: { item: ExperienceItem }) {
 export function Experience() {
   const workItems = experience.filter((item) => item.type === "work");
   const educationItems = experience.filter((item) => item.type === "education");
-  const rows = workItems.map((work, i) => [work, educationItems[i]] as const);
+  // The two columns are independent lists, so pair by index up to whichever is
+  // longer and leave the shorter column's trailing cells empty.
+  const rowCount = Math.max(workItems.length, educationItems.length);
+  const rows = Array.from(
+    { length: rowCount },
+    (_, i) => [workItems[i], educationItems[i]] as const
+  );
 
   return (
     <section className="py-20 sm:py-28">
@@ -56,8 +62,8 @@ export function Experience() {
                     className="absolute left-1/2 top-8 hidden h-3 w-3 -translate-x-1/2 rounded-full border-2 border-primary bg-background md:block"
                     aria-hidden="true"
                   />
-                  <EntryCard item={row[0]} />
-                  <EntryCard item={row[1]} />
+                  {row[0] ? <EntryCard item={row[0]} /> : <div aria-hidden="true" />}
+                  {row[1] ? <EntryCard item={row[1]} /> : <div aria-hidden="true" />}
                 </div>
               </FadeIn>
             ))}
