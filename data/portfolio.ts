@@ -322,38 +322,39 @@ export const experience: ExperienceItem[] = [
   },
 ];
 
-export interface Testimonial {
-  quote: string;
-  name: string;
-  role: string;
-  avatar: string;
-  rating: number;
+export interface AchievementItem {
+  primary: string;
+  secondary?: string;
 }
 
-export const testimonials: Testimonial[] = [
+export interface AchievementGroup {
+  icon: IconKey;
+  title: string;
+  items: AchievementItem[];
+}
+
+export const achievements: AchievementGroup[] = [
   {
-    quote:
-      "Banuka is a talented developer who consistently delivers high-quality work. His problem-solving skills and dedication are truly impressive.",
-    name: "Chaminda Perera",
-    role: "CEO, SISKA",
-    avatar: asset("/images/avatar-1.svg"),
-    rating: 5,
+    icon: "star",
+    title: "Awards",
+    items: [{ primary: "SAEGIS Code Pulse 2023", secondary: "Runners Up" }],
   },
   {
-    quote:
-      "Working with Banuka was a great experience. He's proactive, efficient, and always goes the extra mile to deliver.",
-    name: "Nimesh Fernando",
-    role: "Project Manager, Kingsland",
-    avatar: asset("/images/avatar-2.svg"),
-    rating: 5,
+    icon: "globe",
+    title: "Languages",
+    items: [
+      { primary: "English", secondary: "Professional proficiency" },
+      { primary: "Sinhala", secondary: "Fluent" },
+    ],
   },
   {
-    quote:
-      "Banuka has a strong technical foundation and a great eye for design. He brings ideas to life with clean and maintainable code.",
-    name: "Tharindu Madushan",
-    role: "Lead Developer",
-    avatar: asset("/images/avatar-3.svg"),
-    rating: 5,
+    icon: "users",
+    title: "Activities",
+    items: [
+      { primary: "Rotaract Club, Saegis Campus", secondary: "2024 - 2025" },
+      { primary: "ICT Club, Saegis Campus", secondary: "2024 - 2025" },
+      { primary: "School Media Circle & ICT Society", secondary: "2014 - 2017" },
+    ],
   },
 ];
 
