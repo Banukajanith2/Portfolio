@@ -10,18 +10,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        card: "var(--card)",
+        // <alpha-value> lets opacity utilities (bg-background/80, text-foreground/75)
+        // actually compile; with a bare var(--x) Tailwind emits nothing for them.
+        background: "rgb(var(--background) / <alpha-value>)",
+        foreground: "rgb(var(--foreground) / <alpha-value>)",
+        card: "rgb(var(--card) / <alpha-value>)",
         surface: {
-          DEFAULT: "var(--surface)",
-          hover: "var(--surface-hover)",
+          DEFAULT: "rgb(var(--surface) / <alpha-value>)",
+          hover: "rgb(var(--surface-hover) / <alpha-value>)",
         },
         border: {
-          DEFAULT: "var(--border)",
-          hover: "var(--border-hover)",
+          DEFAULT: "rgb(var(--border) / <alpha-value>)",
+          hover: "rgb(var(--border-hover) / <alpha-value>)",
         },
-        muted: "var(--muted)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
         primary: {
           DEFAULT: "#7c3aed",
           50: "#f5f3ff",

@@ -1,31 +1,38 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Light is the fallback so the page still reads correctly if the theme class
    never lands; <html> ships with .dark, so dark remains the default. */
+/*
+ * Palette colours are stored as bare "R G B" channels, not hex, so Tailwind can
+ * inject an alpha via <alpha-value> in tailwind.config.ts. With a plain
+ * var(--x) colour Tailwind silently drops opacity utilities like
+ * `bg-background/80`, emitting no rule at all. Use rgb(var(--x)) to read them
+ * directly in CSS. --heading-* are exempt: they only feed a gradient.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0f;
-  --surface: #f4f4f6;
-  --surface-hover: #e9e9ee;
-  --border: #e0e0e7;
-  --border-hover: #c5c5d1;
-  --muted: #52525b;
-  --card: #fafafb;
+  --background: 255 255 255;
+  --foreground: 10 10 15;
+  --surface: 244 244 246;
+  --surface-hover: 233 233 238;
+  --border: 224 224 231;
+  --border-hover: 197 197 209;
+  --muted: 82 82 91;
+  --card: 250 250 251;
   --heading-from: #1e293b;
   --heading-to: #475569;
 }
 
 .dark {
-  --background: #0a0a0f;
-  --foreground: #ffffff;
-  --surface: #12121a;
-  --surface-hover: #17171f;
-  --border: #232330;
-  --border-hover: #33333f;
-  --muted: #a1a1aa;
-  --card: #0d0d14;
+  --background: 10 10 15;
+  --foreground: 255 255 255;
+  --surface: 18 18 26;
+  --surface-hover: 23 23 31;
+  --border: 35 35 48;
+  --border-hover: 51 51 63;
+  --muted: 161 161 170;
+  --card: 13 13 20;
   --heading-from: #e2e8f0;
   --heading-to: #94a3b8;
 }
@@ -47,12 +54,12 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
-  background: var(--background);
+  background: rgb(var(--background));
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
   overflow-x: clip;
 }
 
@@ -66,11 +73,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: rgb(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-hover);
+  background: rgb(var(--border-hover));
   border-radius: 9999px;
 }
 
