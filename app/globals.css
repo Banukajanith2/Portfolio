@@ -80,6 +80,25 @@ body {
   background: rgb(var(--background));
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /*
+   * cv11 gives Geist a single-storey "a" and straight-tailed "l", which stops
+   * the body text from being confused with the mono at small sizes. ss01 tunes
+   * the punctuation. Both are no-ops on the fallback stack.
+   */
+  font-feature-settings: "cv11", "ss01";
+  text-rendering: optimizeLegibility;
+}
+
+/*
+ * Numbers in labels, dates, stats and the terminal must not jitter as they
+ * change - tabular figures keep every digit the same advance width, so a
+ * counting stat or a clock stays visually still.
+ */
+.font-mono,
+.mono-label,
+time {
+  font-variant-numeric: tabular-nums;
 }
 
 ::selection {
@@ -191,13 +210,24 @@ body {
   }
 
   /*
-   * Display type. Inter at these sizes needs negative tracking to stop the
-   * counters opening up and the whole line reading soft; -0.045em is about the
-   * limit before the letterforms start colliding at weight 800.
+   * Display type. Geist is a touch wider than Inter at the same optical size,
+   * so it needs slightly less negative tracking to avoid the letterforms
+   * colliding: -0.035em is the point where the line still reads tight without
+   * the counters closing up at weight 800.
    */
   .display {
     @apply font-extrabold leading-[0.9];
-    letter-spacing: -0.045em;
+    letter-spacing: -0.035em;
+    /* Stops the browser synthesising a heavier weight if the variable font is
+       still loading, which would reflow the whole heading on swap. */
+    font-synthesis-weight: none;
+  }
+
+  /* Long-form paragraphs. Slightly open leading and a measure cap, because the
+     bento tiles are wide enough to run past a comfortable line length. */
+  .prose-body {
+    @apply text-[15px] leading-[1.7];
+    max-width: 68ch;
   }
 
   /* The mono micro-label that carries the "engineering document" feel. Used for

@@ -9,6 +9,7 @@ import { KineticChars } from "@/components/ui/KineticText";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { Terminal } from "@/components/ui/Terminal";
+import { HeroCanvas } from "@/components/three/HeroCanvas";
 import { asset } from "@/lib/utils";
 
 /**
@@ -33,9 +34,29 @@ export function Hero() {
       id="home"
       className="relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-32 sm:pt-36"
     >
+      {/*
+        Sits behind the content. The radial mask is the important part: it fades
+        the field out well before the section edges so it reads as depth behind
+        the page rather than as a panel with a boundary, and it keeps the
+        brightest part of the field off the text and the terminal card.
+      */}
+      {/*
+        On mobile the hero collapses to one column, which puts the field
+        directly behind the paragraph - so there it is pushed low and right and
+        dimmed to roughly half strength, where it sits under the buttons and
+        meta strip instead of the prose. Desktop has the empty middle column to
+        give it, so it moves back to centre and full strength.
+      */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 opacity-30 [mask-image:radial-gradient(ellipse_80%_40%_at_72%_74%,#000_5%,transparent_70%)] sm:opacity-60 sm:[mask-image:radial-gradient(ellipse_60%_55%_at_52%_45%,#000_10%,transparent_72%)]"
+      >
+        <HeroCanvas />
+      </div>
+
       <motion.div
         style={reduced ? undefined : { y: contentY, opacity: contentOpacity }}
-        className="section-container relative"
+        className="section-container relative z-10"
       >
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
           {/* ── Left: identity ─────────────────────────────────────────── */}

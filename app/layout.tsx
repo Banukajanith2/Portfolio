@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { siteConfig } from "@/data/portfolio";
 import { Aurora, CursorGlow, Grain, ScrollProgress } from "@/components/ui/Ambience";
 import { CommandPalette } from "@/components/ui/CommandPalette";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+import { SmoothScroll } from "@/components/ui/SmoothScroll";
 
 export const metadata: Metadata = {
   // Name only. The browser tab truncates anything longer, and the role is
@@ -30,7 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${inter.variable} ${GeistMono.variable}`}>
+    // Geist Sans rather than Inter: it is the sibling of the Geist Mono already
+    // carrying every label on this page, so the two share proportions and
+    // terminals, and the type stops reading as two unrelated families. It is
+    // also already a dependency, so this costs no extra download.
+    <html lang="en" className={`dark ${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="bg-background font-sans text-foreground antialiased">
         {/*
           Runs before the page paints so a visitor who chose light mode never
@@ -49,6 +48,8 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+
+        <SmoothScroll />
 
         {/* Ambient layers, back to front. All decorative and pointer-transparent. */}
         <Aurora />

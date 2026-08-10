@@ -57,6 +57,37 @@ size and spacing for hierarchy instead.
 - Framer Motion writes `transform` inline for `x`/`y`, which overwrites
   Tailwind translate utilities. Put centring offsets on an inner element.
 
+## 3D / WebGL layer
+
+- **`@react-three/fiber` is pinned to v8.** v9 requires React >= 19 and this
+  project is on React 18. Do not run `npm update` on it without upgrading React
+  first - npm will happily install v9 and the app will fail at runtime.
+- The canvas is mounted through [components/three/HeroCanvas.tsx](components/three/HeroCanvas.tsx),
+  which exists because `ssr: false` is only legal inside a Client Component on
+  the App Router. Calling `dynamic(..., { ssr: false })` from `app/page.tsx`
+  is a build error.
+- [lib/capability.ts](lib/capability.ts) decides whether to draw at all.
+  `prefers-reduced-motion`, no WebGL context, <= 2 cores or <= 2GB RAM all
+  return tier `off` and the canvas never mounts - the CSS aurora is the
+  fallback and is a complete background on its own.
+- Keep three.js out of the initial bundle. First Load JS should stay around
+  187 kB; if it jumps by ~150 kB, something imported `three` eagerly.
+- The scene must stay theme-aware. Additive blending only builds toward white,
+  so it disappears on the light theme - light mode switches to normal blending
+  with the darker accent, the same problem `--accent-fg` solves for text.
+- Particles are one `THREE.Points` with a custom shader (one draw call, buffers
+  uploaded once). Never animate particle positions from JavaScript.
+
+## Smooth scroll
+
+- Lenis, not GSAP ScrollSmoother. Lenis animates the **native** scroll position,
+  so Framer Motion's `useScroll`/`useVelocity`, `position: sticky` on the
+  project stack, and `IntersectionObserver` in `useActiveSection` all keep
+  working. A transform-based smoother breaks every one of those.
+- Do not pass an offset to `lenis.scrollTo`: `scroll-padding-top` in
+  `globals.css` already reserves the navbar's space, and passing both lands
+  anchored sections twice as far down the page.
+
 ## Content honesty
 
 Do not ship placeholder art presented as real work. Project covers in
