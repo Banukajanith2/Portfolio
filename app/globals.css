@@ -62,20 +62,34 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    /* See .hero-heading below: keeps descenders inside the painted box. */
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+  }
+
+  /*
+   * background-clip: text paints the gradient only inside the element's box.
+   * These headings pair it with leading-none, so the box is exactly the font
+   * size and descenders (g, j, y, p) fall outside it and disappear. The extra
+   * padding grows the painted area; the negative margin cancels it out so
+   * surrounding layout is unchanged. Both are in em, so they track the
+   * clamp() font sizes.
+   */
+  .hero-heading,
+  .hero-heading-white {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
   }
 
   .hero-heading {
     background: linear-gradient(180deg, #7c3aed 0%, #06b6d4 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   .hero-heading-white {
     background: linear-gradient(180deg, #e2e8f0 0%, #94a3b8 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   .section-container {
