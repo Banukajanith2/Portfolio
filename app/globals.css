@@ -77,19 +77,25 @@ body {
    */
   .hero-heading,
   .hero-heading-white {
+    padding-bottom: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  /* Keep `background` above background-clip in each rule: the shorthand resets
+     background-clip to border-box, which would paint the whole box instead of
+     just the glyphs and make the text invisible. */
+  .hero-heading {
+    background: linear-gradient(180deg, #7c3aed 0%, #06b6d4 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    padding-bottom: 0.15em;
-    margin-bottom: -0.15em;
-  }
-
-  .hero-heading {
-    background: linear-gradient(180deg, #7c3aed 0%, #06b6d4 100%);
   }
 
   .hero-heading-white {
     background: linear-gradient(180deg, #e2e8f0 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .section-container {
