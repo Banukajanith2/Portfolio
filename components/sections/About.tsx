@@ -47,7 +47,7 @@ export function About() {
                   fill
                   unoptimized
                   sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 90vw"
-                  className="object-cover object-top grayscale transition-all duration-700 ease-smooth group-hover:scale-[1.04] group-hover:grayscale-0"
+                  className="object-cover object-top transition-transform duration-700 ease-smooth group-hover:scale-[1.04]"
                 />
                 {/* Fades from the card's own surface rather than from black.
                     The portrait is a transparent cut-out, so a black gradient

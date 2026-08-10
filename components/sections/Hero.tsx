@@ -153,7 +153,7 @@ export function Hero() {
                   priority
                   unoptimized
                   sizes="160px"
-                  className="object-cover object-top grayscale transition-all duration-700 ease-smooth hover:grayscale-0"
+                  className="object-cover object-top"
                 />
               </div>
 
