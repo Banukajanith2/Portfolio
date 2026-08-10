@@ -1,7 +1,6 @@
 import Image from "next/image";
-import { Download } from "lucide-react";
 import { aboutContent, aboutStats, siteConfig } from "@/data/portfolio";
-import { Button } from "@/components/ui/Button";
+import { DownloadCvButton } from "@/components/ui/DownloadCvButton";
 import { Icon } from "@/components/ui/Icon";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { AnimatedText } from "@/components/ui/AnimatedText";
@@ -59,10 +58,7 @@ export function About() {
           </div>
 
           <FadeIn delay={0.4}>
-            <Button href={siteConfig.resumeUrl} download variant="primary" className="mt-8">
-              Download CV
-              <Download className="h-4 w-4" aria-hidden="true" />
-            </Button>
+            <DownloadCvButton href={siteConfig.resumeUrl} />
           </FadeIn>
         </div>
       </div>

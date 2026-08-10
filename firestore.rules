@@ -1,0 +1,30 @@
+rules_version = '2';
+
+// Paste these into Firebase console → Firestore Database → Rules.
+// The web config is public, so these rules are the only thing protecting the
+// project: everything is denied except incrementing the CV download counter by
+// exactly one, and reading that single document.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /counters/cv-downloads {
+      allow read: if true;
+
+      // First ever download creates the document at 1.
+      allow create: if request.resource.data.keys().hasOnly(['count'])
+                    && request.resource.data.count == 1;
+
+      // Afterwards the only legal write is +1, so the value cannot be set
+      // arbitrarily or reset.
+      allow update: if request.resource.data.keys().hasOnly(['count'])
+                    && request.resource.data.count == resource.data.count + 1;
+
+      allow delete: if false;
+    }
+
+    // Nothing else in the project is reachable from the client.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
