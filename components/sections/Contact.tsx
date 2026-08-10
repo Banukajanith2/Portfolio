@@ -1,6 +1,6 @@
-import { ChevronRight, Mail } from "lucide-react";
-import { contactInfo } from "@/data/portfolio";
-import { Button } from "@/components/ui/Button";
+import { ChevronRight } from "lucide-react";
+import { contactInfo, siteConfig } from "@/data/portfolio";
+import { ContactForm } from "@/components/ui/ContactForm";
 import { Icon } from "@/components/ui/Icon";
 import { FadeIn } from "@/components/ui/FadeIn";
 
@@ -18,14 +18,7 @@ export function Contact() {
           <p className="mt-4 max-w-md text-balance text-muted">
             Have a project in mind or want to say hello? Feel free to reach out!
           </p>
-          <Button
-            href="mailto:banukajanith2002@gmail.com"
-            variant="primary"
-            className="mt-8 hover:shadow-[0_0_24px_rgba(124,58,237,0.5)]"
-          >
-            Send Me a Message
-            <Mail className="h-4 w-4" aria-hidden="true" />
-          </Button>
+          <ContactForm mailto={siteConfig.email} />
         </FadeIn>
 
         <FadeIn delay={0.1}>
