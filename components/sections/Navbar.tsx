@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Download, Menu, Moon, Sun, X } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/portfolio";
 import { useActiveSection } from "@/lib/useActiveSection";
+import { registerCvDownload } from "@/lib/cvDownloads";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 
@@ -55,7 +56,13 @@ export function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button href={siteConfig.resumeUrl} download variant="primary" className="px-6 py-2.5 text-xs md:px-6 md:py-2.5">
+          <Button
+            href={siteConfig.resumeUrl}
+            download
+            variant="primary"
+            onClick={registerCvDownload}
+            className="px-6 py-2.5 text-xs md:px-6 md:py-2.5"
+          >
             Download CV
             <Download className="h-4 w-4" aria-hidden="true" />
           </Button>
@@ -109,7 +116,13 @@ export function Navbar() {
                 );
               })}
               <li className="mt-2 flex items-center gap-3 px-3">
-                <Button href={siteConfig.resumeUrl} download variant="primary" className="w-full text-xs">
+                <Button
+                  href={siteConfig.resumeUrl}
+                  download
+                  variant="primary"
+                  onClick={registerCvDownload}
+                  className="w-full text-xs"
+                >
                   Download CV
                   <Download className="h-4 w-4" aria-hidden="true" />
                 </Button>
