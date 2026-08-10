@@ -1,44 +1,68 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Light is the fallback so the page still reads correctly if the theme class
-   never lands; <html> ships with .dark, so dark remains the default. */
 /*
+ * ── Design system: "Acid Lime on Ink" ───────────────────────────────────────
+ * One signal colour (lime) on a near-black ink base, with everything else
+ * neutral. A single accent is what keeps the page reading as deliberate rather
+ * than decorated, so resist adding a second hue — use weight, size and spacing
+ * for hierarchy instead.
+ *
  * Palette colours are stored as bare "R G B" channels, not hex, so Tailwind can
  * inject an alpha via <alpha-value> in tailwind.config.ts. With a plain
  * var(--x) colour Tailwind silently drops opacity utilities like
  * `bg-background/80`, emitting no rule at all. Use rgb(var(--x)) to read them
- * directly in CSS. --heading-* are exempt: they only feed a gradient.
+ * directly in CSS.
  */
+
+/* Light is the fallback so the page still reads correctly if the theme class
+   never lands; <html> ships with .dark, so dark remains the default. */
 :root {
-  --background: 255 255 255;
-  --foreground: 10 10 15;
-  --surface: 244 244 246;
-  --surface-hover: 233 233 238;
-  --border: 224 224 231;
-  --border-hover: 197 197 209;
-  --muted: 82 82 91;
-  --card: 250 250 251;
-  --heading-from: #1e293b;
-  --heading-to: #475569;
+  --background: 250 250 247;
+  --foreground: 11 12 14;
+  --surface: 241 241 236;
+  --surface-hover: 231 231 224;
+  --border: 223 223 214;
+  --border-hover: 198 198 187;
+  --muted: 92 92 99;
+  --card: 255 255 255;
+
+  /* Lime as a *fill* works on both themes; lime as *text* does not survive a
+     paper background, so accent-fg is a darkened olive in light mode only. */
+  --accent: 214 255 63;
+  --accent-contrast: 8 9 11;
+  --accent-fg: 84 105 0;
+
+  --grid-line: 11 12 14;
+  --noise-opacity: 0.035;
 }
 
 .dark {
-  --background: 10 10 15;
-  --foreground: 255 255 255;
-  --surface: 18 18 26;
-  --surface-hover: 23 23 31;
-  --border: 35 35 48;
-  --border-hover: 51 51 63;
-  --muted: 161 161 170;
-  --card: 13 13 20;
-  --heading-from: #e2e8f0;
-  --heading-to: #94a3b8;
+  --background: 8 9 11;
+  --foreground: 242 242 240;
+  --surface: 16 17 22;
+  --surface-hover: 23 24 30;
+  --border: 30 31 38;
+  --border-hover: 48 50 59;
+  --muted: 138 138 147;
+  --card: 12 13 17;
+
+  --accent: 214 255 63;
+  --accent-contrast: 8 9 11;
+  --accent-fg: 214 255 63;
+
+  --grid-line: 242 242 240;
+  --noise-opacity: 0.05;
 }
 
 html {
   color-scheme: light;
+  scroll-behavior: smooth;
+  background: rgb(var(--background));
+  /* The fixed navbar would otherwise cover the top of a section jumped to via
+     an in-page anchor. */
+  scroll-padding-top: 7rem;
 }
 
 html.dark {
@@ -49,23 +73,26 @@ html.dark {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
-}
-
-html {
-  scroll-behavior: smooth;
-  background: rgb(var(--background));
 }
 
 body {
   color: rgb(var(--foreground));
   background: rgb(var(--background));
   overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: rgba(124, 58, 237, 0.35);
-  color: #ffffff;
+  background-color: rgb(var(--accent));
+  color: rgb(var(--accent-contrast));
+}
+
+/* A single consistent focus ring. Lime on ink and olive on paper both clear
+   3:1 against their surfaces, so this stays visible in either theme. */
+:focus-visible {
+  outline: 2px solid rgb(var(--accent-fg));
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar {
@@ -82,7 +109,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7c3aed;
+  background: rgb(var(--accent));
 }
 
 @layer utilities {
@@ -90,52 +117,115 @@ body {
     text-wrap: balance;
   }
 
-  .text-gradient {
-    background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    /* See .hero-heading below: keeps descenders inside the painted box. */
-    padding-bottom: 0.15em;
-    margin-bottom: -0.15em;
-  }
-
   /*
    * background-clip: text paints the gradient only inside the element's box.
-   * These headings pair it with leading-none, so the box is exactly the font
+   * Display headings pair it with tight leading, so the box is roughly the font
    * size and descenders (g, j, y, p) fall outside it and disappear. The extra
    * padding grows the painted area; the negative margin cancels it out so
-   * surrounding layout is unchanged. Both are in em, so they track the
-   * clamp() font sizes.
+   * surrounding layout is unchanged. Both are in em, so they track clamp()
+   * font sizes.
    */
-  .hero-heading,
-  .hero-heading-white {
-    padding-bottom: 0.2em;
-    margin-bottom: -0.2em;
+  .clip-text {
+    padding-bottom: 0.16em;
+    margin-bottom: -0.16em;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   /* Keep `background` above background-clip in each rule: the shorthand resets
      background-clip to border-box, which would paint the whole box instead of
      just the glyphs and make the text invisible. */
-  .hero-heading {
-    background: linear-gradient(180deg, #7c3aed 0%, #06b6d4 100%);
+  .text-fade {
+    background: linear-gradient(
+      180deg,
+      rgb(var(--foreground)) 0%,
+      rgb(var(--foreground) / 0.45) 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .hero-heading-white {
-    background: linear-gradient(180deg, var(--heading-from) 0%, var(--heading-to) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+  /* Outlined display type — carries the huge footer wordmark without adding
+     another block of solid colour to the page. */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(var(--foreground) / 0.22);
+  }
+
+  /* Blueprint grid. Sits behind content at low contrast; the mask keeps it from
+     running hard into the section edges. */
+  .grid-backdrop {
+    background-image: linear-gradient(rgb(var(--grid-line) / 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--grid-line) / 0.055) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .mask-radial {
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%);
+  }
+
+  /* Fades a horizontally scrolling row out at both ends so the marquee never
+     appears to be cut off by the viewport. */
+  .mask-edges {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+}
+
+/*
+ * These live in `components`, not `utilities`, purely so that utilities beat
+ * them. Tailwind emits user `@layer utilities` rules *after* its generated
+ * ones, so a `.mono-label` defined there would win over `text-accent-fg`
+ * applied alongside it and silently swallow every colour override.
+ */
+@layer components {
+  .card {
+    @apply rounded-2xl border border-border bg-surface;
   }
 
   .section-container {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+    @apply mx-auto w-full max-w-[88rem] px-5 sm:px-8 lg:px-12;
   }
 
-  .card-surface {
-    @apply rounded-2xl border border-border bg-surface;
+  /*
+   * Display type. Inter at these sizes needs negative tracking to stop the
+   * counters opening up and the whole line reading soft; -0.045em is about the
+   * limit before the letterforms start colliding at weight 800.
+   */
+  .display {
+    @apply font-extrabold leading-[0.9];
+    letter-spacing: -0.045em;
+  }
+
+  /* The mono micro-label that carries the "engineering document" feel. Used for
+     section indices, metadata rows and field names — never for prose. */
+  .mono-label {
+    @apply font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-muted;
+  }
+
+  .hairline {
+    @apply border border-border;
+  }
+}
+
+/*
+ * Anything purely decorative is disabled wholesale for visitors who ask for
+ * reduced motion. Components that animate via JS check useReducedMotion()
+ * themselves; this covers the CSS-driven pieces.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

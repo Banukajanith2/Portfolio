@@ -1,71 +1,47 @@
-"use client";
+import { tickerWords } from "@/data/portfolio";
+import { VelocityMarquee } from "@/components/ui/VelocityMarquee";
 
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { marqueeRow1, marqueeRow2 } from "@/data/portfolio";
-
-interface MarqueeRowProps {
-  images: string[];
-  offsetPx: number;
-}
-
-function MarqueeRow({ images, offsetPx }: MarqueeRowProps) {
-  const tripled = [...images, ...images, ...images];
-
+/**
+ * Two counter-scrolling bands of oversized type.
+ *
+ * This replaces the old image marquee, which showed eight generated gradient
+ * tiles under a "selected work" label — placeholder art presented as work is
+ * the fastest way to lose a reviewer's trust. Type carries the same rhythm and
+ * says something true.
+ */
+export function MarqueeSection() {
   return (
-    <div className="overflow-hidden">
-      <div
-        className="flex gap-3"
-        style={{ transform: `translate3d(calc(-33.3333% + ${offsetPx}px), 0, 0)` }}
-      >
-        {tripled.map((src, index) => (
-          <div
-            key={index}
-            className="relative h-[172px] w-[268px] shrink-0 overflow-hidden rounded-2xl sm:h-[220px] sm:w-[340px] lg:h-[270px] lg:w-[420px]"
-          >
-            <Image
-              src={src}
-              alt=""
-              fill
-              unoptimized
-              loading="lazy"
-              sizes="420px"
-              className="object-cover"
-            />
-          </div>
-        ))}
+    <section aria-hidden="true" className="relative overflow-hidden border-y border-border py-10 sm:py-14">
+      <div className="flex flex-col gap-3 sm:gap-4">
+        <VelocityMarquee baseSpeed={-55} className="mask-edges">
+          <Band words={tickerWords} />
+        </VelocityMarquee>
+
+        {/* Reversed so the two bands shear against each other — that opposition
+            is what makes the scroll coupling legible. */}
+        <VelocityMarquee baseSpeed={38} className="mask-edges">
+          <Band words={[...tickerWords].reverse()} outline />
+        </VelocityMarquee>
       </div>
-    </div>
+    </section>
   );
 }
 
-export function MarqueeSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    function handleScroll() {
-      const section = sectionRef.current;
-      if (!section) return;
-      const sectionTop = section.offsetTop;
-      setOffset((window.scrollY - sectionTop + window.innerHeight) * 0.3);
-    }
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+function Band({ words, outline = false }: { words: string[]; outline?: boolean }) {
   return (
-    <section ref={sectionRef} className="overflow-hidden pb-10 pt-24 md:pt-32">
-      <p className="mb-8 text-center font-mono text-xs uppercase tracking-widest text-muted">
-        {"// selected work"}
-      </p>
-
-      <div className="flex flex-col gap-3">
-        <MarqueeRow images={marqueeRow1} offsetPx={offset - 200} />
-        <MarqueeRow images={marqueeRow2} offsetPx={-(offset - 200)} />
-      </div>
-    </section>
+    <div className="flex items-center">
+      {words.map((word, index) => (
+        <span key={`${word}-${index}`} className="flex items-center">
+          <span
+            className={`display whitespace-nowrap px-5 text-[clamp(1.75rem,4.5vw,3.5rem)] ${
+              outline ? "text-outline" : "text-foreground/85"
+            }`}
+          >
+            {word}
+          </span>
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+        </span>
+      ))}
+    </div>
   );
 }

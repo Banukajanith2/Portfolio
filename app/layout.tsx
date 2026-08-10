@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { siteConfig } from "@/data/portfolio";
+import { Aurora, CursorGlow, Grain, ScrollProgress } from "@/components/ui/Ambience";
+import { CommandPalette } from "@/components/ui/CommandPalette";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,9 +12,16 @@ const inter = Inter({
   display: "swap",
 });
 
+const fullName = `${siteConfig.firstName} ${siteConfig.lastName}`;
+
 export const metadata: Metadata = {
-  title: siteConfig.firstName,
+  title: `${fullName} — ${siteConfig.role}`,
   description: siteConfig.tagline,
+  openGraph: {
+    title: `${fullName} — ${siteConfig.role}`,
+    description: siteConfig.tagline,
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -33,7 +42,23 @@ export default function RootLayout({
             __html: `try{var t=localStorage.getItem('theme');document.documentElement.classList.toggle('dark',t!=='light')}catch(e){}`,
           }}
         />
+
+        <a
+          href="#home"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-accent focus:px-5 focus:py-2.5 focus:font-mono focus:text-xs focus:text-accent-contrast"
+        >
+          Skip to content
+        </a>
+
+        {/* Ambient layers, back to front. All decorative and pointer-transparent. */}
+        <Aurora />
+        <CursorGlow />
+
         {children}
+
+        <ScrollProgress />
+        <CommandPalette />
+        <Grain />
       </body>
     </html>
   );

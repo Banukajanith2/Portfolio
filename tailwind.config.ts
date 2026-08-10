@@ -15,6 +15,7 @@ const config: Config = {
         background: "rgb(var(--background) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",
         card: "rgb(var(--card) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
         surface: {
           DEFAULT: "rgb(var(--surface) / <alpha-value>)",
           hover: "rgb(var(--surface-hover) / <alpha-value>)",
@@ -23,73 +24,54 @@ const config: Config = {
           DEFAULT: "rgb(var(--border) / <alpha-value>)",
           hover: "rgb(var(--border-hover) / <alpha-value>)",
         },
-        muted: "rgb(var(--muted) / <alpha-value>)",
-        primary: {
-          DEFAULT: "#7c3aed",
-          50: "#f5f3ff",
-          100: "#ede9fe",
-          200: "#ddd6fe",
-          300: "#c4b5fd",
-          400: "#a78bfa",
-          500: "#8b5cf6",
-          600: "#7c3aed",
-          700: "#6d28d9",
-          800: "#5b21b6",
-          900: "#4c1d95",
-        },
-        secondary: {
-          DEFAULT: "#06b6d4",
-          50: "#ecfeff",
-          100: "#cffafe",
-          200: "#a5f3fc",
-          300: "#67e8f9",
-          400: "#22d3ee",
-          500: "#06b6d4",
-          600: "#0891b2",
-          700: "#0e7490",
-          800: "#155e75",
-          900: "#164e63",
-        },
-        navy: {
-          DEFAULT: "#0a0a0f",
-          50: "#f4f4f6",
-          100: "#e2e2e8",
-          200: "#c5c5d1",
-          300: "#9d9db0",
-          400: "#6f6f8a",
-          500: "#4b4b64",
-          600: "#33333f",
-          700: "#232330",
-          800: "#16161f",
-          900: "#0e0e14",
-          950: "#0a0a0f",
+        accent: {
+          // The lime itself — use for fills, strokes and glows.
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+          // Text drawn *on top of* an accent fill.
+          contrast: "rgb(var(--accent-contrast) / <alpha-value>)",
+          // Accent-coloured text; darkens in light mode so it stays legible.
+          fg: "rgb(var(--accent-fg) / <alpha-value>)",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(circle, var(--tw-gradient-stops))",
-        "hero-glow":
-          "radial-gradient(circle at 70% 30%, rgba(124, 58, 237, 0.25), transparent 60%)",
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
       boxShadow: {
-        glow: "0 0 40px rgba(124, 58, 237, 0.25)",
-        "glow-cyan": "0 0 40px rgba(6, 182, 212, 0.2)",
+        glow: "0 0 40px -8px rgb(var(--accent) / 0.45)",
+        "glow-lg": "0 0 90px -20px rgb(var(--accent) / 0.55)",
+        lift: "0 24px 60px -24px rgb(0 0 0 / 0.5)",
+      },
+      transitionTimingFunction: {
+        // The house easing: fast out of the gate, long settle. Matches the
+        // spring feel of the Framer Motion transitions without the cost.
+        smooth: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
       animation: {
-        "fade-up": "fade-up 0.6s ease-out forwards",
-        blink: "blink 1s step-end infinite",
+        blink: "blink 1.05s step-end infinite",
+        marquee: "marquee var(--marquee-duration, 40s) linear infinite",
+        "pulse-ring": "pulse-ring 2.4s ease-out infinite",
+        drift: "drift 22s ease-in-out infinite",
       },
       keyframes: {
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(16px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
         blink: {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0" },
+        },
+        // The track holds two identical copies of the content, so translating
+        // exactly -50% lands copy two where copy one started — seamless loop.
+        marquee: {
+          from: { transform: "translate3d(0, 0, 0)" },
+          to: { transform: "translate3d(-50%, 0, 0)" },
+        },
+        "pulse-ring": {
+          "0%": { transform: "scale(1)", opacity: "0.55" },
+          "80%, 100%": { transform: "scale(2.4)", opacity: "0" },
+        },
+        drift: {
+          "0%, 100%": { transform: "translate3d(0, 0, 0) scale(1)" },
+          "33%": { transform: "translate3d(4%, -6%, 0) scale(1.08)" },
+          "66%": { transform: "translate3d(-5%, 4%, 0) scale(0.95)" },
         },
       },
     },

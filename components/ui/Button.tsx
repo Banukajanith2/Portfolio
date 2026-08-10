@@ -1,18 +1,25 @@
-﻿import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type Variant = "primary" | "outline" | "ghost";
 
+/**
+ * Lime is the page's only accent, so a solid lime fill is the strongest signal
+ * available — it is reserved for the single most important action in any view.
+ * Everything else is a hairline outline or bare text.
+ */
 const variantClasses: Record<Variant, string> = {
-  primary:
-    "bg-primary text-white hover:bg-primary-700 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] focus-visible:outline-primary-400",
-  outline:
-    "border border-border-hover bg-transparent text-foreground hover:bg-surface focus-visible:outline-primary-400",
-  ghost: "bg-transparent text-foreground hover:bg-surface focus-visible:outline-primary-400",
+  primary: "bg-accent text-accent-contrast hover:shadow-glow",
+  outline: "border border-border-hover text-foreground hover:border-accent hover:text-accent-fg",
+  ghost: "text-muted hover:text-foreground",
 };
 
-const baseClasses =
-  "inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-medium uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-50 md:px-10 md:py-4";
+const baseClasses = cn(
+  "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full",
+  "px-7 py-3 font-mono text-[11px] font-medium uppercase tracking-[0.16em]",
+  "transition-all duration-500 ease-smooth",
+  "disabled:pointer-events-none disabled:opacity-40"
+);
 
 interface CommonProps {
   variant?: Variant;
@@ -21,25 +28,40 @@ interface CommonProps {
 }
 
 type ButtonAsButton = CommonProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    href?: undefined;
-  };
+  ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
 
-type ButtonAsAnchor = CommonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href: string;
-  };
+type ButtonAsAnchor = CommonProps & AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
 
 type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
 export function Button({ variant = "primary", className, children, ...props }: ButtonProps) {
   const classes = cn(baseClasses, variantClasses[variant], className);
 
+  // A light sweeps across the button on hover. Kept on a child rather than a
+  // ::before so it composites on its own layer and never repaints the label.
+  const sweep = (
+    <span
+      aria-hidden="true"
+      className={cn(
+        "pointer-events-none absolute inset-0 -translate-x-full skew-x-12",
+        "bg-gradient-to-r from-transparent via-white/25 to-transparent",
+        "transition-transform duration-[900ms] ease-smooth group-hover/btn:translate-x-full"
+      )}
+    />
+  );
+
+  const content = (
+    <>
+      {sweep}
+      <span className="relative flex items-center gap-2">{children}</span>
+    </>
+  );
+
   if ("href" in props && props.href) {
     const { href, ...anchorProps } = props as ButtonAsAnchor;
     return (
       <a href={href} className={classes} {...anchorProps}>
-        {children}
+        {content}
       </a>
     );
   }
@@ -47,7 +69,7 @@ export function Button({ variant = "primary", className, children, ...props }: B
   const buttonProps = props as ButtonHTMLAttributes<HTMLButtonElement>;
   return (
     <button className={classes} {...buttonProps}>
-      {children}
+      {content}
     </button>
   );
 }

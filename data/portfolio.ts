@@ -28,6 +28,42 @@ export const siteConfig: SiteConfig = {
   linkedin: "linkedin.com/in/banuka-janith-waduge",
 };
 
+/** Availability pill in the hero. Flip `open` when that changes. */
+export const availability = {
+  open: true,
+  label: "Open to opportunities",
+};
+
+/**
+ * The hero's rotating role line. Kept short — each one has to fit on a single
+ * line at the mobile breakpoint.
+ */
+export const heroRoles: string[] = [
+  "Machine Learning",
+  "Full-Stack Web",
+  "Data Analysis",
+  "Product Design",
+];
+
+/** Mono metadata strip under the hero heading. */
+export const heroMeta: { key: string; value: string }[] = [
+  { key: "BASED", value: "Sri Lanka" },
+  { key: "FOCUS", value: "ML · Web · Data" },
+  { key: "DEGREE", value: "BSc (Hons) — First Class" },
+];
+
+/** Words for the kinetic ticker that separates the hero from the page body. */
+export const tickerWords: string[] = [
+  "Machine Learning",
+  "Next.js",
+  "Python",
+  "Data Analysis",
+  "TypeScript",
+  "Explainable AI",
+  "React",
+  "Interface Design",
+];
+
 export interface NavLink {
   label: string;
   href: string;
@@ -68,20 +104,6 @@ export const heroCodeSnippet: string[] = [
   "}",
 ];
 
-const marqueeTiles = [
-  asset("/images/marquee/m1.svg"),
-  asset("/images/marquee/m2.svg"),
-  asset("/images/marquee/m3.svg"),
-  asset("/images/marquee/m4.svg"),
-  asset("/images/marquee/m5.svg"),
-  asset("/images/marquee/m6.svg"),
-  asset("/images/marquee/m7.svg"),
-  asset("/images/marquee/m8.svg"),
-];
-
-export const marqueeRow1: string[] = Array.from({ length: 11 }, (_, i) => marqueeTiles[i % marqueeTiles.length]);
-export const marqueeRow2: string[] = Array.from({ length: 10 }, (_, i) => marqueeTiles[(i + 4) % marqueeTiles.length]);
-
 export interface Stat {
   icon: IconKey;
   value: string;
@@ -94,14 +116,38 @@ export const aboutStats: Stat[] = [
   { icon: "graduationCap", value: "BSc", label: "First Class Honours" },
 ];
 
+/**
+ * Numeric stats for the about bento. Split from `aboutStats` because these
+ * animate with a count-up and so need the value as a number, not a string.
+ */
+export interface CountStat {
+  value: number;
+  suffix: string;
+  label: string;
+  caption: string;
+}
+
+export const countStats: CountStat[] = [
+  { value: 4, suffix: "+", label: "Years", caption: "building and shipping" },
+  { value: 7, suffix: "+", label: "Projects", caption: "shipped end to end" },
+  { value: 3, suffix: "", label: "Qualifications", caption: "SE, BIS and design" },
+];
+
 export const aboutContent = {
   badge: "BSc (Hons) — First Class",
-  heading: "Passionate about building impactful solutions",
+  heading: "Data in. Interfaces out.",
   paragraphs: [
     "I'm a highly motivated and creative software engineering undergraduate who brings fast learning, strong problem-solving and analytical skills to every project. With a keen eye for detail and efficient time management, I thrive in collaborative team environments.",
     "My work spans machine learning and data analysis in Python, front-end development, and graphic design — a mix that lets me take an idea from raw data through to a polished interface.",
   ],
 };
+
+/** Short "what I'm doing now" lines for the about bento's status tile. */
+export const currentFocus: { label: string; value: string }[] = [
+  { label: "Building", value: "Explainable ML pipelines" },
+  { label: "Learning", value: "Systems design & Next.js internals" },
+  { label: "Reading", value: "Designing Data-Intensive Applications" },
+];
 
 export interface TechStackItem {
   name: string;
@@ -160,10 +206,20 @@ export const techStack: TechStackCategory[] = [
 export interface FeaturedProject {
   number: string;
   title: string;
+  /** One-line positioning statement shown large, above the prose. */
+  summary: string;
   description: string;
-  images: [string, string, string];
-  featured: boolean;
+  cover: string;
+  year: string;
+  /** Short domain label, e.g. "Machine Learning". */
+  category: string;
   tech: TechIconKey[];
+  /**
+   * Two or three concrete facts about the build. These replace the fake
+   * screenshot collage: what a reviewer wants is what it does and how, not
+   * three copies of the same placeholder image.
+   */
+  highlights: { label: string; value: string }[];
   /** Omitted when a project has no hosted demo — the link is hidden instead. */
   liveDemoUrl?: string;
   sourceCodeUrl: string;
@@ -173,40 +229,53 @@ export const featuredProjects: FeaturedProject[] = [
   {
     number: "01",
     title: "EZ Movies App",
+    summary: "A responsive movie browser wired straight into the TMDB API.",
     description:
       "A fast and responsive movie browsing application with search, trending, pagination and real-time data using the TMDB API.",
-    images: [asset("/images/project-ezmovies.svg"), asset("/images/project-ezmovies.svg"), asset("/images/project-ezmovies.svg")],
-    featured: true,
+    cover: asset("/images/project-ezmovies.svg"),
+    year: "2024",
+    category: "Web Application",
     tech: ["javascript", "firebase", "tailwind"],
+    highlights: [
+      { label: "Data", value: "TMDB REST API" },
+      { label: "Features", value: "Search · Trending · Pagination" },
+      { label: "Deploy", value: "GitHub Pages" },
+    ],
     liveDemoUrl: "https://banukajanith2.github.io/Movies-App/",
     sourceCodeUrl: "https://github.com/Banukajanith2/Movies-App",
   },
   {
     number: "02",
     title: "AI Sentiment Analysis Model",
+    summary: "Turning open-ended survey responses into a signal teams can act on.",
     description:
       "A sentiment analysis model built with the VADER library in Python using a top-down approach. Trained, evaluated and fine-tuned to analyse customer responses, it is currently used for survey analysis and provides insight into customer feedback.",
-    images: [
-      asset("/images/project-ai-sentiment.svg"),
-      asset("/images/project-ai-sentiment.svg"),
-      asset("/images/project-ai-sentiment.svg"),
-    ],
-    featured: true,
+    cover: asset("/images/project-ai-sentiment.svg"),
+    year: "2024",
+    category: "Machine Learning",
     tech: ["python", "jupyter", "pandas"],
+    highlights: [
+      { label: "Approach", value: "VADER · top-down" },
+      { label: "Applied to", value: "Live customer surveys" },
+      { label: "Output", value: "Scored feedback insight" },
+    ],
     sourceCodeUrl: "https://github.com/Banukajanith2/AI-Sentiment-Analysis",
   },
   {
     number: "03",
     title: "Wine Quality Prediction Model",
+    summary: "Three classifiers benchmarked against each other on the same 15-feature set.",
     description:
       "A machine learning model predicting wine quality from 10–15 dataset variables. Data was gathered, cleaned and visualised with confusion matrices, then trained and evaluated using regression analysis, a Random Forest Classifier and a Support Vector Classifier to optimise predictions.",
-    images: [
-      asset("/images/project-ml-prediction.svg"),
-      asset("/images/project-ml-prediction.svg"),
-      asset("/images/project-ml-prediction.svg"),
-    ],
-    featured: true,
+    cover: asset("/images/project-ml-prediction.svg"),
+    year: "2023",
+    category: "Machine Learning",
     tech: ["python", "jupyter", "scikitlearn", "numpy"],
+    highlights: [
+      { label: "Models", value: "Regression · Random Forest · SVC" },
+      { label: "Features", value: "10–15 variables" },
+      { label: "Evaluation", value: "Confusion matrices" },
+    ],
     sourceCodeUrl: "https://github.com/Banukajanith2/ML-Prediction-Model",
   },
 ];
@@ -215,6 +284,9 @@ export interface OtherProject {
   title: string;
   description: string;
   icon: "globe" | "cloud" | "fileText" | "shoppingCart";
+  year: string;
+  /** Primary language/tool, shown in the list's right-hand meta column. */
+  stack: string;
   sourceCodeUrl: string;
 }
 
@@ -224,6 +296,8 @@ export const otherProjects: OtherProject[] = [
     description:
       "Machine learning model for fraud detection with explainable AI integrated, built in Jupyter Notebook.",
     icon: "fileText",
+    year: "2025",
+    stack: "Python · Jupyter",
     sourceCodeUrl: "https://github.com/Banukajanith2/XAI-Integrated-ML-Model-for-Fraud-Detection",
   },
   {
@@ -231,18 +305,24 @@ export const otherProjects: OtherProject[] = [
     description:
       "A genetic algorithm using binary chromosomes to evolve optimal solutions through selection, crossover and mutation.",
     icon: "cloud",
+    year: "2024",
+    stack: "Python",
     sourceCodeUrl: "https://github.com/Banukajanith2/Python-Genetic-Algorithm",
   },
   {
     title: "To-Do List App",
     description: "A simple task manager for adding, completing and clearing daily to-dos.",
     icon: "globe",
+    year: "2023",
+    stack: "JavaScript",
     sourceCodeUrl: "https://github.com/Banukajanith2/To-Do-List-App",
   },
   {
     title: "HiveMicro Autoclicker",
     description: "A Python desktop utility that automates repetitive clicking tasks.",
     icon: "shoppingCart",
+    year: "2023",
+    stack: "Python",
     sourceCodeUrl: "https://github.com/Banukajanith2/HiveMicro-Autoclicker",
   },
 ];
@@ -374,4 +454,43 @@ export const contactInfo: ContactInfoItem[] = [
 
 export const footerContent = {
   copyright: `${new Date().getFullYear()} ${siteConfig.firstName} ${siteConfig.lastName}.`,
+  note: "Designed and built from scratch — Next.js, TypeScript, Tailwind, Framer Motion.",
 };
+
+/**
+ * Scripted session for the hero terminal. `out` lines print instantly after
+ * their command finishes typing; an `accent` line is highlighted in lime.
+ */
+export interface TerminalStep {
+  command: string;
+  out: { text: string; accent?: boolean }[];
+}
+
+export const terminalSession: TerminalStep[] = [
+  {
+    command: "whoami",
+    out: [{ text: "banuka-janith-waduge" }, { text: "software engineering undergraduate" }],
+  },
+  {
+    command: "cat focus.json",
+    out: [
+      { text: "{" },
+      { text: '  "ml":  ["scikit-learn", "pandas", "XAI"],' },
+      { text: '  "web": ["next.js", "react", "typescript"],' },
+      { text: '  "design": ["figma", "adobe cc"]' },
+      { text: "}" },
+    ],
+  },
+  {
+    command: "git log --oneline -3",
+    out: [
+      { text: "a1f9c2e  feat: explainable fraud detection" },
+      { text: "7d3b810  feat: sentiment scoring for surveys" },
+      { text: "3e0c47a  feat: wine quality classifier" },
+    ],
+  },
+  {
+    command: "./status",
+    out: [{ text: "● available for opportunities", accent: true }],
+  },
+];

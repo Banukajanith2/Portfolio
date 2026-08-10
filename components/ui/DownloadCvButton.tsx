@@ -26,16 +26,16 @@ export function DownloadCvButton({ href }: { href: string }) {
   }, []);
 
   return (
-    <div className="mt-8 flex flex-wrap items-center gap-4">
+    <div className="flex flex-wrap items-center gap-4">
       <Button href={href} download variant="primary" onClick={registerCvDownload}>
         Download CV
         <Download className="h-4 w-4" aria-hidden="true" />
       </Button>
 
       {count !== null && (
-        <p className="text-sm text-muted" aria-live="polite">
-          Downloaded <span className="font-semibold text-primary-400">{count.toLocaleString()}</span>{" "}
-          {count === 1 ? "time" : "times"}
+        <p className="font-mono text-[11px] text-muted" aria-live="polite">
+          <span className="text-accent-fg">{count.toLocaleString()}</span>{" "}
+          {count === 1 ? "download" : "downloads"}
         </p>
       )}
     </div>

@@ -1,50 +1,58 @@
 import { achievements } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
+/**
+ * Three tiles of supporting evidence — awards, languages, activities.
+ *
+ * Kept intentionally quiet: this is the section that props up the work above it,
+ * so it uses the same spotlight surface as the about bento rather than
+ * introducing another card style.
+ */
 export function Achievements() {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="relative py-24 sm:py-32">
       <div className="section-container">
-        <FadeIn>
-          <h2
-            className="hero-heading text-center font-black leading-none"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
-          >
-            Awards & Activities
-          </h2>
-        </FadeIn>
+        <SectionHeading index="06" label="Credentials" title="Recognition & involvement" />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {achievements.map((group, index) => (
-            <FadeIn key={group.title} delay={index * 0.08}>
-              <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-200 hover:border-secondary/40">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary-400">
-                  <Icon name={group.icon} className="h-4 w-4" />
-                </span>
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-3" stagger={0.09}>
+          {achievements.map((group) => (
+            <RevealItem key={group.title}>
+              <SpotlightCard
+                className="h-full"
+                contentClassName="flex h-full flex-col p-6 sm:p-7"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/12 text-accent-fg">
+                    <Icon name={group.icon} className="h-4 w-4" />
+                  </span>
+                  <span className="mono-label">
+                    {String(group.items.length).padStart(2, "0")}
+                  </span>
+                </div>
 
-                <h3 className="mt-4 text-lg font-semibold text-foreground">{group.title}</h3>
+                <h3 className="mt-6 text-lg font-semibold tracking-tight text-foreground">
+                  {group.title}
+                </h3>
 
-                <ul className="mt-4 space-y-3">
+                <ul className="mt-5 flex flex-col gap-4 border-t border-border pt-5">
                   {group.items.map((item) => (
-                    <li key={item.primary} className="flex gap-2 text-sm leading-relaxed">
-                      <span
-                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary-400"
-                        aria-hidden="true"
-                      />
-                      <span className="min-w-0">
-                        <span className="block font-medium text-foreground">{item.primary}</span>
-                        {item.secondary && (
-                          <span className="block text-xs text-muted">{item.secondary}</span>
-                        )}
-                      </span>
+                    <li key={item.primary}>
+                      <p className="text-sm font-medium leading-snug text-foreground">
+                        {item.primary}
+                      </p>
+                      {item.secondary && (
+                        <p className="mt-1 font-mono text-[11px] text-muted">{item.secondary}</p>
+                      )}
                     </li>
                   ))}
                 </ul>
-              </div>
-            </FadeIn>
+              </SpotlightCard>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

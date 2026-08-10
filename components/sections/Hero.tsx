@@ -1,117 +1,237 @@
-﻿"use client";
+"use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowRight, Mail } from "lucide-react";
-import { heroCodeSnippet, heroSocials, siteConfig } from "@/data/portfolio";
-import { Button } from "@/components/ui/Button";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { availability, heroMeta, heroRoles, heroSocials, siteConfig } from "@/data/portfolio";
+import { KineticChars } from "@/components/ui/KineticText";
+import { Magnetic } from "@/components/ui/Magnetic";
 import { SocialIcon } from "@/components/ui/SocialIcon";
-import { DotGrid } from "@/components/ui/DotGrid";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { Magnet } from "@/components/ui/Magnet";
-import { ParticleBackground } from "@/components/ui/ParticleBackground";
-import { TypingCode } from "@/components/ui/TypingCode";
+import { Terminal } from "@/components/ui/Terminal";
 import { asset } from "@/lib/utils";
 
+/**
+ * The hero is asymmetric on purpose: an oversized name block on the left and a
+ * narrow instrument column on the right. A centred hero with a portrait is the
+ * single most common portfolio layout there is, so the whole composition is
+ * built to avoid reading that way.
+ */
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+
+  // Parallax the hero out as the page scrolls past it, so the section below
+  // appears to slide over the top rather than simply following it.
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+
   return (
     <section
+      ref={ref}
       id="home"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-28 pb-24 sm:pt-32 sm:pb-28"
+      className="relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-32 sm:pt-36"
     >
-      <ParticleBackground className="pointer-events-none absolute inset-0" />
-      <div className="absolute inset-0 bg-hero-glow" aria-hidden="true" />
-      <DotGrid className="absolute right-6 top-24 hidden h-40 w-40 lg:block" />
+      <motion.div
+        style={reduced ? undefined : { y: contentY, opacity: contentOpacity }}
+        className="section-container relative"
+      >
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
+          {/* ── Left: identity ─────────────────────────────────────────── */}
+          <div className="lg:col-span-7 xl:col-span-7">
+            <AvailabilityPill />
 
-      <div className="section-container relative grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-8">
-        <div className="sm:mt-20 mt-0">
-          <FadeIn delay={0.15}>
-            <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-              <span className="text-foreground">{siteConfig.firstName}</span>
-              <br />
-              <span className="hero-heading">{siteConfig.lastName}</span>
+            {/* Looser than the display default: at this size the outlined
+                second line's ascenders run straight into the first line's
+                descenders and the two words visibly collide. */}
+            <h1 className="mt-8 display text-[clamp(3rem,11vw,8.5rem)] leading-[0.98]">
+              <span className="block text-foreground">
+                <KineticChars text={siteConfig.firstName.split(" ")[0]} delay={0.35} />
+              </span>
+              <span className="block text-outline">
+                <KineticChars text={siteConfig.lastName} delay={0.5} />
+              </span>
             </h1>
-          </FadeIn>
 
-          <FadeIn delay={0.25}>
-            <p className="mt-4 text-lg font-medium text-primary-400 sm:text-xl">{siteConfig.role}</p>
-          </FadeIn>
-
-          <FadeIn delay={0.3}>
-            <p className="mt-4 max-w-xl text-balance text-base font-light text-muted sm:text-lg">
-              {siteConfig.tagline}
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.4}>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button href="#projects" variant="primary">
-                View Projects
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Button>
-              <Button href="#contact" variant="outline">
-                Contact Me
-                <Mail className="h-4 w-4" aria-hidden="true" />
-              </Button>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.5}>
-            <div className="mt-8 flex items-center gap-5">
-              {heroSocials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="text-muted transition-colors duration-200 hover:text-foreground"
-                >
-                  <SocialIcon name={social.icon} className="h-5 w-5" />
-                </a>
-              ))}
-            </div>
-          </FadeIn>
-        </div>
-
-        <FadeIn delay={0.6} className="relative mx-auto w-full max-w-md lg:max-w-lg">
-          <Magnet padding={120} strength={3}>
-            <div
-              className="relative aspect-[5/5] w-full overflow-hidden rounded-3xl border border-border"
-              style={{ boxShadow: "0 0 80px 20px rgba(124, 58, 237, 0.3)" }}
+            <motion.div
+              initial={reduced ? undefined : { opacity: 0, y: 20 }}
+              animate={reduced ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
+              className="mt-8 max-w-xl"
             >
-              <Image
-                src={asset("/images/self-portrait.webp")}
-                alt={`Portrait of ${siteConfig.firstName} ${siteConfig.lastName}`}
-                fill
-                priority
-                unoptimized
-                sizes="(min-width: 1024px) 480px, 90vw"
-                className="object-cover"
-              />
-            </div>
-          </Magnet>
+              <p className="flex flex-wrap items-baseline gap-x-2 text-lg text-muted sm:text-xl">
+                <span>Engineering</span>
+                <RoleRotator />
+              </p>
 
-          {/* `dark` keeps this an editor-style panel in both themes: the syntax
-              colours are tuned for a dark background, and every token inside
-              (card, border, muted, foreground) resolves to the dark palette
-              because the class redefines those variables for this subtree. */}
+              <p className="mt-5 text-balance text-base leading-relaxed text-muted">
+                {siteConfig.tagline}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={reduced ? undefined : { opacity: 0, y: 20 }}
+              animate={reduced ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 1.05 }}
+              className="mt-10 flex flex-wrap items-center gap-3"
+            >
+              <Magnetic>
+                <a
+                  href="#projects"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-accent px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.16em] text-accent-contrast transition-shadow duration-500 hover:shadow-glow"
+                >
+                  Selected Work
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-smooth group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              </Magnetic>
+
+              <Magnetic>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-border-hover px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground transition-colors duration-500 hover:border-accent hover:text-accent-fg"
+                >
+                  Get in touch
+                </a>
+              </Magnetic>
+            </motion.div>
+
+            {/* Mono metadata strip — the device that frames the page as a spec
+                sheet rather than a brochure. */}
+            <motion.dl
+              initial={reduced ? undefined : { opacity: 0 }}
+              animate={reduced ? undefined : { opacity: 1 }}
+              transition={{ duration: 1, delay: 1.25 }}
+              className="mt-12 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-5 border-t border-border pt-6 sm:grid-cols-3"
+            >
+              {heroMeta.map((item) => (
+                <div key={item.key}>
+                  <dt className="mono-label">{item.key}</dt>
+                  <dd className="mt-2 text-sm text-foreground">{item.value}</dd>
+                </div>
+              ))}
+            </motion.dl>
+          </div>
+
+          {/* ── Right: instrument column ───────────────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.75 }}
-            className="dark absolute -bottom-20 inset-x-0 mx-auto w-[92%] overflow-hidden rounded-xl border border-border bg-card shadow-2xl sm:-bottom-10 sm:inset-x-auto sm:left-auto sm:right-[-8%] sm:mx-0 sm:w-[85%]"
+            initial={reduced ? undefined : { opacity: 0, y: 40 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.75 }}
+            className="flex flex-col gap-5 lg:col-span-5"
           >
-            <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
-              <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
-              <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
-              <span className="ml-2 text-xs text-muted">about.me</span>
+            <div className="flex items-stretch gap-5">
+              <div className="relative aspect-square w-32 shrink-0 overflow-hidden rounded-xl border border-border sm:w-40">
+                <Image
+                  src={asset("/images/self-portrait.webp")}
+                  alt={`Portrait of ${siteConfig.firstName} ${siteConfig.lastName}`}
+                  fill
+                  priority
+                  unoptimized
+                  sizes="160px"
+                  className="object-cover grayscale transition-all duration-700 ease-smooth hover:grayscale-0"
+                />
+              </div>
+
+              <div className="flex min-w-0 flex-1 flex-col justify-between rounded-xl border border-border bg-surface p-4">
+                <p className="mono-label">Currently</p>
+                <p className="mt-2 text-sm leading-snug text-foreground">
+                  Digital Designer at{" "}
+                  <span className="text-accent-fg">SISKA Limited</span>
+                </p>
+                <div className="mt-4 flex items-center gap-3">
+                  {heroSocials.slice(0, 4).map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="text-muted transition-colors duration-300 hover:text-accent-fg"
+                    >
+                      <SocialIcon name={social.icon} className="h-4 w-4" />
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
-            <TypingCode lines={heroCodeSnippet} className="px-4 py-3.5 font-mono text-[11px] leading-relaxed sm:text-xs" />
+
+            <Terminal />
           </motion.div>
-        </FadeIn>
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
+
+/** Live status pill. The ring animation is the only motion in the top-left, so
+    it draws the eye to the one fact a recruiter is scanning for. */
+function AvailabilityPill() {
+  const reduced = useReducedMotion();
+
+  return (
+    <motion.a
+      href="#contact"
+      initial={reduced ? undefined : { opacity: 0, y: 12 }}
+      animate={reduced ? undefined : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+      className="group inline-flex items-center gap-2.5 rounded-full border border-border bg-surface/60 py-1.5 pl-2.5 pr-4 backdrop-blur-sm transition-colors duration-300 hover:border-accent"
+    >
+      <span className="relative flex h-1.5 w-1.5">
+        {availability.open && (
+          <span className="absolute inset-0 rounded-full bg-accent animate-pulse-ring" />
+        )}
+        <span className="relative h-1.5 w-1.5 rounded-full bg-accent" />
+      </span>
+      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-foreground">
+        {availability.label}
+      </span>
+    </motion.a>
+  );
+}
+
+/**
+ * Cycles the discipline in the role line. Each word is masked so it rolls over
+ * rather than cross-fading; the container is inline-grid so its width tracks
+ * the widest word and the line never reflows mid-swap.
+ */
+function RoleRotator() {
+  const reduced = useReducedMotion();
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduced) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % heroRoles.length), 2600);
+    return () => clearInterval(id);
+  }, [reduced]);
+
+  if (reduced) {
+    return <span className="font-medium text-foreground">{heroRoles.join(", ")}</span>;
+  }
+
+  return (
+    <span className="relative inline-grid overflow-hidden pb-[0.18em] -mb-[0.18em] align-bottom">
+      {/* Invisible sizer: reserves the width of the longest option up front. */}
+      <span aria-hidden="true" className="col-start-1 row-start-1 invisible font-medium">
+        {heroRoles.reduce((a, b) => (a.length >= b.length ? a : b))}
+      </span>
+
+      {/* No `mode="wait"`: waiting for the exit to finish before mounting the
+          next word leaves the slot empty for half a second every cycle. Letting
+          them overlap in the same grid cell is also what produces the roll. */}
+      <AnimatePresence>
+        <motion.span
+          key={heroRoles[index]}
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: "-100%", opacity: 0 }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="col-start-1 row-start-1 whitespace-nowrap font-medium text-accent-fg"
+        >
+          {heroRoles[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+

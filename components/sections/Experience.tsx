@@ -1,75 +1,141 @@
-﻿import { experience, type ExperienceItem } from "@/data/portfolio";
-import { FadeIn } from "@/components/ui/FadeIn";
+"use client";
 
-function EntryCard({ item }: { item: ExperienceItem }) {
-  return (
-    <div className="rounded-xl border border-border bg-surface p-5">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h3 className="text-sm font-semibold text-foreground sm:text-base">{item.org}</h3>
-          <p className="text-sm text-primary-400">{item.role}</p>
-        </div>
-        <span className="whitespace-nowrap rounded-full bg-primary/20 px-3 py-1 text-xs text-primary-400">
-          {item.date}
-        </span>
-      </div>
+import { useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { experience, type ExperienceItem } from "@/data/portfolio";
+import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { cn } from "@/lib/utils";
 
-      <ul className="mt-4 space-y-2">
-        {item.bullets.map((bullet, index) => (
-          <li key={index} className="flex gap-2 text-sm leading-relaxed text-muted">
-            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary-400" aria-hidden="true" />
-            {bullet}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+type Track = "work" | "education";
 
+/**
+ * A single spine with a progress line that fills as the section scrolls.
+ *
+ * The previous two-column layout paired unrelated jobs and degrees row by row
+ * purely because they shared an index, which implied a relationship that isn't
+ * there. A tabbed single track keeps each history in its own reading order, and
+ * the filling spine gives the section a reason to be scrolled through.
+ */
 export function Experience() {
-  const workItems = experience.filter((item) => item.type === "work");
-  const educationItems = experience.filter((item) => item.type === "education");
-  // The two columns are independent lists, so pair by index up to whichever is
-  // longer and leave the shorter column's trailing cells empty.
-  const rowCount = Math.max(workItems.length, educationItems.length);
-  const rows = Array.from(
-    { length: rowCount },
-    (_, i) => [workItems[i], educationItems[i]] as const
-  );
+  const [track, setTrack] = useState<Track>("work");
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 0.8", "end 0.6"],
+  });
+  const lineScale = useSpring(scrollYProgress, { stiffness: 140, damping: 30, restDelta: 0.001 });
+
+  const items = experience.filter((item) => item.type === track);
 
   return (
-    <section className="py-20 sm:py-28">
+    <section id="path" className="relative py-24 sm:py-32">
       <div className="section-container">
-        <FadeIn>
-          <h2
-            className="hero-heading-white text-center font-black leading-none"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
-          >
-            Experience & Education
-          </h2>
-        </FadeIn>
+        <SectionHeading
+          index="05"
+          label="Trajectory"
+          title="Where I've been"
+          action={
+            <div className="flex gap-2" role="tablist" aria-label="Switch history">
+              {(["work", "education"] as Track[]).map((option) => {
+                const isActive = track === option;
 
-        <div className="relative mt-14">
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setTrack(option)}
+                    className={cn(
+                      "relative rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-300",
+                      isActive ? "text-accent-contrast" : "text-muted hover:text-foreground"
+                    )}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="experience-pill"
+                        className="absolute inset-0 rounded-full bg-accent"
+                        transition={{ type: "spring", stiffness: 420, damping: 36 }}
+                      />
+                    )}
+                    <span className="relative">{option}</span>
+                  </button>
+                );
+              })}
+            </div>
+          }
+        />
+
+        <div ref={timelineRef} className="relative mt-14 pl-8 sm:pl-12">
+          {/* Track: a static hairline with the lime progress line drawn over it. */}
           <div
-            className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-primary/30 md:block"
             aria-hidden="true"
+            className="absolute bottom-0 left-0 top-0 w-px bg-border sm:left-2"
           />
-          <div className="space-y-8">
-            {rows.map((row, rowIndex) => (
-              <FadeIn key={rowIndex} delay={rowIndex * 0.1}>
-                <div className="relative grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16">
-                  <span
-                    className="absolute left-1/2 top-8 hidden h-3 w-3 -translate-x-1/2 rounded-full border-2 border-primary bg-background md:block"
-                    aria-hidden="true"
-                  />
-                  {row[0] ? <EntryCard item={row[0]} /> : <div aria-hidden="true" />}
-                  {row[1] ? <EntryCard item={row[1]} /> : <div aria-hidden="true" />}
-                </div>
-              </FadeIn>
+          <motion.div
+            aria-hidden="true"
+            style={reduced ? { scaleY: 1 } : { scaleY: lineScale }}
+            className="absolute bottom-0 left-0 top-0 w-px origin-top bg-accent sm:left-2"
+          />
+
+          <div className="flex flex-col gap-5">
+            {items.map((item, index) => (
+              <Reveal key={`${track}-${item.org}-${item.role}`} delay={index * 0.06} x={16} y={16}>
+                <EntryCard item={item} index={index} />
+              </Reveal>
             ))}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function EntryCard({ item, index }: { item: ExperienceItem; index: number }) {
+  return (
+    <article className="group relative">
+      {/* Node on the spine. Sits outside the card so the card can move on hover
+          while the marker stays anchored to the timeline. */}
+      <span
+        aria-hidden="true"
+        className="absolute -left-8 top-7 flex h-3 w-3 items-center justify-center sm:-left-[2.6rem]"
+      >
+        <span className="absolute h-3 w-3 rounded-full bg-accent/25 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <span className="relative h-1.5 w-1.5 rounded-full bg-border-hover transition-colors duration-500 group-hover:bg-accent" />
+      </span>
+
+      <div className="rounded-2xl border border-border bg-surface p-5 transition-all duration-500 ease-smooth hover:translate-x-1 hover:border-accent/50 sm:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2">
+          <div className="min-w-0">
+            <p className="mono-label text-accent-fg">
+              {String(index + 1).padStart(2, "0")}
+            </p>
+            <h3 className="mt-2.5 text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+              {item.role}
+            </h3>
+            <p className="mt-1 text-sm text-muted">{item.org}</p>
+          </div>
+
+          <span className="shrink-0 rounded-full border border-border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+            {item.date}
+          </span>
+        </div>
+
+        <ul className="mt-5 space-y-2 border-t border-border pt-5">
+          {item.bullets.map((bullet, bulletIndex) => (
+            <li key={bulletIndex} className="flex gap-3 text-sm leading-relaxed text-muted">
+              <span
+                aria-hidden="true"
+                className="mt-[0.5rem] h-1 w-1 shrink-0 rounded-full bg-accent"
+              />
+              {bullet}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
   );
 }

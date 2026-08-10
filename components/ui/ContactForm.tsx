@@ -12,7 +12,7 @@ type Status = "idle" | "sending" | "success" | "error";
 const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
 const fieldClasses =
-  "w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground outline-none transition-colors duration-200 placeholder:text-muted focus:border-primary-400 focus:bg-surface-hover";
+  "w-full rounded-xl border border-border bg-surface px-4 py-3.5 text-sm text-foreground outline-none transition-colors duration-300 placeholder:text-muted focus:border-accent focus:bg-surface-hover";
 
 export function ContactForm({ mailto }: { mailto: string }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -22,11 +22,7 @@ export function ContactForm({ mailto }: { mailto: string }) {
   // rather than showing inputs that silently drop the visitor's message.
   if (!accessKey) {
     return (
-      <Button
-        href={`mailto:${mailto}`}
-        variant="primary"
-        className="mt-8 hover:shadow-[0_0_24px_rgba(124,58,237,0.5)]"
-      >
+      <Button href={`mailto:${mailto}`} variant="primary" className="mt-8">
         Send Me a Message
         <Mail className="h-4 w-4" aria-hidden="true" />
       </Button>
@@ -119,12 +115,7 @@ export function ContactForm({ mailto }: { mailto: string }) {
       </label>
 
       <div className="flex flex-wrap items-center gap-4">
-        <Button
-          type="submit"
-          variant="primary"
-          disabled={sending}
-          className="hover:shadow-[0_0_24px_rgba(124,58,237,0.5)]"
-        >
+        <Button type="submit" variant="primary" disabled={sending}>
           {sending ? "Sending..." : "Send Message"}
           {sending ? (
             <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
@@ -138,7 +129,7 @@ export function ContactForm({ mailto }: { mailto: string }) {
           aria-live="polite"
           className={cn(
             "text-sm",
-            status === "success" && "text-primary-400",
+            status === "success" && "text-accent-fg",
             status === "error" && "text-red-400"
           )}
         >
