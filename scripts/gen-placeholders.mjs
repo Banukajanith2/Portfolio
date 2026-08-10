@@ -152,10 +152,90 @@ function scatter() {
   return out;
 }
 
+/**
+ * Semantic search - a 2D projection of the embedding space.
+ *
+ * The corpus sits as faint points in loose clusters, one lime point is the
+ * query, and the nearest neighbours it retrieves are drawn bright and tethered
+ * back to it. That is literally what the search does: place the query in the
+ * same space and take whatever is closest.
+ */
+function embeddingSpace() {
+  const random = rng(101);
+  const left = 56;
+  const right = W - 56;
+  const top = 56;
+  const bottom = H - 56;
+
+  // Cluster centroids stand in for the topic groups the corpus falls into.
+  const clusters = [
+    { x: 300, y: 250, spread: 130 },
+    { x: 640, y: 190, spread: 105 },
+    { x: 470, y: 460, spread: 120 },
+    { x: 740, y: 430, spread: 95 },
+  ];
+
+  const points = [];
+  for (let i = 0; i < 190; i++) {
+    const c = clusters[i % clusters.length];
+    // Two averaged samples approximate a normal, so points bunch toward the
+    // centroid instead of filling a flat square.
+    const gx = (random() + random() - 1) * c.spread;
+    const gy = (random() + random() - 1) * c.spread;
+    const x = Math.min(right, Math.max(left, c.x + gx));
+    const y = Math.min(bottom, Math.max(top, c.y + gy));
+    points.push({ x, y });
+  }
+
+  // The query lands inside the densest cluster, which is where a real query
+  // about that topic would land.
+  const query = { x: 300, y: 250 };
+
+  const nearest = points
+    .map((p, i) => ({ i, d: Math.hypot(p.x - query.x, p.y - query.y) }))
+    .sort((a, b) => a.d - b.d)
+    .slice(0, 6)
+    .map((entry) => entry.i);
+  const isNearest = new Set(nearest);
+
+  let out = "";
+
+  // Retrieval radius.
+  const radius = Math.max(...nearest.map((i) => Math.hypot(points[i].x - query.x, points[i].y - query.y)));
+  out += `  <circle cx="${query.x}" cy="${query.y}" r="${(radius + 22).toFixed(
+    1
+  )}" fill="none" stroke="${LIME}" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="6 7"/>\n`;
+
+  // Tethers first, so the points draw on top of them.
+  for (const i of nearest) {
+    out += `  <line x1="${query.x}" y1="${query.y}" x2="${points[i].x.toFixed(1)}" y2="${points[
+      i
+    ].y.toFixed(1)}" stroke="${LIME}" stroke-opacity="0.4" stroke-width="1"/>\n`;
+  }
+
+  points.forEach((p, i) => {
+    const hit = isNearest.has(i);
+    const r = hit ? 6 : 2.5 + random() * 2;
+    out += `  <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}" fill="${
+      hit ? LIME : BONE
+    }" fill-opacity="${hit ? 0.9 : 0.16}"/>\n`;
+  });
+
+  // The query itself: a ringed dot so it reads as the origin of the search.
+  out += `  <circle cx="${query.x}" cy="${query.y}" r="13" fill="${LIME}" fill-opacity="0.18"/>\n`;
+  out += `  <circle cx="${query.x}" cy="${query.y}" r="6.5" fill="${LIME}"/>\n`;
+
+  return out;
+}
+
 const files = [
   ["project-ezmovies.svg", frame("p1", catalogue())],
   ["project-ai-sentiment.svg", frame("p2", sentiment())],
+  // Wine quality moved to the archive list, which renders icons rather than
+  // covers. The scatter is kept generated so the project can be promoted back
+  // without rebuilding its artwork.
   ["project-ml-prediction.svg", frame("p3", scatter())],
+  ["project-semantic-search.svg", frame("p4", embeddingSpace())],
 ];
 
 for (const [name, content] of files) {

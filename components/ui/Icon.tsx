@@ -10,6 +10,7 @@ import {
   Cloud,
   FileText,
   ShoppingCart,
+  FlaskConical,
   type LucideIcon,
 } from "lucide-react";
 import { SiGithub } from "react-icons/si";
@@ -29,7 +30,8 @@ export type IconKey =
   | "globe"
   | "cloud"
   | "fileText"
-  | "shoppingCart";
+  | "shoppingCart"
+  | "flaskConical";
 
 const lucideIconRegistry: Partial<Record<IconKey, LucideIcon>> = {
   settings: Settings,
@@ -43,6 +45,7 @@ const lucideIconRegistry: Partial<Record<IconKey, LucideIcon>> = {
   cloud: Cloud,
   fileText: FileText,
   shoppingCart: ShoppingCart,
+  flaskConical: FlaskConical,
 };
 
 const brandIconRegistry: Partial<Record<IconKey, IconType>> = {

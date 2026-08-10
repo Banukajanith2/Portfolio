@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Maximize2, Play } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { featuredProjects, type FeaturedProject } from "@/data/portfolio";
+import { ProjectModal } from "@/components/ui/ProjectModal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TechIcon } from "@/components/ui/TechIcon";
 
@@ -20,7 +21,15 @@ const TOTAL = featuredProjects.length;
  * gone; it was the same placeholder repeated three times, which added nothing a
  * reviewer could evaluate.
  */
-function ProjectCard({ project, index }: { project: FeaturedProject; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  onOpen,
+}: {
+  project: FeaturedProject;
+  index: number;
+  onOpen: () => void;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 
@@ -48,7 +57,15 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
     >
       <motion.article
         style={reduced ? undefined : { scale }}
-        className="group relative origin-top overflow-hidden rounded-3xl border border-border bg-card shadow-lift"
+        // Click anywhere that is not already a link opens the detail dialog.
+        // The explicit button in the actions row below is what carries this for
+        // keyboard and screen-reader users, so the article stays a plain
+        // article rather than a div pretending to be a button.
+        onClick={(event) => {
+          if ((event.target as HTMLElement).closest("a,button")) return;
+          onOpen();
+        }}
+        className="group relative origin-top cursor-pointer overflow-hidden rounded-3xl border border-border bg-card shadow-lift"
       >
         {/* Accent hairline that sweeps in along the top edge on hover. */}
         <span
@@ -104,6 +121,25 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
             </div>
 
             <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
+              {/* Primary action. A project carrying an embedded demo leads with
+                  it - "open" is a far stronger invitation than "read more". */}
+              <button
+                type="button"
+                onClick={onOpen}
+                className={
+                  project.demo
+                    ? "inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-accent-contrast transition-shadow duration-500 hover:shadow-glow"
+                    : "inline-flex items-center gap-2 rounded-full border border-border-hover px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground transition-colors duration-500 hover:border-accent hover:text-accent-fg"
+                }
+              >
+                {project.demo ? "Try it live" : "Details"}
+                {project.demo ? (
+                  <Play className="h-3.5 w-3.5" aria-hidden="true" />
+                ) : (
+                  <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
+                )}
+              </button>
+
               {project.liveDemoUrl && (
                 <a
                   href={project.liveDemoUrl}
@@ -157,6 +193,10 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
 }
 
 export function FeaturedProjects() {
+  // Holds the project itself rather than an index, so the dialog keeps
+  // rendering the right content while it animates out.
+  const [active, setActive] = useState<FeaturedProject | null>(null);
+
   return (
     <section id="projects" className="relative py-24 sm:py-32">
       <div className="section-container">
@@ -171,10 +211,17 @@ export function FeaturedProjects() {
             unpinning before the next section arrives. */}
         <div className="mt-14 flex flex-col gap-6 pb-[30vh]">
           {featuredProjects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={index}
+              onOpen={() => setActive(project)}
+            />
           ))}
         </div>
       </div>
+
+      <ProjectModal project={active} onClose={() => setActive(null)} />
     </section>
   );
 }

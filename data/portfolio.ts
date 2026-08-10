@@ -228,6 +228,12 @@ export interface FeaturedProject {
   /** Omitted when a project has no hosted demo - the link is hidden instead. */
   liveDemoUrl?: string;
   sourceCodeUrl: string;
+  /**
+   * Names an interactive demo to mount inside the project's detail dialog.
+   * A key rather than a component so this file stays free of JSX imports and
+   * the demo itself can be code-split at the point of use.
+   */
+  demo?: "semantic-search";
 }
 
 export const featuredProjects: FeaturedProject[] = [
@@ -268,27 +274,28 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     number: "03",
-    title: "Wine Quality Prediction Model",
-    summary: "Three classifiers benchmarked against each other on the same 15-feature set.",
+    title: "Semantic Job Search Engine",
+    summary: "Search 3,000 job postings by meaning rather than by keyword.",
     description:
-      "A machine learning model predicting wine quality from 10-15 dataset variables. Data was gathered, cleaned and visualised with confusion matrices, then trained and evaluated using regression analysis, a Random Forest Classifier and a Support Vector Classifier to optimise predictions.",
-    cover: asset("/images/project-ml-prediction.svg"),
-    year: "2023",
+      "Job postings are embedded with the all-MiniLM-L6-v2 sentence transformer and retrieved by vector similarity, so a query matches on intent even when none of its words appear in the posting. The original engine indexes with FAISS behind a FastAPI endpoint; the demo here ports that corpus to the browser, running the same model in WebAssembly against pre-computed embeddings with no server in the loop.",
+    cover: asset("/images/project-semantic-search.svg"),
+    year: "2025",
     category: "Machine Learning",
-    tech: ["python", "jupyter", "scikitlearn", "numpy"],
+    tech: ["python", "numpy", "typescript", "react"],
     highlights: [
-      { label: "Models", value: "Regression · Random Forest · SVC" },
-      { label: "Features", value: "10-15 variables" },
-      { label: "Evaluation", value: "Confusion matrices" },
+      { label: "Corpus", value: "3,000 postings · 384-dim vectors" },
+      { label: "Model", value: "all-MiniLM-L6-v2" },
+      { label: "Retrieval", value: "FAISS · cosine similarity" },
     ],
-    sourceCodeUrl: "https://github.com/Banukajanith2/ML-Prediction-Model",
+    sourceCodeUrl: "https://github.com/Banukajanith2/Semantic-Job-Search-Engine",
+    demo: "semantic-search",
   },
 ];
 
 export interface OtherProject {
   title: string;
   description: string;
-  icon: "globe" | "cloud" | "fileText" | "shoppingCart";
+  icon: "globe" | "cloud" | "fileText" | "shoppingCart" | "flaskConical";
   year: string;
   /** Primary language/tool, shown in the list's right-hand meta column. */
   stack: string;
@@ -296,6 +303,15 @@ export interface OtherProject {
 }
 
 export const otherProjects: OtherProject[] = [
+  {
+    title: "Wine Quality Prediction Model",
+    description:
+      "Regression, a Random Forest Classifier and an SVC benchmarked against each other on the same 10-15 variable set, evaluated with confusion matrices.",
+    icon: "flaskConical",
+    year: "2023",
+    stack: "Python · scikit-learn",
+    sourceCodeUrl: "https://github.com/Banukajanith2/ML-Prediction-Model",
+  },
   {
     title: "XAI-Integrated Fraud Detection",
     description:
@@ -321,14 +337,6 @@ export const otherProjects: OtherProject[] = [
     year: "2023",
     stack: "JavaScript",
     sourceCodeUrl: "https://github.com/Banukajanith2/To-Do-List-App",
-  },
-  {
-    title: "HiveMicro Autoclicker",
-    description: "A Python desktop utility that automates repetitive clicking tasks.",
-    icon: "shoppingCart",
-    year: "2023",
-    stack: "Python",
-    sourceCodeUrl: "https://github.com/Banukajanith2/HiveMicro-Autoclicker",
   },
 ];
 
