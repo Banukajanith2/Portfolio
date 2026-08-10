@@ -20,7 +20,7 @@ export const siteConfig: SiteConfig = {
   lastName: "Waduge",
   role: "Software Engineering Undergraduate",
   tagline:
-    "I build data-driven applications and digital experiences — combining machine learning, web development and design.",
+    "I build data-driven applications and digital experiences - combining machine learning, web development and design.",
   email: "Banukajanith2@gmail.com",
   location: "Sri Lanka",
   resumeUrl: asset("/banuka-janith-cv.pdf"),
@@ -35,7 +35,7 @@ export const availability = {
 };
 
 /**
- * The hero's rotating role line. Kept short — each one has to fit on a single
+ * The hero's rotating role line. Kept short - each one has to fit on a single
  * line at the mobile breakpoint.
  */
 export const heroRoles: string[] = [
@@ -49,7 +49,7 @@ export const heroRoles: string[] = [
 export const heroMeta: { key: string; value: string }[] = [
   { key: "BASED", value: "Sri Lanka" },
   { key: "FOCUS", value: "ML · Web · Data" },
-  { key: "DEGREE", value: "BSc (Hons) — First Class" },
+  { key: "DEGREE", value: "BSc (Hons) - First Class" },
 ];
 
 /** Words for the kinetic ticker that separates the hero from the page body. */
@@ -134,11 +134,11 @@ export const countStats: CountStat[] = [
 ];
 
 export const aboutContent = {
-  badge: "BSc (Hons) — First Class",
+  badge: "BSc (Hons) - First Class",
   heading: "Data in. Interfaces out.",
   paragraphs: [
     "I'm a highly motivated and creative software engineering undergraduate who brings fast learning, strong problem-solving and analytical skills to every project. With a keen eye for detail and efficient time management, I thrive in collaborative team environments.",
-    "My work spans machine learning and data analysis in Python, front-end development, and graphic design — a mix that lets me take an idea from raw data through to a polished interface.",
+    "My work spans machine learning and data analysis in Python, front-end development, and graphic design - a mix that lets me take an idea from raw data through to a polished interface.",
   ],
 };
 
@@ -220,7 +220,7 @@ export interface FeaturedProject {
    * three copies of the same placeholder image.
    */
   highlights: { label: string; value: string }[];
-  /** Omitted when a project has no hosted demo — the link is hidden instead. */
+  /** Omitted when a project has no hosted demo - the link is hidden instead. */
   liveDemoUrl?: string;
   sourceCodeUrl: string;
 }
@@ -266,14 +266,14 @@ export const featuredProjects: FeaturedProject[] = [
     title: "Wine Quality Prediction Model",
     summary: "Three classifiers benchmarked against each other on the same 15-feature set.",
     description:
-      "A machine learning model predicting wine quality from 10–15 dataset variables. Data was gathered, cleaned and visualised with confusion matrices, then trained and evaluated using regression analysis, a Random Forest Classifier and a Support Vector Classifier to optimise predictions.",
+      "A machine learning model predicting wine quality from 10-15 dataset variables. Data was gathered, cleaned and visualised with confusion matrices, then trained and evaluated using regression analysis, a Random Forest Classifier and a Support Vector Classifier to optimise predictions.",
     cover: asset("/images/project-ml-prediction.svg"),
     year: "2023",
     category: "Machine Learning",
     tech: ["python", "jupyter", "scikitlearn", "numpy"],
     highlights: [
       { label: "Models", value: "Regression · Random Forest · SVC" },
-      { label: "Features", value: "10–15 variables" },
+      { label: "Features", value: "10-15 variables" },
       { label: "Evaluation", value: "Confusion matrices" },
     ],
     sourceCodeUrl: "https://github.com/Banukajanith2/ML-Prediction-Model",
@@ -454,7 +454,7 @@ export const contactInfo: ContactInfoItem[] = [
 
 export const footerContent = {
   copyright: `${new Date().getFullYear()} ${siteConfig.firstName} ${siteConfig.lastName}.`,
-  note: "Designed and built from scratch — Next.js, TypeScript, Tailwind, Framer Motion.",
+  note: "Designed and built from scratch - Next.js, TypeScript, Tailwind, Framer Motion.",
 };
 
 /**

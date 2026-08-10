@@ -4,8 +4,8 @@
  * These are deliberately abstract technical plots rather than mock screenshots:
  * a fake UI screenshot claims the project looks like something it doesn't, and
  * a reviewer who clicks through will notice. Each cover instead visualises what
- * the project *does* — a catalogue grid, a sentiment distribution, a decision
- * scatter — in the site's ink-and-lime palette.
+ * the project *does* - a catalogue grid, a sentiment distribution, a decision
+ * scatter - in the site's ink-and-lime palette.
  *
  * Run with: node scripts/gen-placeholders.mjs
  */
@@ -51,12 +51,12 @@ ${body}
 
 /*
  * No captions in the artwork. These covers are rendered with object-cover into
- * frames of varying aspect ratio, so anything near an edge gets cropped — and
+ * frames of varying aspect ratio, so anything near an edge gets cropped - and
  * the card already carries the category, year and spec table beside the image,
  * which made the baked-in labels redundant anyway.
  */
 
-/** EZ Movies — an abstracted catalogue grid, a few tiles highlighted. */
+/** EZ Movies - an abstracted catalogue grid, a few tiles highlighted. */
 function catalogue() {
   const random = rng(7);
   const cols = 7;
@@ -87,7 +87,7 @@ function catalogue() {
   return out;
 }
 
-/** Sentiment — a diverging distribution around a neutral centre line. */
+/** Sentiment - a diverging distribution around a neutral centre line. */
 function sentiment() {
   const random = rng(19);
   const bars = 34;
@@ -116,7 +116,7 @@ function sentiment() {
   return out;
 }
 
-/** Wine quality — a decision scatter with a separating boundary. */
+/** Wine quality - a decision scatter with a separating boundary. */
 function scatter() {
   const random = rng(43);
   const left = 56;

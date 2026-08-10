@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 /**
  * A scripted terminal session that types itself out.
  *
- * Replaces the old "fake IDE window with a JS object in it" — this shows the
+ * Replaces the old "fake IDE window with a JS object in it" - this shows the
  * same information but in the idiom the audience actually reads all day, and
  * the git-log step slips in the project list without another card.
  *
@@ -110,7 +110,7 @@ export function Terminal({ className }: { className?: string }) {
         <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-        <span className="ml-2 font-mono text-[11px] text-muted">banuka@portfolio — zsh</span>
+        <span className="ml-2 font-mono text-[11px] text-muted">banuka@portfolio - zsh</span>
       </div>
 
       <div

@@ -12,13 +12,13 @@ const inter = Inter({
   display: "swap",
 });
 
-const fullName = `${siteConfig.firstName} ${siteConfig.lastName}`;
-
 export const metadata: Metadata = {
-  title: `${fullName} — ${siteConfig.role}`,
+  // Name only. The browser tab truncates anything longer, and the role is
+  // already the first thing the page itself says.
+  title: siteConfig.firstName,
   description: siteConfig.tagline,
   openGraph: {
-    title: `${fullName} — ${siteConfig.role}`,
+    title: siteConfig.firstName,
     description: siteConfig.tagline,
     type: "website",
   },

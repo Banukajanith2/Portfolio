@@ -5,7 +5,7 @@ type Variant = "primary" | "outline" | "ghost";
 
 /**
  * Lime is the page's only accent, so a solid lime fill is the strongest signal
- * available — it is reserved for the single most important action in any view.
+ * available - it is reserved for the single most important action in any view.
  * Everything else is a hairline outline or bare text.
  */
 const variantClasses: Record<Variant, string> = {

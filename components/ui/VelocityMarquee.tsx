@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
  * A marquee whose speed and direction respond to scrolling.
  *
  * Idle, it drifts at `baseSpeed`. Scrolling down pushes it along; scrolling up
- * drags it back the other way. That coupling is the whole point — a constant
+ * drags it back the other way. That coupling is the whole point - a constant
  * marquee is wallpaper, but one that reacts makes the page feel physical.
  *
  * The track holds two identical copies of `children`, and the offset is wrapped

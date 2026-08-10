@@ -5,7 +5,7 @@ import { VelocityMarquee } from "@/components/ui/VelocityMarquee";
  * Two counter-scrolling bands of oversized type.
  *
  * This replaces the old image marquee, which showed eight generated gradient
- * tiles under a "selected work" label — placeholder art presented as work is
+ * tiles under a "selected work" label - placeholder art presented as work is
  * the fastest way to lose a reviewer's trust. Type carries the same rhythm and
  * says something true.
  */
@@ -17,7 +17,7 @@ export function MarqueeSection() {
           <Band words={tickerWords} />
         </VelocityMarquee>
 
-        {/* Reversed so the two bands shear against each other — that opposition
+        {/* Reversed so the two bands shear against each other - that opposition
             is what makes the scroll coupling legible. */}
         <VelocityMarquee baseSpeed={38} className="mask-edges">
           <Band words={[...tickerWords].reverse()} outline />

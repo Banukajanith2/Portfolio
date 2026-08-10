@@ -6,7 +6,7 @@
  * ── Design system: "Acid Lime on Ink" ───────────────────────────────────────
  * One signal colour (lime) on a near-black ink base, with everything else
  * neutral. A single accent is what keeps the page reading as deliberate rather
- * than decorated, so resist adding a second hue — use weight, size and spacing
+ * than decorated, so resist adding a second hue - use weight, size and spacing
  * for hierarchy instead.
  *
  * Palette colours are stored as bare "R G B" channels, not hex, so Tailwind can
@@ -147,7 +147,7 @@ body {
     -webkit-text-fill-color: transparent;
   }
 
-  /* Outlined display type — carries the huge footer wordmark without adding
+  /* Outlined display type - carries the huge footer wordmark without adding
      another block of solid colour to the page. */
   .text-outline {
     color: transparent;
@@ -201,7 +201,7 @@ body {
   }
 
   /* The mono micro-label that carries the "engineering document" feel. Used for
-     section indices, metadata rows and field names — never for prose. */
+     section indices, metadata rows and field names - never for prose. */
   .mono-label {
     @apply font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-muted;
   }

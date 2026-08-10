@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
  * A surface that lights up under the pointer.
  *
  * Two layers ride the cursor: a soft accent wash inside the card, and a
- * brighter ring painted on the border. The border layer is what sells it —
+ * brighter ring painted on the border. The border layer is what sells it -
  * a plain glow reads as a hover state, but a border that catches the light
  * reads as a physical edge.
  *
@@ -17,10 +17,10 @@ import { cn } from "@/lib/utils";
 
 interface SpotlightCardProps {
   children: ReactNode;
-  /** Applied to the outer shell — sizing and border treatment (h-full, rounded-*). */
+  /** Applied to the outer shell - sizing and border treatment (h-full, rounded-*). */
   className?: string;
   /**
-   * Applied to the content wrapper — padding and inner layout (flex, grid).
+   * Applied to the content wrapper - padding and inner layout (flex, grid).
    *
    * The two are separate because the light layers have to be absolute siblings
    * of the content, which means the content lives one level below the shell.
@@ -30,7 +30,7 @@ interface SpotlightCardProps {
   contentClassName?: string;
   /** Radius of the light pool in px. */
   radius?: number;
-  /** 0–1. Higher reads as a harder light. */
+  /** 0-1. Higher reads as a harder light. */
   intensity?: number;
   as?: "div" | "article" | "li";
 }

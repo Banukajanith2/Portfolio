@@ -15,7 +15,7 @@ const TOTAL = featuredProjects.length;
  * Stacking cards: each project pins to the top of the viewport and the previous
  * one scales down behind it, so the set reads as a deck being dealt.
  *
- * The layout inside each card is deliberately editorial — an oversized index,
+ * The layout inside each card is deliberately editorial - an oversized index,
  * a one-line thesis, then a labelled spec table. The old three-image collage is
  * gone; it was the same placeholder repeated three times, which added nothing a
  * reviewer could evaluate.
@@ -34,7 +34,7 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
   const targetScale = 1 - (TOTAL - 1 - index) * 0.035;
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
 
-  // Drifts the cover art inside its frame as the card travels — a small
+  // Drifts the cover art inside its frame as the card travels - a small
   // parallax that keeps the image from feeling pasted on.
   const imageY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
@@ -79,7 +79,7 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
 
             <p className="mt-4 text-sm leading-relaxed text-muted">{project.description}</p>
 
-            {/* Spec table — the part a reviewer actually scans. */}
+            {/* Spec table - the part a reviewer actually scans. */}
             <dl className="mt-7 space-y-2.5 border-t border-border pt-6">
               {project.highlights.map((item) => (
                 <div key={item.label} className="flex gap-4 text-sm">
@@ -164,7 +164,7 @@ export function FeaturedProjects() {
           index="03"
           label="Selected Work"
           title="Things I've built"
-          description="Three projects that best show how I work — from raw data through to a shipped interface."
+          description="Three projects that best show how I work - from raw data through to a shipped interface."
         />
 
         {/* The tall spacer under the last card gives the stack room to finish

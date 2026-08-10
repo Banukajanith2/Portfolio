@@ -6,7 +6,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 /**
  * The house entrance animation: rise + fade + a short defocus.
  *
- * The blur is what separates this from a stock fade — it reads as the element
+ * The blur is what separates this from a stock fade - it reads as the element
  * resolving into place rather than simply appearing. It only animates during
  * the entrance and never re-runs (viewport.once), so the repaint cost is paid
  * once per element.

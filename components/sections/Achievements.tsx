@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
 /**
- * Three tiles of supporting evidence — awards, languages, activities.
+ * Three tiles of supporting evidence - awards, languages, activities.
  *
  * Kept intentionally quiet: this is the section that props up the work above it,
  * so it uses the same spotlight surface as the about bento rather than

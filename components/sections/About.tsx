@@ -20,7 +20,7 @@ import { asset } from "@/lib/utils";
  *
  * The asymmetric tile sizes let the portrait, the prose, the numbers and the
  * "what I'm doing now" block all sit at their natural weight instead of being
- * forced into two equal columns — and it gives the section a silhouette you can
+ * forced into two equal columns - and it gives the section a silhouette you can
  * recognise from a scroll-past.
  */
 export function About() {
@@ -33,7 +33,7 @@ export function About() {
           className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[repeat(3,minmax(0,auto))]"
           stagger={0.08}
         >
-          {/* Portrait — tall tile anchoring the left edge. */}
+          {/* Portrait - tall tile anchoring the left edge. */}
           <RevealItem className="sm:col-span-1 lg:row-span-2">
             <SpotlightCard className="group h-full min-h-[320px]" contentClassName="h-full">
               <div className="relative h-full min-h-[320px] w-full">
@@ -54,7 +54,7 @@ export function About() {
             </SpotlightCard>
           </RevealItem>
 
-          {/* Prose — the widest tile, carrying the actual narrative. */}
+          {/* Prose - the widest tile, carrying the actual narrative. */}
           <RevealItem className="sm:col-span-1 lg:col-span-2 lg:row-span-2">
             <SpotlightCard
               className="h-full"
@@ -91,7 +91,7 @@ export function About() {
             </SpotlightCard>
           </RevealItem>
 
-          {/* Now — the tile that dates the site and proves it's maintained. */}
+          {/* Now - the tile that dates the site and proves it's maintained. */}
           <RevealItem>
             <SpotlightCard className="h-full" contentClassName="h-full p-6">
               <p className="mono-label">Right now</p>
@@ -108,7 +108,7 @@ export function About() {
             </SpotlightCard>
           </RevealItem>
 
-          {/* Numbers — one wide row so the figures read as a set. */}
+          {/* Numbers - one wide row so the figures read as a set. */}
           <RevealItem className="sm:col-span-2 lg:col-span-4">
             <SpotlightCard contentClassName="grid grid-cols-1 divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
               {countStats.map((stat) => (

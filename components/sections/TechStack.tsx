@@ -13,7 +13,7 @@ const ALL = "All";
 /**
  * Filterable stack grid.
  *
- * The old version was four static cards of icons — accurate, but nothing to
+ * The old version was four static cards of icons - accurate, but nothing to
  * read. Making the categories filters turns the same data into something the
  * visitor operates, and `layout` on the tiles means switching filters plays as
  * a physical rearrangement rather than a repaint.

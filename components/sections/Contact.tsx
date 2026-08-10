@@ -11,7 +11,7 @@ import { Reveal } from "@/components/ui/Reveal";
 /**
  * The closing call to action.
  *
- * Deliberately the loudest type on the page after the hero — everything above
+ * Deliberately the loudest type on the page after the hero - everything above
  * it exists to get someone here, so the heading is allowed to fill the width
  * rather than sit in a column.
  */
@@ -34,7 +34,7 @@ export function Contact() {
         <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">
             <p className="max-w-md text-balance text-base leading-relaxed text-muted">
-              Have a role, a project or a question? The form goes straight to my inbox — or reach
+              Have a role, a project or a question? The form goes straight to my inbox - or reach
               me directly through any of the channels listed.
             </p>
             <ContactForm mailto={siteConfig.email} />

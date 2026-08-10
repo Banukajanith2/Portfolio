@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
  *
  * Each word sits in an overflow-hidden wrapper and starts fully below it, so
  * the text appears to be uncovered rather than faded in. Splitting by word
- * rather than character keeps the DOM small and — unlike a per-character split —
+ * rather than character keeps the DOM small and - unlike a per-character split -
  * leaves the heading readable to screen readers as a single label.
  *
  * The clipping box is the wrapper's line box, which at the tight display

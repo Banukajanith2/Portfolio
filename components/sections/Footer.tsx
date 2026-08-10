@@ -102,7 +102,7 @@ function LocalClock() {
 
   return (
     <p className="font-mono text-[11px] text-muted" suppressHydrationWarning>
-      {siteConfig.location} — {time ?? "--:--"} local
+      {siteConfig.location} - {time ?? "--:--"} local
     </p>
   );
 }

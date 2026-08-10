@@ -13,8 +13,8 @@ import { cn } from "@/lib/utils";
  * A dense index list instead of a grid of cards.
  *
  * Four equal cards give four small projects the same visual weight as the
- * featured work, which flattens the hierarchy. A list reads as an appendix —
- * scannable, clearly secondary — and the row that the cursor is on expands
+ * featured work, which flattens the hierarchy. A list reads as an appendix -
+ * scannable, clearly secondary - and the row that the cursor is on expands
  * while its neighbours dim, so the page still responds to the pointer.
  *
  * A single floating panel follows the cursor and shows the hovered row's
@@ -109,7 +109,7 @@ export function OtherProjects() {
             ))}
 
             {/* Cursor-following detail panel. Hidden below lg and whenever the
-                visitor prefers reduced motion — the row itself already carries
+                visitor prefers reduced motion - the row itself already carries
                 the information on those paths. */}
             {!reduced && (
               <motion.div

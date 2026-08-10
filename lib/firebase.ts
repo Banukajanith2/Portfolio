@@ -1,7 +1,7 @@
 import type { Firestore } from "firebase/firestore";
 
 /**
- * Firebase web config is public by design — it identifies the project, it does
+ * Firebase web config is public by design - it identifies the project, it does
  * not authorise anything. Access is controlled by Firestore security rules,
  * which permit nothing here beyond incrementing counters/cv-downloads by one.
  */

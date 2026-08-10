@@ -16,7 +16,7 @@ export async function readCvDownloadCount(): Promise<number | null> {
     const snapshot = await getDoc(doc(db, ...COUNTER_PATH));
     return snapshot.exists() ? (snapshot.data().count as number) : 0;
   } catch {
-    // Offline or blocked by an ad blocker — show no count rather than an error
+    // Offline or blocked by an ad blocker - show no count rather than an error
     // the visitor can do nothing about.
     return null;
   }

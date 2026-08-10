@@ -18,7 +18,7 @@ interface MagneticProps {
   className?: string;
   /** How far outside the element the field extends, in px. */
   padding?: number;
-  /** 0–1. Fraction of the cursor offset the element travels. */
+  /** 0-1. Fraction of the cursor offset the element travels. */
   strength?: number;
 }
 

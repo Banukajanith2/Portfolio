@@ -39,7 +39,7 @@ export function CountUp({ value, suffix = "", prefix = "", duration = 1600, clas
 
     function tick(now: number) {
       const progress = Math.min((now - start) / duration, 1);
-      // easeOutExpo — most of the motion happens up front, so the number reads
+      // easeOutExpo - most of the motion happens up front, so the number reads
       // as settling rather than crawling.
       const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
       setDisplay(Math.round(eased * value));

@@ -25,7 +25,7 @@ const config: Config = {
           hover: "rgb(var(--border-hover) / <alpha-value>)",
         },
         accent: {
-          // The lime itself — use for fills, strokes and glows.
+          // The lime itself - use for fills, strokes and glows.
           DEFAULT: "rgb(var(--accent) / <alpha-value>)",
           // Text drawn *on top of* an accent fill.
           contrast: "rgb(var(--accent-contrast) / <alpha-value>)",
@@ -59,7 +59,7 @@ const config: Config = {
           "50%": { opacity: "0" },
         },
         // The track holds two identical copies of the content, so translating
-        // exactly -50% lands copy two where copy one started — seamless loop.
+        // exactly -50% lands copy two where copy one started - seamless loop.
         marquee: {
           from: { transform: "translate3d(0, 0, 0)" },
           to: { transform: "translate3d(-50%, 0, 0)" },

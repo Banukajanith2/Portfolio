@@ -14,7 +14,7 @@ import {
   Search,
   Sun,
 } from "lucide-react";
-// Lucide dropped its brand glyphs, so the social marks come from react-icons —
+// Lucide dropped its brand glyphs, so the social marks come from react-icons -
 // the same source Icon.tsx uses.
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
  * The single most "built by an engineer" thing on the page, and unlike most
  * portfolio flourishes it is genuinely the fastest way to get around: every
  * section, every external profile, the CV and the theme toggle are one keystroke
- * away. Keyboard-first by design — the mouse path is a fallback, not the point.
+ * away. Keyboard-first by design - the mouse path is a fallback, not the point.
  */
 
 /** Display order of the palette's sections. */

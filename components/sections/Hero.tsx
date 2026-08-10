@@ -96,7 +96,7 @@ export function Hero() {
               </Magnetic>
             </motion.div>
 
-            {/* Mono metadata strip — the device that frames the page as a spec
+            {/* Mono metadata strip - the device that frames the page as a spec
                 sheet rather than a brochure. */}
             <motion.dl
               initial={reduced ? undefined : { opacity: 0 }}

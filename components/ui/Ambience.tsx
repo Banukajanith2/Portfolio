@@ -35,7 +35,7 @@ export function Aurora() {
 }
 
 /**
- * Film grain. A single inline feTurbulence tile repeated across the viewport —
+ * Film grain. A single inline feTurbulence tile repeated across the viewport -
  * no network request, and it's what stops the large flat panels from banding.
  */
 export function Grain() {
@@ -69,7 +69,7 @@ export function ScrollProgress() {
 /**
  * A soft light that follows the cursor.
  *
- * Only mounts for devices with a real pointer — on touch there is no cursor to
+ * Only mounts for devices with a real pointer - on touch there is no cursor to
  * follow and the layer would just be a wasted composite. Positioned by writing
  * to style directly inside a rAF-throttled handler, so it never re-renders.
  */

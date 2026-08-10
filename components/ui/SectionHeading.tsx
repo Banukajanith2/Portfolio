@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 /**
  * The section header used everywhere on the page.
  *
- * The mono index + rule is the device that ties the whole site together — it
+ * The mono index + rule is the device that ties the whole site together - it
  * frames each section as an entry in a numbered document rather than a
  * standalone block, which is most of what separates this from a stack of
  * generic centred headings.
