@@ -142,15 +142,18 @@ export function Hero() {
             className="flex flex-col gap-5 lg:col-span-5"
           >
             <div className="flex items-stretch gap-5">
-              <div className="relative aspect-square w-32 shrink-0 overflow-hidden rounded-xl border border-border sm:w-40">
+              {/* The source is a 1:1 cut-out with a transparent background, so
+                  it drops straight into the square tile with nothing cropped,
+                  and bg-surface shows through behind the subject. */}
+              <div className="relative aspect-square w-32 shrink-0 overflow-hidden rounded-xl border border-border bg-surface sm:w-40">
                 <Image
-                  src={asset("/images/self-portrait.webp")}
+                  src={asset("/images/hero-portrait.webp")}
                   alt={`Portrait of ${siteConfig.firstName} ${siteConfig.lastName}`}
                   fill
                   priority
                   unoptimized
                   sizes="160px"
-                  className="object-cover grayscale transition-all duration-700 ease-smooth hover:grayscale-0"
+                  className="object-cover object-top grayscale transition-all duration-700 ease-smooth hover:grayscale-0"
                 />
               </div>
 

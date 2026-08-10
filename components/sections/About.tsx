@@ -37,18 +37,24 @@ export function About() {
           <RevealItem className="sm:col-span-1 lg:row-span-2">
             <SpotlightCard className="group h-full min-h-[320px]" contentClassName="h-full">
               <div className="relative h-full min-h-[320px] w-full">
+                {/* object-top because the source is a standing full-body
+                    cut-out: when the tile is shorter than the image's 0.78
+                    ratio, cropping at the feet is invisible where cropping the
+                    head would not be. */}
                 <Image
-                  src={asset("/images/self-portrait.webp")}
+                  src={asset("/images/about-portrait.webp")}
                   alt={`${siteConfig.firstName} ${siteConfig.lastName}`}
                   fill
                   unoptimized
                   sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 90vw"
-                  className="object-cover grayscale transition-all duration-700 ease-smooth group-hover:scale-[1.04] group-hover:grayscale-0"
+                  className="object-cover object-top grayscale transition-all duration-700 ease-smooth group-hover:scale-[1.04] group-hover:grayscale-0"
                 />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 pt-12">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/60">
-                    {aboutContent.badge}
-                  </p>
+                {/* Fades from the card's own surface rather than from black.
+                    The portrait is a transparent cut-out, so a black gradient
+                    would paint a hard dark bar across the light theme instead
+                    of blending the figure into the tile. */}
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-surface via-surface/85 to-transparent p-4 pt-16">
+                  <p className="mono-label">{aboutContent.badge}</p>
                 </div>
               </div>
             </SpotlightCard>
