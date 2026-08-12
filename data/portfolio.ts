@@ -242,7 +242,7 @@ export const featuredProjects: FeaturedProject[] = [
     title: "Scaffold Website Builder",
     summary: "Compose a landing page from blocks, then export it as standalone HTML.",
     description:
-      "A drag-and-drop website builder. Blocks are added from a picker, reordered on a live canvas with dnd-kit and edited in a property panel, while a debounced auto-save writes the page to Firestore under the signed-in account. The page model is a discriminated union, so adding a block type fails the build anywhere a renderer or schema is missing, and the export step generates a standalone HTML file with escaping applied to every value that came from the editor.",
+      "Blocks are dragged onto a live canvas, edited in a property panel and auto-saved to Firestore under the signed-in account. The finished page exports as a standalone HTML file that runs anywhere.",
     cover: asset("/images/project-scaffold.svg"),
     year: "2026",
     category: "Web Application",

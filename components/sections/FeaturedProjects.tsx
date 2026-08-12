@@ -9,8 +9,13 @@ import { featuredProjects, type FeaturedProject } from "@/data/portfolio";
 import { ProjectModal } from "@/components/ui/ProjectModal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TechIcon } from "@/components/ui/TechIcon";
+import { useTallViewport } from "@/lib/useTallViewport";
 
 const TOTAL = featuredProjects.length;
+
+/** Where the first card pins, and how much lower each one after it sits. */
+const STACK_TOP = 96;
+const STACK_STEP = 26;
 
 /**
  * Stacking cards: each project pins to the top of the viewport and the previous
@@ -32,6 +37,7 @@ function ProjectCard({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const tall = useTallViewport();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -48,15 +54,18 @@ function ProjectCard({
   const imageY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   return (
-    // Sticky only from lg up: these cards are taller than a phone viewport, and
-    // a pinned card you cannot scroll to the bottom of is worse than no effect.
+    // Sticky only when there is room for it, in both axes. A pinned card you
+    // cannot scroll to the bottom of is worse than no effect, and each card in
+    // the stack pins 26px lower than the one before, so the last one is the
+    // one that decides whether the set fits - hence STACK_STEP in the budget
+    // the card's own height is held to below.
     <div
       ref={containerRef}
-      className="lg:sticky"
-      style={{ top: `${96 + index * 26}px` }}
+      className="lg:tall:sticky"
+      style={{ top: `${STACK_TOP + index * STACK_STEP}px` }}
     >
       <motion.article
-        style={reduced ? undefined : { scale }}
+        style={reduced || !tall ? undefined : { scale }}
         // Click anywhere that is not already a link opens the detail dialog.
         // The explicit button in the actions row below is what carries this for
         // keyboard and screen-reader users, so the article stays a plain
@@ -73,11 +82,16 @@ function ProjectCard({
           className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-accent transition-transform duration-700 ease-smooth group-hover:scale-x-100"
         />
 
-        <div className="grid grid-cols-1 gap-8 p-6 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:p-10">
+        {/* Vertical rhythm here is a budget, not a preference. A pinned card
+            has to fit in `840px - 148px of stagger - 24px of breathing room`,
+            so roughly 660px, and every margin below was cut to land under it.
+            Adding a row, or letting a description run past four lines, puts the
+            bottom of the card back under the fold on a laptop. */}
+        <div className="grid grid-cols-1 gap-8 p-6 sm:p-8 lg:grid-cols-2 lg:gap-10 lg:p-8 xl:p-10">
           {/* ── Text column ─────────────────────────────────────────── */}
           <div className="flex flex-col">
             <div className="flex items-center gap-4">
-              <span className="display text-[clamp(3rem,7vw,5.5rem)] text-outline">
+              <span className="display text-[clamp(2.75rem,5vw,4.5rem)] text-outline">
                 {project.number}
               </span>
               <div className="flex flex-col gap-1.5">
@@ -86,18 +100,18 @@ function ProjectCard({
               </div>
             </div>
 
-            <h3 className="mt-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            <h3 className="mt-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
               {project.title}
             </h3>
 
-            <p className="mt-3 text-balance text-base leading-snug text-foreground/80 sm:text-lg">
+            <p className="mt-2.5 text-balance text-base leading-snug text-foreground/80 sm:text-lg">
               {project.summary}
             </p>
 
-            <p className="mt-4 text-sm leading-relaxed text-muted">{project.description}</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted">{project.description}</p>
 
             {/* Spec table - the part a reviewer actually scans. */}
-            <dl className="mt-7 space-y-2.5 border-t border-border pt-6">
+            <dl className="mt-5 space-y-2 border-t border-border pt-5">
               {project.highlights.map((item) => (
                 <div key={item.label} className="flex gap-4 text-sm">
                   <dt className="w-24 shrink-0 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
@@ -108,7 +122,7 @@ function ProjectCard({
               ))}
             </dl>
 
-            <div className="mt-7 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap gap-2">
               {project.tech.map((tech) => (
                 <span
                   key={tech}
@@ -120,7 +134,7 @@ function ProjectCard({
               ))}
             </div>
 
-            <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
+            <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
               {/* Primary action. A project carrying an embedded demo leads with
                   it - "open" is a far stronger invitation than "read more". */}
               <button
