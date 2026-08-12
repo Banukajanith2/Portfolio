@@ -9,6 +9,7 @@ import {
   Globe,
   Cloud,
   FileText,
+  Film,
   ShoppingCart,
   FlaskConical,
   type LucideIcon,
@@ -30,6 +31,7 @@ export type IconKey =
   | "globe"
   | "cloud"
   | "fileText"
+  | "film"
   | "shoppingCart"
   | "flaskConical";
 
@@ -44,6 +46,7 @@ const lucideIconRegistry: Partial<Record<IconKey, LucideIcon>> = {
   globe: Globe,
   cloud: Cloud,
   fileText: FileText,
+  film: Film,
   shoppingCart: ShoppingCart,
   flaskConical: FlaskConical,
 };

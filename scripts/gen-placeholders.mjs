@@ -228,14 +228,91 @@ function embeddingSpace() {
   return out;
 }
 
+/**
+ * Scaffold - a block picker beside a page canvas, mid-drag.
+ *
+ * The canvas is a stack of blocks with a dashed gap opened up in it, and the
+ * block being dragged floats over that gap tilted off-axis with its handle lit.
+ * That is the whole interaction the builder exists for, drawn without pretending
+ * to be a screenshot of the real chrome.
+ */
+function blockCanvas() {
+  const random = rng(211);
+
+  // Faint content bars inside a block, so it reads as a section of a page
+  // rather than an empty rectangle.
+  function fill(x, y, w, h, opacity) {
+    let out = "";
+    const inset = 22;
+    out += `  <rect x="${x + inset}" y="${y + 20}" width="${(w - inset * 2) * (0.4 + random() * 0.2)}" height="10" rx="5" fill="${BONE}" fill-opacity="${opacity}"/>\n`;
+    const lines = h > 90 ? 3 : 2;
+    for (let i = 0; i < lines; i++) {
+      const lw = (w - inset * 2) * (0.5 + random() * 0.42);
+      out += `  <rect x="${x + inset}" y="${y + 44 + i * 16}" width="${lw.toFixed(1)}" height="6" rx="3" fill="${BONE}" fill-opacity="${(opacity * 0.55).toFixed(3)}"/>\n`;
+    }
+    return out;
+  }
+
+  let out = "";
+
+  // The whole composition sits inside the middle ~500px of the frame. These
+  // covers are drawn with object-cover into portrait-ish panes, so anything
+  // out near the 900px edges is cropped away - the first pass put the picker
+  // rail at x=56 and the card showed a lime bar floating over nothing.
+  // Block picker rail.
+  const railX = 150;
+  const railW = 120;
+  for (let i = 0; i < 7; i++) {
+    const y = 64 + i * 58;
+    out += `  <rect x="${railX}" y="${y}" width="${railW}" height="42" rx="8" fill="${BONE}" fill-opacity="0.06"/>\n`;
+    out += `  <rect x="${railX + 12}" y="${y + 14}" width="14" height="14" rx="4" fill="${BONE}" fill-opacity="0.18"/>\n`;
+    out += `  <rect x="${railX + 34}" y="${y + 18}" width="${(48 + random() * 28).toFixed(1)}" height="6" rx="3" fill="${BONE}" fill-opacity="0.16"/>\n`;
+  }
+
+  // Canvas blocks, with a gap left open where the dragged block will land.
+  const canvasX = 310;
+  const canvasW = 390;
+  const blocks = [
+    { y: 60, h: 124 },
+    { y: 204, h: 92 },
+    { y: 408, h: 84 },
+    { y: 512, h: 64 },
+  ];
+  for (const b of blocks) {
+    out += `  <rect x="${canvasX}" y="${b.y}" width="${canvasW}" height="${b.h}" rx="10" fill="${BONE}" fill-opacity="0.07"/>\n`;
+    out += fill(canvasX, b.y, canvasW, b.h, 0.16);
+  }
+
+  // The drop target the stack has opened up.
+  out += `  <rect x="${canvasX}" y="316" width="${canvasW}" height="72" rx="10" fill="${LIME}" fill-opacity="0.07" stroke="${LIME}" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="7 6"/>\n`;
+
+  // The block in flight: tilted, lime, and crossing the rail-to-canvas gap.
+  const dx = 250;
+  const dy = 292;
+  const dw = 380;
+  const dh = 78;
+  out += `  <g transform="rotate(-3.5 ${dx + dw / 2} ${dy + dh / 2})">\n`;
+  out += `    <rect x="${dx}" y="${dy}" width="${dw}" height="${dh}" rx="10" fill="${LIME}" fill-opacity="0.92"/>\n`;
+  out += `    <rect x="${dx + 20}" y="${dy + 22}" width="14" height="4" rx="2" fill="${INK}" fill-opacity="0.5"/>\n`;
+  out += `    <rect x="${dx + 20}" y="${dy + 32}" width="14" height="4" rx="2" fill="${INK}" fill-opacity="0.5"/>\n`;
+  out += `    <rect x="${dx + 20}" y="${dy + 42}" width="14" height="4" rx="2" fill="${INK}" fill-opacity="0.5"/>\n`;
+  out += `    <rect x="${dx + 50}" y="${dy + 22}" width="140" height="10" rx="5" fill="${INK}" fill-opacity="0.55"/>\n`;
+  out += `    <rect x="${dx + 50}" y="${dy + 44}" width="220" height="7" rx="3.5" fill="${INK}" fill-opacity="0.3"/>\n`;
+  out += `  </g>\n`;
+
+  return out;
+}
+
 const files = [
+  // EZ Movies moved to the archive list, which renders icons rather than
+  // covers. The catalogue grid is kept generated so the project can be promoted
+  // back without rebuilding its artwork.
   ["project-ezmovies.svg", frame("p1", catalogue())],
   ["project-ai-sentiment.svg", frame("p2", sentiment())],
-  // Wine quality moved to the archive list, which renders icons rather than
-  // covers. The scatter is kept generated so the project can be promoted back
-  // without rebuilding its artwork.
+  // Wine quality is in the archive for the same reason.
   ["project-ml-prediction.svg", frame("p3", scatter())],
   ["project-semantic-search.svg", frame("p4", embeddingSpace())],
+  ["project-scaffold.svg", frame("p5", blockCanvas())],
 ];
 
 for (const [name, content] of files) {

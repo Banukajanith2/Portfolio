@@ -239,21 +239,21 @@ export interface FeaturedProject {
 export const featuredProjects: FeaturedProject[] = [
   {
     number: "01",
-    title: "EZ Movies App",
-    summary: "A responsive movie browser wired straight into the TMDB API.",
+    title: "Scaffold Website Builder",
+    summary: "Compose a landing page from blocks, then export it as standalone HTML.",
     description:
-      "A fast and responsive movie browsing application with search, trending, pagination and real-time data using the TMDB API.",
-    cover: asset("/images/project-ezmovies.svg"),
-    year: "2024",
+      "A drag-and-drop website builder. Blocks are added from a picker, reordered on a live canvas with dnd-kit and edited in a property panel, while a debounced auto-save writes the page to Firestore under the signed-in account. The page model is a discriminated union, so adding a block type fails the build anywhere a renderer or schema is missing, and the export step generates a standalone HTML file with escaping applied to every value that came from the editor.",
+    cover: asset("/images/project-scaffold.svg"),
+    year: "2026",
     category: "Web Application",
-    tech: ["javascript", "firebase", "tailwind"],
+    tech: ["nextjs", "typescript", "firebase", "tailwind"],
     highlights: [
-      { label: "Data", value: "TMDB REST API" },
-      { label: "Features", value: "Search · Trending · Pagination" },
-      { label: "Deploy", value: "GitHub Pages" },
+      { label: "Editing", value: "dnd-kit · undo/redo history" },
+      { label: "Persistence", value: "Firestore · 1.5s debounced auto-save" },
+      { label: "Export", value: "Standalone HTML, no server" },
     ],
-    liveDemoUrl: "https://banukajanith2.github.io/Movies-App/",
-    sourceCodeUrl: "https://github.com/Banukajanith2/Movies-App",
+    liveDemoUrl: "https://scaffold-website-builder.vercel.app/",
+    sourceCodeUrl: "https://github.com/Banukajanith2/Scaffold-Website-Builder-App",
   },
   {
     number: "02",
@@ -295,7 +295,7 @@ export const featuredProjects: FeaturedProject[] = [
 export interface OtherProject {
   title: string;
   description: string;
-  icon: "globe" | "cloud" | "fileText" | "shoppingCart" | "flaskConical";
+  icon: "globe" | "cloud" | "fileText" | "film" | "shoppingCart" | "flaskConical";
   year: string;
   /** Primary language/tool, shown in the list's right-hand meta column. */
   stack: string;
@@ -331,12 +331,13 @@ export const otherProjects: OtherProject[] = [
     sourceCodeUrl: "https://github.com/Banukajanith2/Python-Genetic-Algorithm",
   },
   {
-    title: "To-Do List App",
-    description: "A simple task manager for adding, completing and clearing daily to-dos.",
-    icon: "globe",
-    year: "2023",
-    stack: "JavaScript",
-    sourceCodeUrl: "https://github.com/Banukajanith2/To-Do-List-App",
+    title: "EZ Movies App",
+    description:
+      "A responsive movie browser on the TMDB API, with search, trending and pagination against live data.",
+    icon: "film",
+    year: "2024",
+    stack: "JavaScript · TMDB API",
+    sourceCodeUrl: "https://github.com/Banukajanith2/Movies-App",
   },
 ];
 
