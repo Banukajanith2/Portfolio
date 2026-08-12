@@ -9,13 +9,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      screens: {
-        // A height query, not a width one. The featured project stack pins each
-        // card to the top of the viewport, so what it needs is vertical room -
-        // a laptop with a ~700px viewport cannot show a pinned card in full and
-        // the bottom of it gets cut off. Below this the cards scroll normally.
-        tall: { raw: "(min-height: 840px)" },
-      },
       colors: {
         // <alpha-value> lets opacity utilities (bg-background/80, text-foreground/75)
         // actually compile; with a bare var(--x) Tailwind emits nothing for them.

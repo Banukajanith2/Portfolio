@@ -9,13 +9,23 @@ import { featuredProjects, type FeaturedProject } from "@/data/portfolio";
 import { ProjectModal } from "@/components/ui/ProjectModal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TechIcon } from "@/components/ui/TechIcon";
-import { useTallViewport } from "@/lib/useTallViewport";
 
 const TOTAL = featuredProjects.length;
 
-/** Where the first card pins, and how much lower each one after it sits. */
-const STACK_TOP = 96;
-const STACK_STEP = 26;
+/**
+ * Where the first card pins, and how much lower each one after it sits. The
+ * step is what makes the deck read as a deck - each card leaves a sliver of the
+ * one behind it showing - but it is also dead vertical space above the deepest
+ * card, so it stays tight.
+ *
+ * These two plus the tallest card are the whole height budget. Do not add a
+ * condition that switches the pinning off when the budget is blown: that was
+ * tried, and silently dropping the effect on a short viewport is a worse
+ * outcome than a card whose last few pixels sit under the fold. Fix the height
+ * instead.
+ */
+const STACK_TOP = 88;
+const STACK_STEP = 18;
 
 /**
  * Stacking cards: each project pins to the top of the viewport and the previous
@@ -37,7 +47,6 @@ function ProjectCard({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const tall = useTallViewport();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -54,18 +63,16 @@ function ProjectCard({
   const imageY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   return (
-    // Sticky only when there is room for it, in both axes. A pinned card you
-    // cannot scroll to the bottom of is worse than no effect, and each card in
-    // the stack pins 26px lower than the one before, so the last one is the
-    // one that decides whether the set fits - hence STACK_STEP in the budget
-    // the card's own height is held to below.
+    // Sticky from lg up, unconditionally. Below that the cards are a single
+    // column taller than a phone viewport, so pinning them would strand the
+    // bottom of the card off screen.
     <div
       ref={containerRef}
-      className="lg:tall:sticky"
+      className="lg:sticky"
       style={{ top: `${STACK_TOP + index * STACK_STEP}px` }}
     >
       <motion.article
-        style={reduced || !tall ? undefined : { scale }}
+        style={reduced ? undefined : { scale }}
         // Click anywhere that is not already a link opens the detail dialog.
         // The explicit button in the actions row below is what carries this for
         // keyboard and screen-reader users, so the article stays a plain
@@ -82,11 +89,11 @@ function ProjectCard({
           className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-accent transition-transform duration-700 ease-smooth group-hover:scale-x-100"
         />
 
-        {/* Vertical rhythm here is a budget, not a preference. A pinned card
-            has to fit in `840px - 148px of stagger - 24px of breathing room`,
-            so roughly 660px, and every margin below was cut to land under it.
-            Adding a row, or letting a description run past four lines, puts the
-            bottom of the card back under the fold on a laptop. */}
+        {/* Vertical rhythm here is a budget, not a preference. The card pins to
+            the top of the viewport, so whatever it costs past the viewport
+            height sits under the fold - and the bottom row is the buttons.
+            Adding a row, or letting a description run past four lines, is what
+            puts them out of reach on a laptop. */}
         <div className="grid grid-cols-1 gap-8 p-6 sm:p-8 lg:grid-cols-2 lg:gap-10 lg:p-8 xl:p-10">
           {/* ── Text column ─────────────────────────────────────────── */}
           <div className="flex flex-col">
@@ -212,7 +219,10 @@ export function FeaturedProjects() {
   const [active, setActive] = useState<FeaturedProject | null>(null);
 
   return (
-    <section id="projects" className="relative py-24 sm:py-32">
+    // No bottom padding: the stack's own spacer below already separates this
+    // section from the archive, and having both stacked the gap to twice what
+    // it is anywhere else on the page.
+    <section id="projects" className="relative pt-24 sm:pt-32">
       <div className="section-container">
         <SectionHeading
           index="03"
@@ -221,9 +231,13 @@ export function FeaturedProjects() {
           description="Three projects that best show how I work - from raw data through to a shipped interface."
         />
 
-        {/* The tall spacer under the last card gives the stack room to finish
-            unpinning before the next section arrives. */}
-        <div className="mt-14 flex flex-col gap-6 pb-[30vh]">
+        {/* The spacer under the last card is its scroll runway: the stack is
+            the sticky elements' containing block, so this is what keeps the
+            third card pinned for a beat instead of unpinning the moment it
+            arrives. It was 30vh, which on a tall window put a 500px hole
+            between this section and the archive - twice any other gap on the
+            page. Fixed rather than viewport-relative so the gap stays put. */}
+        <div className="mt-14 flex flex-col gap-6 pb-24">
           {featuredProjects.map((project, index) => (
             <ProjectCard
               key={project.title}

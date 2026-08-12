@@ -277,7 +277,7 @@ export const featuredProjects: FeaturedProject[] = [
     title: "Semantic Job Search Engine",
     summary: "Search 3,000 job postings by meaning rather than by keyword.",
     description:
-      "Job postings are embedded with the all-MiniLM-L6-v2 sentence transformer and retrieved by vector similarity, so a query matches on intent even when none of its words appear in the posting. The original engine indexes with FAISS behind a FastAPI endpoint; the demo here ports that corpus to the browser, running the same model in WebAssembly against pre-computed embeddings with no server in the loop.",
+      "Job postings are embedded with the all-MiniLM-L6-v2 sentence transformer and retrieved by vector similarity, so a query matches on intent even when none of its words appear in the posting. The demo here runs that same model in the browser, with no server in the loop.",
     cover: asset("/images/project-semantic-search.svg"),
     year: "2025",
     category: "Machine Learning",
