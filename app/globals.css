@@ -154,6 +154,15 @@ body {
     -webkit-text-stroke: 1px rgb(var(--foreground) / 0.22);
   }
 
+  /* Same hairline, brighter. For outlined type that has to be *read* rather
+     than sit in the background - the hero surname. The weight stays at 1px on
+     purpose: thickening it turns the letterforms into slabs. Only the stroke's
+     contrast against the background goes up. */
+  .text-outline-strong {
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(var(--foreground) / 0.55);
+  }
+
   /* Blueprint grid. Sits behind content at low contrast; the mask keeps it from
      running hard into the section edges. */
   .grid-backdrop {

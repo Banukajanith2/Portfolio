@@ -70,7 +70,7 @@ export function Hero() {
               <span className="block text-foreground">
                 <KineticChars text={siteConfig.firstName.split(" ")[0]} delay={0.35} />
               </span>
-              <span className="block text-outline">
+              <span className="block text-outline-strong">
                 <KineticChars text={siteConfig.lastName} delay={0.5} />
               </span>
             </h1>
