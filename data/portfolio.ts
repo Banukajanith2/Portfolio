@@ -89,8 +89,8 @@ export interface SocialLink {
 export const heroSocials: SocialLink[] = [
   { icon: "github", href: "https://github.com/banukajanith2", label: "GitHub" },
   { icon: "linkedin", href: "https://linkedin.com/in/banuka-janith-waduge", label: "LinkedIn" },
-  { icon: "twitter", href: "https://twitter.com/banukajanith", label: "Twitter" },
-  { icon: "instagram", href: "https://instagram.com/banukajanith", label: "Instagram" },
+  { icon: "twitter", href: "https://twitter.com/Banuka_Janith", label: "Twitter" },
+  { icon: "instagram", href: "https://instagram.com/_h3llcat._", label: "Instagram" },
   // Points at the contact section rather than a mailto: a raw mailto href is
   // exactly what address harvesters scrape the HTML for.
   { icon: "mail", href: "#contact", label: "Email" },
