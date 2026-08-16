@@ -41,17 +41,20 @@ export function Hero() {
         brightest part of the field off the text and the terminal card.
       */}
       {/*
-        On mobile the hero collapses to one column, which puts the field
-        directly behind the paragraph - so there it is pushed low and right and
-        dimmed to roughly half strength, where it sits under the buttons and
-        meta strip instead of the prose. Desktop has the empty middle column to
-        give it, so it moves back to centre and full strength.
+        The canvas runs the full width of the section. `.mask-hero-canvas` does
+        the only dimming there is: it holds the layer back to roughly a tenth of
+        its strength over the identity column, where the name, role, prose and
+        buttons sit, and leaves it at full strength everywhere else. See the
+        note on that class in globals.css for why this is a hole rather than a
+        vignette.
       */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 opacity-30 [mask-image:radial-gradient(ellipse_80%_40%_at_72%_74%,#000_5%,transparent_70%)] sm:opacity-60 sm:[mask-image:radial-gradient(ellipse_60%_55%_at_52%_45%,#000_10%,transparent_72%)]"
+        className="mask-hero-edges pointer-events-none absolute inset-0 z-0 opacity-55 sm:opacity-80"
       >
-        <HeroCanvas />
+        <div className="mask-hero-name absolute inset-0">
+          <HeroCanvas />
+        </div>
       </div>
 
       <motion.div

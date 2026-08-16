@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import type { Capability } from "@/lib/capability";
 import { useIsDark } from "@/lib/useIsDark";
+import { CircuitBoard } from "@/components/three/CircuitBoard";
 import { ParticleField } from "@/components/three/ParticleField";
 import { WireCore } from "@/components/three/WireCore";
 
@@ -17,6 +18,35 @@ import { WireCore } from "@/components/three/WireCore";
  * aurora underneath is already a complete background, so the page degrades to
  * exactly what it looked like before this existed.
  */
+
+/**
+ * Which visual layers are live.
+ *
+ * All three are kept in the repo so the hero can be switched back without
+ * rewriting anything - flip a flag and rebuild. `wireCore` is off rather than
+ * deleted: the icosahedron and the circuit board both want the centre of the
+ * frame, and running them together reads as two backgrounds fighting. The
+ * particle field stays on because it sits behind everything as depth and does
+ * not compete.
+ */
+const HERO_LAYERS: Record<"circuit" | "particles" | "wireCore", boolean> = {
+  circuit: true,
+  particles: true,
+  wireCore: false,
+};
+
+/**
+ * Routed traces on the circuit board, before the layer adds its static
+ * substrate lattice on top of that.
+ *
+ * Higher than the 30-60 a hero background would normally warrant, and
+ * deliberately so: below roughly 90 the board stops reading as circuitry and
+ * starts reading as a few stray lines. The cost is flat - the whole board is
+ * two draw calls and the buffers are uploaded once - and traces are hairlines,
+ * so the extra fragment work is negligible. Frame time measured on this
+ * machine barely moves between 52 and 120.
+ */
+const TRACE_BUDGET = { high: 96, low: 60 } as const;
 
 interface HeroSceneProps {
   capability: Capability;
@@ -110,12 +140,23 @@ export function HeroScene({ capability }: HeroSceneProps) {
         <PointerDamping pointer={pointer} target={target} />
         <AdaptiveQuality maxDpr={capability.maxDpr} />
 
-        <ParticleField count={capability.particles} pointer={pointer} isDark={isDark} />
-        <WireCore
-          pointer={pointer}
-          detail={capability.tier === "high" ? 2 : 1}
-          isDark={isDark}
-        />
+        {HERO_LAYERS.circuit && (
+          <CircuitBoard
+            pointer={pointer}
+            count={capability.tier === "high" ? TRACE_BUDGET.high : TRACE_BUDGET.low}
+            isDark={isDark}
+          />
+        )}
+        {HERO_LAYERS.particles && (
+          <ParticleField count={capability.particles} pointer={pointer} isDark={isDark} />
+        )}
+        {HERO_LAYERS.wireCore && (
+          <WireCore
+            pointer={pointer}
+            detail={capability.tier === "high" ? 2 : 1}
+            isDark={isDark}
+          />
+        )}
       </Canvas>
     </div>
   );

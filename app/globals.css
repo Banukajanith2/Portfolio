@@ -176,6 +176,98 @@ body {
     mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%);
   }
 
+  /*
+   * The hero's WebGL layer is masked twice, and the two masks are on two
+   * nested elements rather than stacked on one. `mask-composite` would do it in
+   * a single layer, but its keywords differ between the standard property and
+   * the -webkit- one, so a nested pair is the version that behaves the same
+   * everywhere.
+   *
+   *   .mask-hero-edges - the outer one. Fades the canvas into the page toward
+   *                      the corners, so the layer has no visible boundary.
+   *   .mask-hero-name  - the inner one. Punches a dim hole over the name.
+   */
+
+  /*
+   * Edge vignette. Strongly biased to the vertical: the horizontal radius is
+   * deliberately larger than the section itself, so left and right stay near
+   * full strength and the canvas still runs the full width, while top and
+   * bottom fall away to nothing well inside the frame.
+   *
+   * That asymmetry is the point. The navbar sits in the top ~10% and the
+   * BASED / FOCUS / DEGREE strip in the bottom ~15%, and both are small type
+   * over a translucent surface that circuit lines read straight through. An
+   * evenly round vignette cannot dim those without also eating the left and
+   * right edges, which is what it is here to avoid.
+   */
+  .mask-hero-edges {
+    -webkit-mask-image: radial-gradient(
+      ellipse 110% 44% at 50% 46%,
+      rgb(0 0 0) 28%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(ellipse 110% 44% at 50% 46%, rgb(0 0 0) 28%, transparent 100%);
+  }
+
+  /*
+   * The hole over the type. Inverted from a normal vignette: opaque (canvas
+   * fully visible) everywhere except one soft ellipse. The alpha in the middle
+   * stop is the dial, and it multiplies against the wrapper's own opacity.
+   *
+   * Single column, so this covers the whole heading and prose block.
+   */
+  .mask-hero-name {
+    -webkit-mask-image: radial-gradient(
+      ellipse 62% 30% at 46% 45%,
+      rgb(0 0 0 / 0.16) 0%,
+      rgb(0 0 0 / 0.16) 40%,
+      rgb(0 0 0) 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 62% 30% at 46% 45%,
+      rgb(0 0 0 / 0.16) 0%,
+      rgb(0 0 0 / 0.16) 40%,
+      rgb(0 0 0) 100%
+    );
+  }
+
+  /*
+   * Above the one-column breakpoint the block to protect is the whole left
+   * column: the name, the role line, the prose and both buttons. Covering only
+   * the name is not enough - the role line and the paragraph are the smallest
+   * type in the hero and a trace crossing them is more disruptive there than
+   * behind 8rem display type.
+   *
+   * The outlined "Waduge" is still the most sensitive part. It is a 1px stroke,
+   * so a lime trace crossing it at any real strength reads as part of the
+   * letterform rather than as background.
+   *
+   * The dim value holds flat out to 82% of the ellipse before it ramps, which
+   * is what puts the whole column inside the dark core and the feather outside
+   * it. With the ramp starting near the centre instead, the ellipse only really
+   * dims its own middle and lines cross the text on either side.
+   *
+   * Keep the horizontal radius tight. The text column ends around x=42%, and an
+   * ellipse whose feather ran out to 51% left the gap between the prose and the
+   * terminal card looking empty - the mask was dimming bare background.
+   */
+  @media (min-width: 640px) {
+    .mask-hero-name {
+      -webkit-mask-image: radial-gradient(
+        ellipse 26% 39% at 20% 50%,
+        rgb(0 0 0 / 0.09) 0%,
+        rgb(0 0 0 / 0.09) 82%,
+        rgb(0 0 0) 100%
+      );
+      mask-image: radial-gradient(
+        ellipse 26% 39% at 20% 50%,
+        rgb(0 0 0 / 0.09) 0%,
+        rgb(0 0 0 / 0.09) 82%,
+        rgb(0 0 0) 100%
+      );
+    }
+  }
+
   /* Fades a horizontally scrolling row out at both ends so the marquee never
      appears to be cut off by the viewport. */
   .mask-edges {
