@@ -58,10 +58,11 @@ export function OtherProjects() {
           >
             {otherProjects.map((project, index) => (
               <li key={project.title}>
-                <a
-                  href={project.sourceCodeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                {/* A div, not an anchor: the rows that ship a deployed build
+                    carry a second link, and anchors cannot nest. The source
+                    link below is stretched over the whole row instead, so the
+                    click target is unchanged. */}
+                <div
                   onPointerEnter={() => setHovered(index)}
                   onFocus={() => setHovered(index)}
                   onBlur={() => setHovered(null)}
@@ -77,14 +78,14 @@ export function OtherProjects() {
                   {/* Lime wash that wipes in from the left behind the row. */}
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-y-0 -inset-x-4 origin-left scale-x-0 rounded-lg bg-accent/[0.06] transition-transform duration-500 ease-smooth group-hover:scale-x-100 sm:-inset-x-6"
+                    className="pointer-events-none absolute inset-y-0 -inset-x-4 z-0 origin-left scale-x-0 rounded-lg bg-accent/[0.06] transition-transform duration-500 ease-smooth group-hover:scale-x-100 sm:-inset-x-6"
                   />
 
-                  <span className="relative mono-label w-8 shrink-0 sm:w-12">
+                  <span className="relative z-10 mono-label w-8 shrink-0 sm:w-12">
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
-                  <span className="relative flex min-w-0 flex-1 flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-6">
+                  <span className="relative z-10 flex min-w-0 flex-1 flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-6">
                     <span className="text-lg font-semibold tracking-tight text-foreground transition-transform duration-500 ease-smooth group-hover:translate-x-1 sm:text-2xl">
                       {project.title}
                     </span>
@@ -93,18 +94,41 @@ export function OtherProjects() {
                     </span>
                   </span>
 
-                  <span className="relative hidden shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:block">
+                  <span className="relative z-10 hidden shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:block">
                     {project.stack}
                   </span>
 
-                  <span className="relative hidden w-14 shrink-0 text-right font-mono text-[11px] text-muted sm:block">
+                  <span className="relative z-10 hidden w-14 shrink-0 text-right font-mono text-[11px] text-muted sm:block">
                     {project.year}
                   </span>
 
-                  <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-muted transition-all duration-500 ease-smooth group-hover:border-accent group-hover:bg-accent group-hover:text-accent-contrast">
+                  {/* Stretched source link. It sits above the row's own content
+                      so the whole row stays clickable, and the Live pill after
+                      it sits higher again so it wins the overlap. */}
+                  <a
+                    href={project.sourceCodeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.title} source code on GitHub`}
+                    className="absolute inset-0 z-20 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  />
+
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} live demo`}
+                      className="relative z-30 shrink-0 rounded-full border border-accent/40 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-accent-fg transition-colors duration-300 ease-smooth hover:border-accent hover:bg-accent hover:text-accent-contrast focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-[11px]"
+                    >
+                      Live
+                    </a>
+                  )}
+
+                  <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-muted transition-all duration-500 ease-smooth group-hover:border-accent group-hover:bg-accent group-hover:text-accent-contrast">
                     <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </span>
-                </a>
+                </div>
               </li>
             ))}
 
@@ -128,7 +152,7 @@ export function OtherProjects() {
                   </span>
                   <p className="mt-3 text-sm leading-relaxed text-muted">{active?.description}</p>
                   <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-fg">
-                    View source →
+                    {active?.liveUrl ? "Live demo · View source →" : "View source →"}
                   </p>
                 </div>
               </motion.div>

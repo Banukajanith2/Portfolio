@@ -300,6 +300,12 @@ export interface OtherProject {
   /** Primary language/tool, shown in the list's right-hand meta column. */
   stack: string;
   sourceCodeUrl: string;
+  /**
+   * Deployed build, where one exists. Most of the archive is notebooks and
+   * scripts with nothing to visit, so the row only grows a "Live" pill when
+   * this is set.
+   */
+  liveUrl?: string;
 }
 
 export const otherProjects: OtherProject[] = [
@@ -338,6 +344,17 @@ export const otherProjects: OtherProject[] = [
     year: "2024",
     stack: "JavaScript · TMDB API",
     sourceCodeUrl: "https://github.com/Banukajanith2/Movies-App",
+    liveUrl: "https://banukajanith2.github.io/EZ-Movies/",
+  },
+  {
+    title: "Project Atmos",
+    description:
+      "A real-time 3D Earth on a WebGL globe, layering live wind, cloud and precipitation forecasts with NOAA's auroral oval.",
+    icon: "globe",
+    year: "2026",
+    stack: "React · Three.js",
+    sourceCodeUrl: "https://github.com/Banukajanith2/Project-Atmos",
+    liveUrl: "https://banukajanith2.github.io/Project-Atmos/",
   },
 ];
 
