@@ -12,6 +12,7 @@ import {
   Film,
   ShoppingCart,
   FlaskConical,
+  ChartLine,
   type LucideIcon,
 } from "lucide-react";
 import { SiGithub } from "react-icons/si";
@@ -33,7 +34,8 @@ export type IconKey =
   | "fileText"
   | "film"
   | "shoppingCart"
-  | "flaskConical";
+  | "flaskConical"
+  | "chartLine";
 
 const lucideIconRegistry: Partial<Record<IconKey, LucideIcon>> = {
   settings: Settings,
@@ -49,6 +51,7 @@ const lucideIconRegistry: Partial<Record<IconKey, LucideIcon>> = {
   film: Film,
   shoppingCart: ShoppingCart,
   flaskConical: FlaskConical,
+  chartLine: ChartLine,
 };
 
 const brandIconRegistry: Partial<Record<IconKey, IconType>> = {

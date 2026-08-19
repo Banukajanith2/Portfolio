@@ -295,7 +295,14 @@ export const featuredProjects: FeaturedProject[] = [
 export interface OtherProject {
   title: string;
   description: string;
-  icon: "globe" | "cloud" | "fileText" | "film" | "shoppingCart" | "flaskConical";
+  icon:
+    | "globe"
+    | "cloud"
+    | "fileText"
+    | "film"
+    | "shoppingCart"
+    | "flaskConical"
+    | "chartLine";
   year: string;
   /** Primary language/tool, shown in the list's right-hand meta column. */
   stack: string;
@@ -355,6 +362,16 @@ export const otherProjects: OtherProject[] = [
     stack: "React · Three.js",
     sourceCodeUrl: "https://github.com/Banukajanith2/Project-Atmos",
     liveUrl: "https://banukajanith2.github.io/Project-Atmos/",
+  },
+  {
+    title: "Viewly - YouTube Analytics",
+    description:
+      "YouTube analytics and competitor intelligence for creators, with retention diagnostics, keyword trends and Gemini title suggestions, run entirely on free tiers.",
+    icon: "chartLine",
+    year: "2026",
+    stack: "Next.js · Firebase · Gemini",
+    sourceCodeUrl: "https://github.com/Banukajanith2/Viewly",
+    liveUrl: "https://project-viewly.vercel.app",
   },
 ];
 
