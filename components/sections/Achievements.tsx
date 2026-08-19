@@ -1,6 +1,7 @@
 import { achievements } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
 import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { SectionGrid } from "@/components/ui/SectionGrid";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
@@ -14,7 +15,9 @@ import { SpotlightCard } from "@/components/ui/SpotlightCard";
 export function Achievements() {
   return (
     <section className="relative py-24 sm:py-32">
-      <div className="section-container">
+      <SectionGrid />
+
+      <div className="section-container relative">
         <SectionHeading index="06" label="Credentials" title="Recognition & involvement" />
 
         <RevealGroup className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-3" stagger={0.09}>

@@ -12,11 +12,16 @@ import { motion, useScroll, useSpring } from "framer-motion";
 /**
  * Slow-drifting lime blooms. Kept at very low opacity: the point is to stop the
  * flat ink background reading as dead space, not to be seen as "a gradient".
+ *
+ * The blueprint grid used to be the first layer in here, fixed to the viewport
+ * behind the whole page. It now belongs to three sections instead - see
+ * components/ui/SectionGrid.tsx. Do not put it back: a fixed grid and a
+ * section-scoped one drift against each other as the page scrolls and beat into
+ * doubled lines, and the two cannot both exist.
  */
 export function Aurora() {
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 grid-backdrop mask-radial" />
 
       <div
         className="absolute -left-[15%] top-[-10%] h-[55vmax] w-[55vmax] rounded-full opacity-[0.13] blur-[110px] animate-drift"

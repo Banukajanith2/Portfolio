@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { techStack } from "@/data/portfolio";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionGrid } from "@/components/ui/SectionGrid";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TechIcon } from "@/components/ui/TechIcon";
 import { cn } from "@/lib/utils";
@@ -32,7 +33,9 @@ export function TechStack() {
 
   return (
     <section id="skills" className="relative py-24 sm:py-32">
-      <div className="section-container">
+      <SectionGrid />
+
+      <div className="section-container relative">
         <SectionHeading
           index="02"
           label="Capabilities"

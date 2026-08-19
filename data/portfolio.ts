@@ -304,8 +304,21 @@ export interface OtherProject {
     | "flaskConical"
     | "chartLine";
   year: string;
-  /** Primary language/tool, shown in the list's right-hand meta column. */
+  /** Primary language/tool, shown as one prose line, e.g. "Python · Jupyter". */
   stack: string;
+  /**
+   * The same information as `stack`, but split so it can be matched and
+   * rendered per item. `stack` is one string and cannot drive a chip list, a
+   * filter or a terminal `grep`; every one of those needs discrete values.
+   * Keep the two in step - `stack` is what a human reads, `tags` is what the
+   * UI operates on.
+   */
+  tags: string[];
+  /**
+   * Short id, used as the folder name's stem and as a React key. Must stay
+   * unique and URL-safe.
+   */
+  slug: string;
   sourceCodeUrl: string;
   /**
    * Deployed build, where one exists. Most of the archive is notebooks and
@@ -318,58 +331,70 @@ export interface OtherProject {
 export const otherProjects: OtherProject[] = [
   {
     title: "Wine Quality Prediction Model",
+    slug: "wine",
     description:
       "Regression, a Random Forest Classifier and an SVC benchmarked against each other on the same 10-15 variable set, evaluated with confusion matrices.",
     icon: "flaskConical",
     year: "2023",
     stack: "Python · scikit-learn",
+    tags: ["Python", "Machine Learning", "scikit-learn"],
     sourceCodeUrl: "https://github.com/Banukajanith2/ML-Prediction-Model",
   },
   {
     title: "XAI-Integrated Fraud Detection",
+    slug: "xai",
     description:
       "Machine learning model for fraud detection with explainable AI integrated, built in Jupyter Notebook.",
     icon: "fileText",
     year: "2025",
     stack: "Python · Jupyter",
+    tags: ["Python", "Machine Learning", "Explainable AI"],
     sourceCodeUrl: "https://github.com/Banukajanith2/XAI-Integrated-ML-Model-for-Fraud-Detection",
   },
   {
     title: "Genetic Algorithm in Python",
+    slug: "genetic",
     description:
       "A genetic algorithm using binary chromosomes to evolve optimal solutions through selection, crossover and mutation.",
     icon: "cloud",
     year: "2024",
     stack: "Python",
+    tags: ["Python", "Algorithms"],
     sourceCodeUrl: "https://github.com/Banukajanith2/Python-Genetic-Algorithm",
   },
   {
     title: "EZ Movies App",
+    slug: "ez-movies",
     description:
       "A responsive movie browser on the TMDB API, with search, trending and pagination against live data.",
     icon: "film",
     year: "2024",
     stack: "JavaScript · TMDB API",
+    tags: ["JavaScript", "Web", "REST API"],
     sourceCodeUrl: "https://github.com/Banukajanith2/Movies-App",
     liveUrl: "https://banukajanith2.github.io/EZ-Movies/",
   },
   {
     title: "Project Atmos",
+    slug: "atmos",
     description:
       "A real-time 3D Earth on a WebGL globe, layering live wind, cloud and precipitation forecasts with NOAA's auroral oval.",
     icon: "globe",
     year: "2026",
     stack: "React · Three.js",
+    tags: ["React", "Three.js", "Web"],
     sourceCodeUrl: "https://github.com/Banukajanith2/Project-Atmos",
     liveUrl: "https://banukajanith2.github.io/Project-Atmos/",
   },
   {
     title: "Viewly - YouTube Analytics",
+    slug: "viewly",
     description:
       "YouTube analytics and competitor intelligence for creators, with retention diagnostics, keyword trends and Gemini title suggestions, run entirely on free tiers.",
     icon: "chartLine",
     year: "2026",
     stack: "Next.js · Firebase · Gemini",
+    tags: ["Next.js", "Web", "Firebase", "AI"],
     sourceCodeUrl: "https://github.com/Banukajanith2/Viewly",
     liveUrl: "https://project-viewly.vercel.app",
   },
