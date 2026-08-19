@@ -212,7 +212,14 @@ export function EditorWindow() {
                 </div>
               )}
 
-              <div className="min-h-[22rem] min-w-0 flex-1 overflow-y-auto px-4 pb-7 pt-2 sm:px-7">
+              {/*
+                min-h only below lg. The shell is height:auto on a phone, so the
+                pane needs a floor there or it collapses; above lg the shell is a
+                fixed 34rem and that same floor makes the pane taller than the
+                space left once the terminal opens - the document then overflows
+                and prints straight over the panel.
+              */}
+              <div className="min-h-[22rem] min-w-0 flex-1 overflow-y-auto px-4 pb-7 pt-2 sm:px-7 lg:min-h-0">
                 <AnimatePresence mode="wait">
                   {active ? (
                     <DocumentView key={active.slug} project={active} reduced={!!reduced} />
